@@ -4,11 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import * as THREE from 'three';
+import {Life2DComponent} from './components/Life2D/Life2D.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Life2DComponent
   ],
   imports: [
     BrowserModule,
