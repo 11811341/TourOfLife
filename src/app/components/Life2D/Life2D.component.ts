@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as THREE from 'three';
 import {Renderer2D} from '../../Renderer2D';
+import {GridHelper, Vector3} from 'three';
+import {Cell2D} from '../Cell2D';
 
 @Component({
     selector: 'life-2d',
@@ -14,6 +16,8 @@ import {Renderer2D} from '../../Renderer2D';
     private scene = new THREE.Scene();
     private renderer: Renderer2D;
 
+    private helperGrid: GridHelper;
+
     private width;
     private height;
 
@@ -23,17 +27,21 @@ import {Renderer2D} from '../../Renderer2D';
       this.renderer = new Renderer2D(this.width, this.height);
       document.getElementById("render_window").appendChild( this.renderer.getRenderer());
 
-      var r = this.renderer;
+      const r = this.renderer;
       window.addEventListener('resize', function(){
         r.setSize(document.getElementById("render_window").offsetWidth, document.getElementById("render_window").offsetHeight);
       }, false);
+
+      this.helperGrid = new THREE.GridHelper(1000, 10000);
     }
 
     initialize_geometry(): void{
-      const geometry = new THREE.PlaneGeometry( 1, 1 );
-      const material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-      this.cube = new THREE.Mesh( geometry, material );
-      this.scene.add( this.cube );
+      this.helperGrid.rotateOnAxis(new Vector3(1,0,0), 90 * Math.PI/180);
+      this.scene.add(this.helperGrid);
+
+      const s = 1/10;
+      const cell = new Cell2D(s, -5, 6);
+      this.scene.add(cell.getCell());
     }
 
     animate = () => {
