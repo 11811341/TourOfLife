@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as THREE from 'three';
+import {Renderer2D} from '../../Renderer2D';
 
 @Component({
     selector: 'life-2d',
@@ -11,42 +12,46 @@ import * as THREE from 'three';
     title = "lel";
 
     private scene = new THREE.Scene();
-    private camera: THREE.Camera;
-    // private camera = new THREE.PerspectiveCamera( 75, this.width / this.height, 0.1, 1000 );
-    private renderer = new THREE.WebGLRenderer();
+    private renderer: Renderer2D;
 
-    private width = window.innerWidth;
-    private height = window.innerHeight;
+    private width;
+    private height;
 
-    cube: THREE.Mesh
+    private cube: THREE.Mesh
 
     initialize_renderer(): void{
-      this.camera = new THREE.OrthographicCamera(this.width / - 500, this.width / 500, this.height / 500, this.height / - 500, 1, 1000);
-      this.renderer.setSize( window.innerWidth, window.innerHeight );
-      document.body.appendChild( this.renderer.domElement );
-      this.camera.position.z = 5;
+      this.renderer = new Renderer2D(this.width, this.height);
+      document.getElementById("render_window").appendChild( this.renderer.getRenderer());
+
+      var r = this.renderer;
+      window.addEventListener('resize', function(){
+        r.setSize(document.getElementById("render_window").offsetWidth, document.getElementById("render_window").offsetHeight);
+      }, false);
     }
 
     initialize_geometry(): void{
-      const geometry = new THREE.BoxGeometry(1, 1, 1);
-      const material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
+      const geometry = new THREE.PlaneGeometry( 1, 1 );
+      const material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
       this.cube = new THREE.Mesh( geometry, material );
       this.scene.add( this.cube );
     }
 
     animate = () => {
+
       requestAnimationFrame(this.animate);
 
-      this.cube.rotation.x += 0.01;
-      this.cube.rotation.y += 0.01;
+      // this.cube.rotation.x += 0.01;
+      // this.cube.rotation.y += 0.01;
 
-      this.renderer.render( this.scene, this.camera );
+      this.renderer.render(this.scene);
     }
 
     ngOnInit(): void {
-    this.initialize_renderer();
-    this.initialize_geometry();
-    this.animate();
+      this.width = document.getElementById("render_window").offsetWidth;
+      this.height = document.getElementById("render_window").offsetHeight;
+      this.initialize_renderer();
+      this.initialize_geometry();
+      this.animate();
     }
 
 
