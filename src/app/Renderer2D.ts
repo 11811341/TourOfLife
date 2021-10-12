@@ -20,7 +20,6 @@ export class Renderer2D{
     const cam = this.camera;
     document.addEventListener( 'wheel', (event) => {
       // cam.position.z +=event.deltaY/500;
-      console.log(Math.sign(event.deltaY));
       if((cam.position.z < 10 && event.deltaY>0) || (cam.position.z > 2 && event.deltaY<0))
         cam.position.z += Math.sign(event.deltaY)*0.5;
     }, false);

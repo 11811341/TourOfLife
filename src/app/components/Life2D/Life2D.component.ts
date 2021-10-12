@@ -3,6 +3,8 @@ import * as THREE from 'three';
 import {Renderer2D} from '../../Renderer2D';
 import {GridHelper, Vector3} from 'three';
 import {Cell2D} from '../Cell2D';
+import {Grid2D} from '../Grid2D';
+import {animate} from '@angular/animations';
 
 @Component({
     selector: 'life-2d',
@@ -17,9 +19,14 @@ import {Cell2D} from '../Cell2D';
     private renderer: Renderer2D;
 
     private helperGrid: GridHelper;
+    private clock = new THREE.Clock();
+    private delta = 0;
+    private interval = 5;
 
     private width;
     private height;
+
+    private grid = new Grid2D();
 
     private cube: THREE.Mesh
 
@@ -37,20 +44,41 @@ import {Cell2D} from '../Cell2D';
 
     initialize_geometry(): void{
       this.helperGrid.rotateOnAxis(new Vector3(1,0,0), 90 * Math.PI/180);
-      this.scene.add(this.helperGrid);
 
-      const s = 1/10;
-      const cell = new Cell2D(s, -5, 6);
-      this.scene.add(cell.getCell());
+      const cell1 = new Cell2D(-5, 6);
+      const cell2 = new Cell2D(-4, 6);
+      const cell3 = new Cell2D(-6, 6);
+      const cell4 = new Cell2D(-5, 7);
+
+      this.grid.add_to_grid(cell1);
+      this.grid.add_to_grid(cell2);
+      // this.grid.add_to_grid(cell3);
+      // this.grid.add_to_grid(cell4);
+
+      this.scene_reload();
+    }
+
+    scene_reload(){
+      this.scene = new THREE.Scene();
+      this.scene.add(this.helperGrid);
+      const cells = this.grid.get_cells();
+      for(var c of cells)
+        this.scene.add(c.getCell());
     }
 
     animate = () => {
-
       requestAnimationFrame(this.animate);
 
       // this.cube.rotation.x += 0.01;
       // this.cube.rotation.y += 0.01;
 
+      this.delta += this.clock.getDelta();
+
+      if(this.delta > this.interval){
+        this.grid.advance();
+        this.scene_reload();
+        this.delta = this.delta % this.interval;
+      }
       this.renderer.render(this.scene);
     }
 
