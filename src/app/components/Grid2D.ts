@@ -11,12 +11,8 @@ export class Grid2D {
 
   public add_to_grid(cell: Cell2D) {
 
-    this.active.push(cell);
-
-    if (this.coords[cell.getX()] == null) {
-      this.coords[cell.getX()] = [];
-    }
-    this.coords[cell.getX()][cell.getY()] = cell;
+    this.to_birth.push(cell);
+    // this.active.push(cell);
 
     // if(cell.getX()<0 && cell.getY()<0){
     //   if(this.tl[Math.abs(cell.getX())]==null)
@@ -31,20 +27,45 @@ export class Grid2D {
     // }
 
     // this.cell_birth(cell);
-    this.check_neighbors(cell.getX(), cell.getY());
   }
 
   public advance() {
+    // console.log("---------------------------------------------------------------------------");
+
+    // console.log(this.to_die);
+    // console.log(this.to_birth);
+
+    // console.log("------------");
+
+    // console.log(this.active);
+    // console.log(this.to_die);
     for(let death of this.to_die){
-      this.active.splice(death, 1);
+      this.active.splice(this.active.indexOf(death), 1);
       this.coords[death.getX()][death.getY()] = null;
     }
+    // console.log(this.active);
     this.to_die = [];
+    // console.log(this.to_birth);
     for(let live of this.to_birth){
-      // this.active.push(live);
-      this.add_to_grid(live);
+      // console.log(live);
+      this.active.push(live);
+      if (this.coords[live.getX()] == null) {
+        this.coords[live.getX()] = [];
+      }
+      this.coords[live.getX()][live.getY()] = live;
     }
+    let temp = this.to_birth;
     this.to_birth = [];
+    // console.log(this.active);
+
+    for(let a of this.active) {
+      this.check_neighbors(a.getX(), a.getY());
+    }
+
+    // console.log("-----------");
+    // console.log(this.active);
+    // console.log(this.to_die);
+    // console.log(this.to_birth);
   }
 
   public get_cells() {
@@ -58,11 +79,9 @@ export class Grid2D {
         const coord_y = (y < 0 && y + j == 0) ? 1 : ((y > 0 && y + j == 0) ? -1 : y + j);
         if (this.coords[coord_x] && this.coords[coord_x][coord_y] != null) {
           // alive.push([coord_x, coord_y]);
-          console.log("alive");
           this.cell_death(this.coords[coord_x][coord_y]);
         } else {
           // dead.push([coord_x, coord_y]);
-          console.log("dead");
           this.cell_birth(coord_x, coord_y);
         }
       }
@@ -85,7 +104,7 @@ export class Grid2D {
         }
       }
     }
-    if (counter < 3 && counter > 4) {
+    if ((counter < 3 || counter > 4) && !this.to_die.includes(cell)) {
       this.to_die.push(cell);
     }
   }
@@ -97,15 +116,17 @@ export class Grid2D {
       for (var j = -1; j <= 1; j++) {
         var coord_x = (x < 0 && x + i == 0) ? 1 : ((x > 0 && x + i == 0) ? -1 : x + i);
         var coord_y = (y < 0 && y + j == 0) ? 1 : ((y > 0 && y + j == 0) ? -1 : y + j);
-        if(coord_x == -5 && coord_y == 6){
-        }
         if (this.coords[coord_x] && this.coords[coord_x][coord_y] != null) {
           counter++;
         }
       }
     }
     if (counter == 3) {
-      this.to_birth.push(new Cell2D(x,y));
+      for (let cell of this.to_birth) {
+        if (cell.getX() == x && cell.getY() == y)
+          return;
+      }
+      this.to_birth.push(new Cell2D(x, y));
     }
   }
 

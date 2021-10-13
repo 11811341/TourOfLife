@@ -45,17 +45,42 @@ import {animate} from '@angular/animations';
     initialize_geometry(): void{
       this.helperGrid.rotateOnAxis(new Vector3(1,0,0), 90 * Math.PI/180);
 
-      const cell1 = new Cell2D(-5, 6);
-      const cell2 = new Cell2D(-4, 6);
-      const cell3 = new Cell2D(-6, 6);
-      const cell4 = new Cell2D(-5, 7);
+      const cell1 = new Cell2D(-20, 20);
+      const cell2 = new Cell2D(-19, 20);
+      const cell3 = new Cell2D(-18, 20);
+      const cell4 = new Cell2D(-18, 21);
+      const cell5 = new Cell2D(-19, 22);
 
-      this.grid.add_to_grid(cell1);
-      this.grid.add_to_grid(cell2);
+      const cell6 = new Cell2D(5, 4);
+      const cell7 = new Cell2D(6, 4);
+      const cell8 = new Cell2D(4, 5);
+      const cell9 = new Cell2D(6, 5);
+      const cell10 = new Cell2D(6, 6);
+
+
+      // this.grid.add_to_grid(cell1);
+      // this.grid.add_to_grid(cell2);
       // this.grid.add_to_grid(cell3);
       // this.grid.add_to_grid(cell4);
+      // this.grid.add_to_grid(cell5);
 
-      this.scene_reload();
+      // this.grid.add_to_grid(cell6);
+      // this.grid.add_to_grid(cell7);
+      // this.grid.add_to_grid(cell8);
+      // this.grid.add_to_grid(cell9);
+      // this.grid.add_to_grid(cell10);
+
+      this.advance();
+
+    }
+
+    generate_cell(){
+      let x = (document.getElementById("x_coord") as HTMLInputElement).value;
+      let y = (document.getElementById("y_coord") as HTMLInputElement).value;
+      const cell = new Cell2D(parseInt(x), parseInt(y));
+      this.grid.add_to_grid(cell);
+      // this.scene_reload();
+      this.scene.add(cell.getCell());
     }
 
     scene_reload(){
@@ -72,14 +97,19 @@ import {animate} from '@angular/animations';
       // this.cube.rotation.x += 0.01;
       // this.cube.rotation.y += 0.01;
 
-      this.delta += this.clock.getDelta();
-
-      if(this.delta > this.interval){
-        this.grid.advance();
-        this.scene_reload();
-        this.delta = this.delta % this.interval;
-      }
+      // this.delta += this.clock.getDelta();
+      //
+      // if(this.delta > this.interval){
+      //   this.grid.advance();
+      //   this.scene_reload();
+      //   this.delta = this.delta % this.interval;
+      // }
       this.renderer.render(this.scene);
+    }
+
+    public advance(){
+      this.grid.advance();
+      this.scene_reload();
     }
 
     ngOnInit(): void {
