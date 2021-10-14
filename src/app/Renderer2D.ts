@@ -31,6 +31,10 @@ export class Renderer2D{
     return this.renderer.domElement;
   }
 
+  public getCamera(){
+    return this.camera;
+  }
+
   public setSize(width: number, height: number): void{
     this.width = width;
     this.height = height;

@@ -10,26 +10,22 @@ export class Grid2D {
   private to_birth = [];
 
   public add_to_grid(cell: Cell2D) {
+    // this.to_birth.push(cell);
+    this.active.push(cell);
 
-    this.to_birth.push(cell);
-    // this.active.push(cell);
+    if (this.coords[cell.getX()] == null) {
+      this.coords[cell.getX()] = [];
+    }
+    this.coords[cell.getX()][cell.getY()] = cell;
 
-    // if(cell.getX()<0 && cell.getY()<0){
-    //   if(this.tl[Math.abs(cell.getX())]==null)
-    //     this.tl = [];
-    //   this.tl[Math.abs(cell.getX())][Math.abs(cell.getY())] = cell;
-    // }else if(cell.getX()>0 && cell.getY()<0){
-    //
-    // }else if(cell.getX()<0 && cell.getY()>0){
-    //
-    // }else if(cell.getX()>0 && cell.getY()>0){
-    //
-    // }
-
-    // this.cell_birth(cell);
   }
 
   public advance() {
+
+    for(let a of this.active) {
+      this.check_neighbors(a.getX(), a.getY());
+    }
+
     // console.log("---------------------------------------------------------------------------");
 
     // console.log(this.to_die);
@@ -54,13 +50,8 @@ export class Grid2D {
       }
       this.coords[live.getX()][live.getY()] = live;
     }
-    let temp = this.to_birth;
     this.to_birth = [];
     // console.log(this.active);
-
-    for(let a of this.active) {
-      this.check_neighbors(a.getX(), a.getY());
-    }
 
     // console.log("-----------");
     // console.log(this.active);

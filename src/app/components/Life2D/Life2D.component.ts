@@ -23,6 +23,9 @@ import {animate} from '@angular/animations';
     private delta = 0;
     private interval = 5;
 
+    private cell_select = new THREE.Raycaster();
+
+
     private width;
     private height;
 
@@ -40,6 +43,8 @@ import {animate} from '@angular/animations';
       }, false);
 
       this.helperGrid = new THREE.GridHelper(1000, 10000);
+
+      this.cell_select.set(this.renderer.getCamera().getWorldPosition(), this.renderer.getCamera().getWorldDirection());
     }
 
     initialize_geometry(): void{
@@ -70,7 +75,9 @@ import {animate} from '@angular/animations';
       // this.grid.add_to_grid(cell9);
       // this.grid.add_to_grid(cell10);
 
-      this.advance();
+      // this.advance();
+
+      this.scene_reload();
 
     }
 
@@ -79,7 +86,7 @@ import {animate} from '@angular/animations';
       let y = (document.getElementById("y_coord") as HTMLInputElement).value;
       const cell = new Cell2D(parseInt(x), parseInt(y));
       this.grid.add_to_grid(cell);
-      // this.scene_reload();
+      this.scene_reload();
       this.scene.add(cell.getCell());
     }
 
