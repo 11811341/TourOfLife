@@ -23,7 +23,9 @@ import {animate} from '@angular/animations';
     private delta = 0;
     private interval = 5;
 
-    private cell_select = new THREE.Raycaster();
+    private raycaster = new THREE.Raycaster();
+    private mouse = new THREE.Vector2();
+    private raycast_plane = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.MeshBasicMaterial( {color: 0xffff00} ));
 
 
     private width;
@@ -36,15 +38,31 @@ import {animate} from '@angular/animations';
     initialize_renderer(): void{
       this.renderer = new Renderer2D(this.width, this.height);
       document.getElementById("render_window").appendChild( this.renderer.getRenderer());
+      let that = this;
 
-      const r = this.renderer;
       window.addEventListener('resize', function(){
-        r.setSize(document.getElementById("render_window").offsetWidth, document.getElementById("render_window").offsetHeight);
+        that.renderer.setSize(document.getElementById("render_window").offsetWidth, document.getElementById("render_window").offsetHeight);
       }, false);
 
-      this.helperGrid = new THREE.GridHelper(1000, 10000);
+      window.addEventListener( 'mousemove', function(e){
+        that.mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
+        that.mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
+        // console.log([Math.trunc(m.x * 100), Math.trunc(m.y * 100)]);
+      }, false );
 
-      this.cell_select.set(this.renderer.getCamera().getWorldPosition(), this.renderer.getCamera().getWorldDirection());
+      this.raycast_plane.material.colorWrite = false;
+      window.addEventListener('click', function(){
+        const intersects = that.raycaster.intersectObject(that.raycast_plane);
+        if(intersects.length != 0) {
+          let x = intersects[0].point.x < 0 ? Math.trunc(intersects[0].point.x * 10) - 1 : Math.trunc(intersects[0].point.x * 10) + 1;
+          let y = intersects[0].point.y < 0 ? Math.trunc(intersects[0].point.y * 10) - 1 : Math.trunc(intersects[0].point.y * 10) + 1;
+          // console.log([x, y]);
+          that.generate_cell(x, y);
+        }
+      }, false);
+
+      this.helperGrid = new THREE.GridHelper(100, 1000);
+      console.log(this.helperGrid.scale);
     }
 
     initialize_geometry(): void{
@@ -81,10 +99,8 @@ import {animate} from '@angular/animations';
 
     }
 
-    generate_cell(){
-      let x = (document.getElementById("x_coord") as HTMLInputElement).value;
-      let y = (document.getElementById("y_coord") as HTMLInputElement).value;
-      const cell = new Cell2D(parseInt(x), parseInt(y));
+    generate_cell(x: number, y: number){
+      const cell = new Cell2D(x, y);
       this.grid.add_to_grid(cell);
       this.scene_reload();
       this.scene.add(cell.getCell());
@@ -93,6 +109,7 @@ import {animate} from '@angular/animations';
     scene_reload(){
       this.scene = new THREE.Scene();
       this.scene.add(this.helperGrid);
+      this.scene.add(this.raycast_plane);
       const cells = this.grid.get_cells();
       for(var c of cells)
         this.scene.add(c.getCell());
@@ -101,8 +118,16 @@ import {animate} from '@angular/animations';
     animate = () => {
       requestAnimationFrame(this.animate);
 
-      // this.cube.rotation.x += 0.01;
-      // this.cube.rotation.y += 0.01;
+      this.raycaster.setFromCamera(this.mouse, this.renderer.getCamera());
+
+      // calculate objects intersecting the picking ray
+
+      // let pos = intersects[0].point;
+      // console.log([Math.trunc(pos.x * 10), Math.trunc(pos.y * 10)]);
+
+
+      // this.raycast_plane.rotation.x += 0.01;
+      // this.raycast_plane.rotation.y += 0.01;
 
       // this.delta += this.clock.getDelta();
       //
@@ -122,6 +147,9 @@ import {animate} from '@angular/animations';
     ngOnInit(): void {
       this.width = document.getElementById("render_window").offsetWidth;
       this.height = document.getElementById("render_window").offsetHeight;
+
+      // window.addEventListener( 'mousemove', this.onMouseMove, false );
+
       this.initialize_renderer();
       this.initialize_geometry();
       this.animate();
