@@ -1,159 +1,187 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as THREE from 'three';
 import {Renderer2D} from '../../Renderer2D';
-import {GridHelper, Vector3} from 'three';
+import {Color, GridHelper, Vector3} from 'three';
 import {Cell2D} from '../Cell2D';
 import {Grid2D} from '../Grid2D';
-import {animate} from '@angular/animations';
+import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls.js';
 
 @Component({
-    selector: 'life-2d',
-    templateUrl: './Life2D.component.html',
-    styleUrls: ['./Life2D.component.css']
-  })
-  export class Life2DComponent implements OnInit {
+  selector: 'life-2d',
+  templateUrl: './Life2D.component.html',
+  styleUrls: ['./Life2D.component.css']
+})
+export class Life2DComponent implements OnInit {
 
-    title = "lel";
+  title = 'lel';
 
-    private scene = new THREE.Scene();
-    private renderer: Renderer2D;
+  private scene = new THREE.Scene();
+  private renderer: Renderer2D;
 
-    private helperGrid: GridHelper;
-    private clock = new THREE.Clock();
-    private delta = 0;
-    private interval = 5;
+  private helperGrid: GridHelper;
+  private clock = new THREE.Clock();
+  private delta = 0;
+  private interval = 0.2;
+  private running: boolean = false;
 
-    private raycaster = new THREE.Raycaster();
-    private mouse = new THREE.Vector2();
-    private raycast_plane = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.MeshBasicMaterial( {color: 0xffff00} ));
+  private raycaster = new THREE.Raycaster();
+  private mouse = new THREE.Vector2();
+  private raycast_plane = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.MeshBasicMaterial({color: 0xffff00}));
+  private clicked: boolean = false;
+  private mouse_down: boolean = false;
+
+  private trackball;
+
+  private width;
+  private height;
+
+  private grid = new Grid2D();
+
+  private cube: THREE.Mesh;
+
+  initialize_renderer(): void {
+    this.renderer = new Renderer2D(this.width, this.height);
+    document.getElementById('render_window').appendChild(this.renderer.getRenderer());
+    let that = this;
+
+    window.addEventListener('resize', function() {
+      that.renderer.setSize(document.getElementById('render_window').offsetWidth, document.getElementById('render_window').offsetHeight);
+    }, false);
+
+    window.addEventListener('mousemove', function(e) {
+      that.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      that.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      if (that.mouse_down) {
+        that.raycast_check();
+      }
+    }, false);
 
 
-    private width;
-    private height;
+    window.addEventListener('mouseup', function() {
+      that.mouse_down = false;
+    }, false);
 
-    private grid = new Grid2D();
 
-    private cube: THREE.Mesh
+    this.raycast_plane.material.colorWrite = false;
+    window.addEventListener('mousedown', function() {
+      that.mouse_down = true;
+      if (!that.clicked) {
+        that.raycast_check();
+      } else {
+        that.clicked = false;
+      }
+    }, false);
 
-    initialize_renderer(): void{
-      this.renderer = new Renderer2D(this.width, this.height);
-      document.getElementById("render_window").appendChild( this.renderer.getRenderer());
-      let that = this;
+    this.trackball = new TrackballControls(this.renderer.getCamera(), this.renderer.getRenderer());
+    this.trackball.noRotate = true;
+    this.trackball.noZoom = true;
+    this.trackball.staticMoving = true;
+    this.trackball.panSpeed = 1;
 
-      window.addEventListener('resize', function(){
-        that.renderer.setSize(document.getElementById("render_window").offsetWidth, document.getElementById("render_window").offsetHeight);
-      }, false);
+    this.helperGrid = new THREE.GridHelper(100, 1000, new Color(0x888888));
+    this.helperGrid.rotateOnAxis(new Vector3(1, 0, 0), 90 * Math.PI / 180);
+    this.scene.add(this.helperGrid);
+    // this.helperGrid = new THREE.GridHelper(100, 1000);
+  }
 
-      window.addEventListener( 'mousemove', function(e){
-        that.mouse.x = ( e.clientX / window.innerWidth ) * 2 - 1;
-        that.mouse.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
-        // console.log([Math.trunc(m.x * 100), Math.trunc(m.y * 100)]);
-      }, false );
+  private raycast_check() {
+    let clicked = false;
+    const cells = this.scene.children;
+    if (cells.length > 2) {  //if raycast detects more that 2 objects(grid and plane) that means a cell is in place and can be deleted
+      cells.splice(0, 2);
+      const cell_check = this.raycaster.intersectObjects(cells);
+      if (cell_check.length != 0) {
+        let x = cell_check[0].point.x < 0 ? Math.trunc(cell_check[0].point.x * 10) - 1 : Math.trunc(cell_check[0].point.x * 10) + 1;
+        let y = cell_check[0].point.y < 0 ? Math.trunc(cell_check[0].point.y * 10) - 1 : Math.trunc(cell_check[0].point.y * 10) + 1;
 
-      this.raycast_plane.material.colorWrite = false;
-      window.addEventListener('click', function(){
-        const intersects = that.raycaster.intersectObject(that.raycast_plane);
-        if(intersects.length != 0) {
-          let x = intersects[0].point.x < 0 ? Math.trunc(intersects[0].point.x * 10) - 1 : Math.trunc(intersects[0].point.x * 10) + 1;
-          let y = intersects[0].point.y < 0 ? Math.trunc(intersects[0].point.y * 10) - 1 : Math.trunc(intersects[0].point.y * 10) + 1;
-          // console.log([x, y]);
-          that.generate_cell(x, y);
-        }
-      }, false);
-
-      this.helperGrid = new THREE.GridHelper(100, 1000);
-      console.log(this.helperGrid.scale);
+        this.grid.remove_from_grid(x, y);
+        this.scene_reload();
+        clicked = true;
+      }
     }
 
-    initialize_geometry(): void{
-      this.helperGrid.rotateOnAxis(new Vector3(1,0,0), 90 * Math.PI/180);
+    const intersects = this.raycaster.intersectObject(this.raycast_plane);
+    if (intersects.length != 0 && !clicked) {
+      let x = intersects[0].point.x < 0 ? Math.trunc(intersects[0].point.x * 10) - 1 : Math.trunc(intersects[0].point.x * 10) + 1;
+      let y = intersects[0].point.y < 0 ? Math.trunc(intersects[0].point.y * 10) - 1 : Math.trunc(intersects[0].point.y * 10) + 1;
+      this.generate_cell(x, y);
+    }
+  }
 
-      const cell1 = new Cell2D(-20, 20);
-      const cell2 = new Cell2D(-19, 20);
-      const cell3 = new Cell2D(-18, 20);
-      const cell4 = new Cell2D(-18, 21);
-      const cell5 = new Cell2D(-19, 22);
+  generate_cell(x: number, y: number) {
+    const cell = new Cell2D(x, y);
+    this.grid.add_to_grid(cell);
+    this.scene_reload();
+    // this.scene.add(cell.getCell());
+  }
 
-      const cell6 = new Cell2D(5, 4);
-      const cell7 = new Cell2D(6, 4);
-      const cell8 = new Cell2D(4, 5);
-      const cell9 = new Cell2D(6, 5);
-      const cell10 = new Cell2D(6, 6);
+  scene_reload() {
+    this.scene = new THREE.Scene();
+    this.scene.add(this.helperGrid);
+    this.scene.add(this.raycast_plane);
+    const cells = this.grid.get_cells();
+    for (var c of cells) {
+      this.scene.add(c.getCell());
+    }
+  }
+
+  animate = () => {
+    requestAnimationFrame(this.animate);
+
+    this.raycaster.setFromCamera(this.mouse, this.renderer.getCamera());
+
+    this.trackball.update();
+
+    // this.raycast_plane.rotation.x += 0.01;
+    // this.raycast_plane.rotation.y += 0.01;
 
 
-      // this.grid.add_to_grid(cell1);
-      // this.grid.add_to_grid(cell2);
-      // this.grid.add_to_grid(cell3);
-      // this.grid.add_to_grid(cell4);
-      // this.grid.add_to_grid(cell5);
-
-      // this.grid.add_to_grid(cell6);
-      // this.grid.add_to_grid(cell7);
-      // this.grid.add_to_grid(cell8);
-      // this.grid.add_to_grid(cell9);
-      // this.grid.add_to_grid(cell10);
-
-      // this.advance();
-
-      this.scene_reload();
-
+    if (this.running) {
+      this.delta += this.clock.getDelta();
+      if (this.delta > this.interval) {
+        this.grid.advance();
+        this.scene_reload();
+        this.delta = this.delta % this.interval;
+      }
     }
 
-    generate_cell(x: number, y: number){
-      const cell = new Cell2D(x, y);
-      this.grid.add_to_grid(cell);
-      this.scene_reload();
-      this.scene.add(cell.getCell());
-    }
+    this.renderer.render(this.scene);
+  };
 
-    scene_reload(){
-      this.scene = new THREE.Scene();
-      this.scene.add(this.helperGrid);
-      this.scene.add(this.raycast_plane);
-      const cells = this.grid.get_cells();
-      for(var c of cells)
-        this.scene.add(c.getCell());
-    }
-
-    animate = () => {
-      requestAnimationFrame(this.animate);
-
-      this.raycaster.setFromCamera(this.mouse, this.renderer.getCamera());
-
-      // calculate objects intersecting the picking ray
-
-      // let pos = intersects[0].point;
-      // console.log([Math.trunc(pos.x * 10), Math.trunc(pos.y * 10)]);
-
-
-      // this.raycast_plane.rotation.x += 0.01;
-      // this.raycast_plane.rotation.y += 0.01;
-
-      // this.delta += this.clock.getDelta();
-      //
-      // if(this.delta > this.interval){
-      //   this.grid.advance();
-      //   this.scene_reload();
-      //   this.delta = this.delta % this.interval;
-      // }
-      this.renderer.render(this.scene);
-    }
-
-    public advance(){
+  public advance() {
+    this.clicked = true;
+    if (!this.running) {
       this.grid.advance();
       this.scene_reload();
     }
-
-    ngOnInit(): void {
-      this.width = document.getElementById("render_window").offsetWidth;
-      this.height = document.getElementById("render_window").offsetHeight;
-
-      // window.addEventListener( 'mousemove', this.onMouseMove, false );
-
-      this.initialize_renderer();
-      this.initialize_geometry();
-      this.animate();
-    }
-
-
   }
+
+  public play() {
+    this.clicked = true;
+    this.running = !this.running;
+  }
+
+  public clear() {
+    this.clicked = true;
+    this.grid.clear_grid();
+    this.scene_reload();
+  }
+
+  public restore() {
+    this.clicked = true;
+    this.grid.restore_grid();
+    this.scene_reload();
+  }
+
+  ngOnInit(): void {
+    this.width = document.getElementById('render_window').offsetWidth;
+    this.height = document.getElementById('render_window').offsetHeight;
+
+    // window.addEventListener( 'mousemove', this.onMouseMove, false );
+
+    this.initialize_renderer();
+    this.animate();
+  }
+
+
+}
