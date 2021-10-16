@@ -12,7 +12,12 @@ export class Grid2D {
   private restore = [];
 
   public add_to_grid(cell: Cell2D) {
-    console.log(this.active.length);
+
+    for(let c of this.active){
+      if(c.getX() == cell.getX() && c.getY() == cell.getY())
+        return;
+    }
+
     this.active.push(cell);
 
     if (this.coords[cell.getX()] == null) {
@@ -28,7 +33,7 @@ export class Grid2D {
       if(c.getX() == x && c.getY() == y){
         this.active.splice(this.active.indexOf(c), 1);
         this.coords[x][y] = null;
-        return;
+        // return;
       }
     }
   }
