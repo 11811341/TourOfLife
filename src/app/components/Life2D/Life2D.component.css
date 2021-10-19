@@ -7,4 +7,62 @@
   /*height: 200px;*/
 }
 
+.controls_container{
+  width:100%;
+  position:fixed;
+  bottom:0;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
 
+#controls{
+  width: 50%;
+  background-color: white;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+.example-container {
+  position: absolute;
+  height: 100%;
+  background-color: red;
+}
+
+.example-sidenav-content {
+  background-color: green;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  align-items: center;
+}
+
+.example-sidenav {
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  align-items: center;
+}
+
+.card_opener{
+  background-color: green;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  align-items: center;
+}
+
+.open_icon_container{
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+}

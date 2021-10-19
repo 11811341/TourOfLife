@@ -5,7 +5,7 @@ import {GridHelper, Vector3} from 'three';
 import {Cell2D} from '../Cell2D';
 import {Grid2D} from '../Grid2D';
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls.js';
-import {MatSliderModule} from '@angular/material/slider';
+
 
 @Component({
   selector: 'life-2d',
@@ -79,28 +79,9 @@ export class Life2DComponent implements OnInit {
       }else{
         that.clicked = false;
       }
-
-
-
-
-
-
-
-
-
-      // if (!that.clicked) {
-      //   that.raycast_check();
-      // } else {
-      //   that.clicked = false;
-      // }
     }, false);
 
-    this.trackball = new TrackballControls(this.renderer.getCamera(), this.renderer.getRenderer());
-    this.trackball.noRotate = true;
-    this.trackball.noZoom = true;
-    this.trackball.staticMoving = true;
-    this.trackball.panSpeed = 1;
-    this.trackball.mouseButtons = {RIGHT: THREE.MOUSE.MIDDLE, MIDDLE: null, LEFT: null};
+
 
 
     // this.helperGrid = new THREE.GridHelper(100, 1000, new Color(0x888888));
@@ -142,35 +123,10 @@ export class Life2DComponent implements OnInit {
     }
   }
 
-  private raycast_check() {
-    let clicked = false;
-    const cells = this.scene.children;
-    if (cells.length > 2) {  //if raycast detects more that 2 objects(grid and plane) that means a cell is in place and can be deleted
-      cells.splice(0, 2);
-      const cell_check = this.raycaster.intersectObjects(cells);
-      if (cell_check.length != 0) {
-        let x = cell_check[0].point.x < 0 ? Math.trunc(cell_check[0].point.x * 10) - 1 : Math.trunc(cell_check[0].point.x * 10) + 1;
-        let y = cell_check[0].point.y < 0 ? Math.trunc(cell_check[0].point.y * 10) - 1 : Math.trunc(cell_check[0].point.y * 10) + 1;
-
-        this.grid.remove_from_grid(x, y);
-        this.scene_reload();
-        clicked = true;
-      }
-    }
-
-    const intersects = this.raycaster.intersectObject(this.raycast_plane);
-    if (intersects.length != 0 && !clicked) {
-      let x = intersects[0].point.x < 0 ? Math.trunc(intersects[0].point.x * 10) - 1 : Math.trunc(intersects[0].point.x * 10) + 1;
-      let y = intersects[0].point.y < 0 ? Math.trunc(intersects[0].point.y * 10) - 1 : Math.trunc(intersects[0].point.y * 10) + 1;
-      this.generate_cell(x, y);
-    }
-  }
-
   generate_cell(x: number, y: number) {
     const cell = new Cell2D(x, y);
     this.grid.add_to_grid(cell);
     this.scene_reload();
-    // this.scene.add(cell.getCell());
   }
 
   scene_reload() {
@@ -178,7 +134,7 @@ export class Life2DComponent implements OnInit {
     this.scene.add(this.helperGrid);
     this.scene.add(this.raycast_plane);
     const cells = this.grid.get_cells();
-    for (var c of cells) {
+    for (let c of cells) {
       this.scene.add(c.getCell());
     }
   }
@@ -194,10 +150,6 @@ export class Life2DComponent implements OnInit {
     this.raycaster.setFromCamera(this.mouse, this.renderer.getCamera());
 
     this.trackball.update();
-
-    // this.raycast_plane.rotation.x += 0.01;
-    // this.raycast_plane.rotation.y += 0.01;
-
 
     if (this.running) {
       this.delta += this.clock.getDelta();
@@ -236,17 +188,31 @@ export class Life2DComponent implements OnInit {
     this.scene_reload();
   }
 
+  public revert(){
+    this.clicked = true;
+    this.grid.revert_grid();
+    this.scene_reload();
+  }
+
   ngOnInit(): void {
     this.width = document.getElementById('render_window').offsetWidth;
     this.height = document.getElementById('render_window').offsetHeight;
-
-    // window.addEventListener( 'mousemove', this.onMouseMove, false );
 
     window.addEventListener('contextmenu', function (e) {
       e.preventDefault();
     }, false);
 
     this.initialize_renderer();
+
+    this.trackball = new TrackballControls(this.renderer.getCamera(), this.renderer.getRenderer());
+    this.trackball.noRotate = true;
+    this.trackball.noZoom = true;
+    this.trackball.staticMoving = true;
+    this.trackball.panSpeed = 1;
+    this.trackball.mouseButtons = {RIGHT: null, MIDDLE: THREE.MOUSE.RIGHT, LEFT: null};
+    this.trackball.addEventListener('start', () => console.log("Controls Start Event"))
+    console.log(this.trackball);
+
     this.animate();
   }
 

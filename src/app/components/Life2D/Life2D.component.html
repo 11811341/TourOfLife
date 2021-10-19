@@ -1,8 +1,55 @@
-<div id = "render_window"></div>
-<button (click)="advance()" style="margin-right: 2em; z-index: 1000">advance</button>
-<button (click)="play()" style="margin-right: 2em; z-index: 1000">{{!this.running?'play':'stop'}}</button>
-<button (click)="clear()" style="margin-right: 2em; z-index: 1000">clear</button>
-<button (click)="restore()" style="margin-right: 2em; z-index: 1000">restore</button>
-<mat-slider min="0.1" max="10" step="0.1" value="{{this.interval}}" (change)="change_speed($event)" style="margin-right: 2em; z-index: 1000; width: 5em"></mat-slider>
+<div id="render_window"></div>
+
+<div class="controls_container">
+  <div id="controls">
+    <button mat-icon-button color="primary" (click)="clear()" matTooltip="Clear the Game board" matTooltipPosition="above">
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="revert()" [disabled]="this.running" matTooltip="Go back by one epoch" matTooltipPosition="above">
+      <mat-icon>
+        skip_previous
+      </mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="play()" matTooltip="Play/Pause the Game" matTooltipPosition="above">
+      <mat-icon *ngIf="!this.running">
+        play_arrow
+      </mat-icon>
+      <mat-icon *ngIf="this.running">
+        pause
+      </mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="advance()" [disabled]="this.running" matTooltip="Advance the game by one epoch" matTooltipPosition="above">
+      <mat-icon>
+        skip_next
+      </mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="restore()" [disabled]="this.running" matTooltip="Restore the cleared board" matTooltipPosition="above">
+      <mat-icon>
+        replay
+      </mat-icon>
+    </button>
+<!--    <mat-slider min="0.1" max="10" step="0.1" value="{{this.interval}}" (change)="change_speed($event)"></mat-slider>-->
+  </div>
+</div>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p>Auto-resizing sidenav</p>
+    <p>Auto-resizing sidenav</p>
+    <p>Auto-resizing sidenav</p>
+  </mat-drawer>
+  <div class="card_opener">
+    <div class="open_icon_container">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-drawer-container>
+
+
 
 

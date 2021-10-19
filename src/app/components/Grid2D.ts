@@ -11,6 +11,11 @@ export class Grid2D {
 
   private restore = [];
 
+  private revert = [];
+
+  private revert_limit = 5;
+
+
   public add_to_grid(cell: Cell2D) {
 
     for(let c of this.active){
@@ -39,6 +44,11 @@ export class Grid2D {
   }
 
   public advance() {
+    if (this.revert.length >= this.revert_limit)
+      this.revert = this.revert.slice(1);
+
+    this.revert.push(this.active.slice());
+
     for(let a of this.active) {
       this.check_neighbors(a.getX(), a.getY());
     }
@@ -68,11 +78,30 @@ export class Grid2D {
     this.coords = [];
     this.to_birth = [];
     this.to_die = [];
+    this.revert = [];
   }
 
   public restore_grid(){
     for(let c of this.restore)
       this.add_to_grid(c);
+  }
+
+  //reverts the grid to a previous state
+  public revert_grid(){
+    if(this.revert.length>0) {  //checks if any reverse steps exist
+      const prev = this.revert.pop();
+
+      //clear everything. computation starts fresh after a revert
+      this.active = [];
+      this.coords = [];
+      this.to_birth = [];
+      this.to_die = [];
+      this.restore = [];
+
+      //go through last state and add cells to grid
+      for (let c of prev)
+        this.add_to_grid(c);
+    }
   }
 
   private check_neighbors(x: number, y: number) {
