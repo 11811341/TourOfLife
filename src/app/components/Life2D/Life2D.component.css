@@ -28,14 +28,22 @@
   align-content: center;
 }
 
-.example-container {
+#options_container{
+  position: absolute;
+  right: 0;
+  background-color: transparent;
+  width: 40%;
+  height: 100%;
+}
+
+#navigation_container {
   width: 40%;
   position: absolute;
   height: 100%;
   background-color: transparent;
 }
 
-.example-sidenav-content {
+#sidenav_button{
   height: 100%;
   display: flex;
   flex-flow: column;
@@ -44,10 +52,28 @@
   align-content: flex-start;
 }
 
-#expand_selection{
+#options_button{
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  align-content: flex-end;
+  overflow: hidden;
+
+}
+
+#expand_sidenav{
   background-color: white;
   width: 2.5em;
   border-radius: 0 10px 10px 0;
+}
+
+#expand_options{
+  background-color: white;
+  width: 2.5em;
+  border-radius: 10px 0 0 10px;
+
 }
 
 
@@ -60,6 +86,6 @@
   align-content: center;
 }
 
-.example-sidenav {
+.sidenav_drawer {
   width: 50%;
 }
