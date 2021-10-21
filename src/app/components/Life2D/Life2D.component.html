@@ -34,22 +34,21 @@
   </div>
 </div>
 
-<mat-drawer-container class="example-container" autosize>
+<mat-drawer-container class="example-container">
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p>Auto-resizing sidenav</p>
-    <p>Auto-resizing sidenav</p>
-    <p>Auto-resizing sidenav</p>
+    <div class="sidebar">
+      <button type="button" mat-button>2D Game of Life simulator</button>
+      <button type="button" mat-button>Tour of Life</button>
+      <button type="button" mat-button>3D Game of Life simulator</button>
+    </div>
   </mat-drawer>
-  <div class="card_opener">
-    <div class="open_icon_container">
-      <button type="button" mat-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
+
+  <div class="example-sidenav-content">
+    <div id="expand_selection">
+      <button type="button" class="selection_button" mat-button (click)="drawer.toggle()">
+        <mat-icon style="margin-left: -100%">menu</mat-icon>
       </button>
     </div>
   </div>
+
 </mat-drawer-container>
-
-
-
-
