@@ -30,19 +30,17 @@
         replay
       </mat-icon>
     </button>
-<!--    <mat-slider min="0.1" max="10" step="0.1" value="{{this.interval}}" (change)="change_speed($event)"></mat-slider>-->
   </div>
 </div>
 
 <mat-drawer-container id="navigation_container">
-  <mat-drawer #drawer class="sidenav_drawer" mode="side">
-    <div class="sidebar">
+  <mat-drawer #drawer class="sidenav_drawer" id="navigation_drawer" mode="side">
+    <div class="sidebar" id="sidebar_navigation">
       <button type="button" mat-button>2D Game of Life simulator</button>
       <button type="button" mat-button>Tour of Life</button>
-      <button type="button" mat-button>3D Game of Life simulator</button>
+      <button type="button" mat-button disabled>3D Game of Life simulator</button>
     </div>
   </mat-drawer>
-
   <div id="sidenav_button">
     <div id="expand_sidenav">
       <button type="button" class="selection_button" mat-button (click)="drawer.toggle()">
@@ -60,11 +58,63 @@
       </button>
     </div>
   </div>
-  <mat-drawer #options class="sidenav_drawer" mode="side" position="end">
-    <div class="sidebar">
-      <button type="button" mat-button>2D Game of Life simulator</button>
-      <button type="button" mat-button>Tour of Life</button>
-      <button type="button" mat-button>3D Game of Life simulator</button>
+  <mat-drawer #options class="sidenav_drawer" id="options_drawer" mode="side" position="end">
+    <div class="sidebar" id="sidebar_options">
+      <div class="option_box">
+        <p class="option_name">Simulation speed</p>
+        <mat-slider color="primary" min="0.1" max="10" step="0.1" thumbLabel value="{{this.interval * 10}}" (change)="change_speed($event)"></mat-slider>
+      </div>
+
+      <div class="option_box">
+        <p class="option_name">Limit of returns</p>
+        <mat-form-field class="options_input" id="test">
+          <label>
+            <input type="number" min="0" matInput id="revert_count" value="{{this.getRevert()}}" (change)="setRevert($event)">
+          </label>
+        </mat-form-field>
+      </div>
+
+      <div class="option_box">
+        <p class="option_name">Background color WIP</p>
+        <div class="color_sliders">
+          <div class="option_box">
+            R
+            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+          </div>
+          <div class="option_box">
+            G
+            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+          </div>
+          <div class="option_box">
+            B
+            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+          </div>
+        </div>
+      </div>
+
+      <div class="option_box">
+        <p class="option_name">Cell color WIP</p>
+        <div class="color_sliders">
+          <div class="option_box">
+            R
+            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+          </div>
+          <div class="option_box">
+            G
+            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+          </div>
+          <div class="option_box">
+            B
+            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+          </div>
+        </div>
+      </div>
+
+      <div class="option_box">
+        <p class="option_name">File input WIP</p>
+        <button type="button" disabled mat-raised-button>Choose File</button>
+      </div>
+
     </div>
   </mat-drawer>
 </mat-drawer-container>

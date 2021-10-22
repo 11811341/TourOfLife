@@ -60,7 +60,6 @@
   align-items: flex-end;
   align-content: flex-end;
   overflow: hidden;
-
 }
 
 #expand_sidenav{
@@ -73,7 +72,6 @@
   background-color: white;
   width: 2.5em;
   border-radius: 10px 0 0 10px;
-
 }
 
 
@@ -84,8 +82,33 @@
   justify-content: space-around;
   align-items: center;
   align-content: center;
+  overflow: hidden;
 }
 
 .sidenav_drawer {
   width: 50%;
+}
+
+.options_input{
+  width: 80%;
+}
+
+.option_box{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.option_name{
+  font-weight: bold;
+}
+
+.color_sliders{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
 }

@@ -86,6 +86,14 @@ export class Grid2D {
       this.add_to_grid(c);
   }
 
+  public setRevert(limit: number){
+    this.revert_limit = limit;
+  }
+
+  public getRevert(){
+    return this.revert_limit;
+  }
+
   //reverts the grid to a previous state
   public revert_grid(){
     if(this.revert.length>0) {  //checks if any reverse steps exist

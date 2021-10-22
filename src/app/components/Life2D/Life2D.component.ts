@@ -69,7 +69,6 @@ export class Life2DComponent implements OnInit {
     this.raycast_plane.material.colorWrite = false;
     window.addEventListener('mousedown', function(e) {
       that.mouse_down = true;
-
       if(!that.clicked) {
         if (e.button == 0) {  //perform left click action -> add
           that.check_addition();
@@ -84,8 +83,8 @@ export class Life2DComponent implements OnInit {
 
 
 
-    // this.helperGrid = new THREE.GridHelper(100, 1000, new Color(0x888888));
-    this.helperGrid = new THREE.GridHelper(100, 1000);
+    this.helperGrid = new THREE.GridHelper(100, 1000, new THREE.Color(0x888888));
+    // this.helperGrid = new THREE.GridHelper(100, 1000);
     this.helperGrid.rotateOnAxis(new Vector3(1, 0, 0), 90 * Math.PI / 180);
     this.scene.add(this.helperGrid);
     this.scene.add(this.raycast_plane);
@@ -194,6 +193,14 @@ export class Life2DComponent implements OnInit {
     this.scene_reload();
   }
 
+  setRevert(e: any){
+    this.grid.setRevert(e.target.value);
+  }
+  getRevert(){
+    return this.grid.getRevert();
+  }
+
+
   ngOnInit(): void {
     this.width = document.getElementById('render_window').offsetWidth;
     this.height = document.getElementById('render_window').offsetHeight;
@@ -201,6 +208,28 @@ export class Life2DComponent implements OnInit {
     window.addEventListener('contextmenu', function (e) {
       e.preventDefault();
     }, false);
+
+    document.getElementById('controls').addEventListener('mousedown', function(e){
+      e.stopPropagation();
+    }, false);
+    // document.getElementById('sidenav_options').addEventListener('mousedown', function(e){
+    //   e.stopPropagation();
+    // }, false);
+    // document.getElementById('sidenav_navigation').addEventListener('mousedown', function(e){
+    //   e.stopPropagation();
+    // }, false);
+    document.getElementById('options_drawer').addEventListener('mousedown', function(e){
+      e.stopPropagation();
+    }, false);
+    document.getElementById('navigation_drawer').addEventListener('mousedown', function(e){
+      e.stopPropagation();
+    }, false);
+    // document.getElementById('options_button').addEventListener('mousedown', function(e){
+    //   e.stopPropagation();
+    // }, false);
+
+
+
 
     this.initialize_renderer();
 
@@ -210,8 +239,6 @@ export class Life2DComponent implements OnInit {
     this.trackball.staticMoving = true;
     this.trackball.panSpeed = 1;
     this.trackball.mouseButtons = {RIGHT: null, MIDDLE: THREE.MOUSE.RIGHT, LEFT: null};
-    this.trackball.addEventListener('start', () => console.log("Controls Start Event"))
-    console.log(this.trackball);
 
     this.animate();
   }
