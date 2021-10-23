@@ -21,9 +21,35 @@ export class Grid2D {
   private prediction_mode: boolean = false;
   private predicted_count: number = 0;
 
+  private min_survival: number = 2;
+  private max_survival: number = 3;
+  private birth: number = 3;
+
+  public getMinSurvival(){
+    return this.min_survival;
+  }
+
+  public getMaxSurvival(){
+    return this.max_survival;
+  }
+
+  public getBirth(){
+    return this.birth;
+  }
+
+  public setMinSurvival(n: number){
+    this.min_survival = n;
+  }
+
+  public setMaxSurvival(n: number){
+    this.max_survival = n;
+  }
+
+  public setBirth(n: number){
+    this.birth = n;
+  }
 
   public add_to_grid(cell: Cell2D) {
-
     for (let c of this.active) {
       if (c.getX() == cell.getX() && c.getY() == cell.getY()) {
         return;
@@ -168,7 +194,7 @@ export class Grid2D {
         }
       }
     }
-    if ((counter < 3 || counter > 4) && !this.to_die.includes(cell)) {
+    if ((counter < this.min_survival+1 || counter > this.max_survival+1) && !this.to_die.includes(cell)) {
       this.to_die.push(cell);
     }
   }
@@ -184,7 +210,7 @@ export class Grid2D {
         }
       }
     }
-    if (counter == 3) {
+    if (counter == this.birth) {
       for (let cell of this.to_birth) {
         if (cell.getX() == x && cell.getY() == y) {
           return;
@@ -219,6 +245,7 @@ export class Grid2D {
   private predict() {
     this.to_die = [];
     this.to_birth = [];
+    console.log("active count: "+this.active.length);
     for (let a of this.active) {
       this.check_neighbors(a.getX(), a.getY());
     }
@@ -232,6 +259,5 @@ export class Grid2D {
       this.active.push(b);
     }
   }
-
 
 }

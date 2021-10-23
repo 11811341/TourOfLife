@@ -28,7 +28,6 @@ export class Life2DComponent implements OnInit {
   private raycaster = new THREE.Raycaster();
   private mouse = new THREE.Vector2();
   private raycast_plane = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.MeshBasicMaterial({color: 0xffff00}));
-  private clicked: boolean = false;
   private mouse_down: boolean = false;
 
   private trackball;
@@ -39,12 +38,20 @@ export class Life2DComponent implements OnInit {
   nr_to_die = 0;
   nr_to_birth = 0;
 
-  bg_color = new THREE.Color("rgb(0,0,0)");
-  cell_color = new THREE.Color("rgb(255,255,0)");
+  bg_color = new THREE.Color('rgb(0,0,0)');
+  cell_color = new THREE.Color('rgb(255,255,0)');
 
   prediction_mode: boolean = false;
 
+  private sidebar_open: boolean = false;
+
   private grid = new Grid2D();
+
+  min_survival:number = this.grid.getMinSurvival();
+  max_survival:number = this.grid.getMaxSurvival();
+  birth:number = this.grid.getBirth();
+
+  hide_grid: boolean = false;
 
 
   initialize_renderer(): void {
@@ -60,9 +67,9 @@ export class Life2DComponent implements OnInit {
       that.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
       that.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
       if (that.mouse_down) {
-        if(e.which == 1) {
+        if (e.which == 1 && !that.prediction_mode) {
           that.check_addition();
-        }else if(e.which == 3) {
+        } else if (e.which == 3 && !that.prediction_mode) {
           that.check_deletion();
         }
       }
@@ -77,18 +84,13 @@ export class Life2DComponent implements OnInit {
     this.raycast_plane.material.colorWrite = false;
     window.addEventListener('mousedown', function(e) {
       that.mouse_down = true;
-      if(!that.clicked) {
-        if (e.button == 0) {  //perform left click action -> add
-          that.check_addition();
-        } else if (e.button == 2) {  //perform right click action -> delete
-          that.check_deletion();
-        }
-      }else{
-        that.clicked = false;
+      if (e.button == 0 && !that.prediction_mode) {  //perform left click action -> add
+        that.check_addition();
+      } else if (e.button == 2 && !that.prediction_mode) {  //perform right click action -> delete
+        that.check_deletion();
       }
+
     }, false);
-
-
 
 
     this.helperGrid = new THREE.GridHelper(100, 1000, new THREE.Color(0x888888));
@@ -97,6 +99,13 @@ export class Life2DComponent implements OnInit {
     this.scene.add(this.helperGrid);
     this.scene.add(this.raycast_plane);
     this.scene.background = this.bg_color;
+
+    this.trackball = new TrackballControls(this.renderer.getCamera(), this.renderer.getRenderer());
+    // this.trackball.noRotate = true;
+    // this.trackball.noZoom = true;
+    // this.trackball.staticMoving = true;
+    // this.trackball.panSpeed = 1;
+    // this.trackball.mouseButtons = {RIGHT: null, MIDDLE: THREE.MOUSE.RIGHT, LEFT: null};
   }
 
   private check_deletion() {
@@ -139,7 +148,8 @@ export class Life2DComponent implements OnInit {
 
   scene_reload() {
     this.scene = new THREE.Scene();
-    this.scene.add(this.helperGrid);
+    if(!this.hide_grid)
+      this.scene.add(this.helperGrid);
     this.scene.add(this.raycast_plane);
     this.scene.background = this.bg_color;
     const cells = this.grid.get_cells();
@@ -148,9 +158,17 @@ export class Life2DComponent implements OnInit {
     }
   }
 
-  change_speed(e){
-    this.interval = e.value/10;
-    console.log(this.interval);
+  change_speed(e) {
+    this.interval = e.value / 10;
+  }
+
+  hideGrid(){
+    this.hide_grid = !this.hide_grid;
+    this.scene_reload();
+  }
+
+  getLiveCount(){
+    return this.grid.get_cells().length;
   }
 
   animate = () => {
@@ -164,16 +182,17 @@ export class Life2DComponent implements OnInit {
       this.delta += this.clock.getDelta();
       if (this.delta > this.interval) {
         this.grid.advance();
+        this.nr_to_die = this.grid.getToDie().length;
+        this.nr_to_birth = this.grid.getToBirth().length;
         this.scene_reload();
         this.delta = this.delta % this.interval;
       }
     }
-
     this.renderer.render(this.scene);
   };
 
-  public advance() {
-    this.clicked = true;
+  public advance(e) {
+    e.stopPropagation();
     if (!this.running) {
       this.grid.advance();
       this.scene_reload();
@@ -182,72 +201,99 @@ export class Life2DComponent implements OnInit {
     this.nr_to_birth = this.grid.getToBirth().length;
   }
 
-  public play() {
-    this.clicked = true;
+  public play(e) {
+    e.stopPropagation();
     this.running = !this.running;
   }
 
-  public clear() {
-    this.clicked = true;
+  public clear(e) {
+    e.stopPropagation();
     this.grid.clear_grid();
     this.scene_reload();
   }
 
-  public restore() {
-    this.clicked = true;
+  public restore(e) {
+    e.stopPropagation();
     this.grid.restore_grid();
     this.scene_reload();
   }
 
-  public revert(){
-    this.clicked = true;
+  public revert(e) {
+    e.stopPropagation();
     this.grid.revert_grid();
     this.scene_reload();
   }
 
-  setRevert(e: any){
+  setRevert(e) {
     this.grid.setRevert(e.target.value);
   }
-  getRevert(){
+
+  getRevert() {
     return this.grid.getRevert();
   }
 
-  sceneColor(){
+  setMinSurvival(e){
+    if(this.prediction_mode) {
+      this.predictionMode();
+      (document.getElementById('prediction_mode') as HTMLInputElement).checked  = false;
+    }
+    this.min_survival = parseInt(e.target.value);
+    this.grid.setMinSurvival(this.min_survival);
+  }
+
+  setMaxSurvival(e){
+    if(this.prediction_mode) {
+      this.predictionMode();
+      (document.getElementById('prediction_mode') as HTMLInputElement).checked  = false;
+    }
+    this.max_survival = parseInt(e.target.value);
+    this.grid.setMaxSurvival(this.max_survival);
+  }
+
+  setBirth(e){
+    if(this.prediction_mode) {
+      this.predictionMode();
+      // console.log((document.getElementById('prediction_mode').childNodes[0] as HTMLInputElement));
+    }
+    this.birth = parseInt(e.target.value);
+    this.grid.setBirth(this.birth);
+  }
+
+  sceneColor() {
     let r = document.getElementById('bg_r').innerText;
     let g = document.getElementById('bg_g').innerText;
     let b = document.getElementById('bg_b').innerText;
-    this.bg_color = new THREE.Color("rgb("+r+","+g+","+b+")");
+    this.bg_color = new THREE.Color('rgb(' + r + ',' + g + ',' + b + ')');
     this.scene_reload();
   }
 
-  cellColor(){
+  cellColor() {
     let r = document.getElementById('c_r').innerText;
     let g = document.getElementById('c_g').innerText;
     let b = document.getElementById('c_b').innerText;
-    this.cell_color = new THREE.Color("rgb("+r+","+g+","+b+")");
+    this.cell_color = new THREE.Color('rgb(' + r + ',' + g + ',' + b + ')');
     this.grid.cellColor(this.cell_color);
     this.scene_reload();
   }
 
-  predictionMode(){
+  predictionMode() {
     this.bg_color = new THREE.Color(0x000000);
     this.cell_color = new THREE.Color(0xffff00);
-    this.grid.cellColor( this.cell_color);
+    this.grid.cellColor(this.cell_color);
     this.prediction_mode = !this.prediction_mode;
     this.grid.predictionMode();
     this.scene_reload();
   }
 
-
   ngOnInit(): void {
     this.width = document.getElementById('render_window').offsetWidth;
     this.height = document.getElementById('render_window').offsetHeight;
 
-    window.addEventListener('contextmenu', function (e) {
+    window.addEventListener('contextmenu', function(e) {
       e.preventDefault();
     }, false);
 
-    document.getElementById('controls').addEventListener('mousedown', function(e){
+    document.getElementById('controls').addEventListener('mousedown', function(e) {
       e.stopPropagation();
     }, false);
     // document.getElementById('sidenav_options').addEventListener('mousedown', function(e){
@@ -256,10 +302,10 @@ export class Life2DComponent implements OnInit {
     // document.getElementById('sidenav_navigation').addEventListener('mousedown', function(e){
     //   e.stopPropagation();
     // }, false);
-    document.getElementById('options_drawer').addEventListener('mousedown', function(e){
+    document.getElementById('options_drawer').addEventListener('mousedown', function(e) {
       e.stopPropagation();
     }, false);
-    document.getElementById('navigation_drawer').addEventListener('mousedown', function(e){
+    document.getElementById('navigation_drawer').addEventListener('mousedown', function(e) {
       e.stopPropagation();
     }, false);
     // document.getElementById('options_button').addEventListener('mousedown', function(e){
@@ -267,17 +313,7 @@ export class Life2DComponent implements OnInit {
     // }, false);
 
 
-
-
     this.initialize_renderer();
-
-    this.trackball = new TrackballControls(this.renderer.getCamera(), this.renderer.getRenderer());
-    this.trackball.noRotate = true;
-    this.trackball.noZoom = true;
-    this.trackball.staticMoving = true;
-    this.trackball.panSpeed = 1;
-    this.trackball.mouseButtons = {RIGHT: null, MIDDLE: THREE.MOUSE.RIGHT, LEFT: null};
-
     this.animate();
   }
 

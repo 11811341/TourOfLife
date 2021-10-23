@@ -1,18 +1,16 @@
-<div id="render_window"></div>
-
 <div class="controls_container">
   <div id="controls">
-    <button mat-icon-button color="primary" (click)="clear()" matTooltip="Clear the Game board" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="clear($event)" matTooltip="Clear the Game board" matTooltipPosition="above">
       <mat-icon>
         close
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="revert()" [disabled]="this.running" matTooltip="Go back by one epoch" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="revert($event)" [disabled]="this.running" matTooltip="Go back by one epoch" matTooltipPosition="above">
       <mat-icon>
         skip_previous
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="play()" matTooltip="Play/Pause the Game" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="play($event)" matTooltip="Play/Pause the Game" matTooltipPosition="above">
       <mat-icon *ngIf="!this.running">
         play_arrow
       </mat-icon>
@@ -20,12 +18,12 @@
         pause
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="advance()" [disabled]="this.running" matTooltip="Advance the game by one epoch" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="advance($event)" [disabled]="this.running" matTooltip="Advance the game by one epoch" matTooltipPosition="above">
       <mat-icon>
         skip_next
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="restore()" [disabled]="this.running" matTooltip="Restore the cleared board" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="restore($event)" [disabled]="this.running" matTooltip="Restore the cleared board" matTooltipPosition="above">
       <mat-icon>
         replay
       </mat-icon>
@@ -53,13 +51,18 @@
 <mat-drawer-container id="options_container">
   <div id="options_button">
     <div id="expand_options">
-      <button type="button" class="selection_button" mat-button (click)="options.toggle()">
+      <button type="button" class="selection_button" mat-button (click)="options.toggle();">
         <mat-icon style="margin-left: -100%">menu</mat-icon>
       </button>
     </div>
   </div>
   <mat-drawer #options class="sidenav_drawer" id="options_drawer" mode="side" position="end">
     <div class="sidebar" id="sidebar_options">
+
+      <div class="option_box">
+        <p class="option_name">Living cells</p>
+        <p>{{getLiveCount()}}</p>
+      </div>
 
       <div class="option_box">
         <p class="option_name">Cells born</p>
@@ -71,9 +74,40 @@
         <p>{{this.nr_to_die}}</p>
       </div>
 
+      <div class="option_box">
+        <p class="option_name">Min # of cells for survival</p>
+        <mat-form-field class="options_input">
+          <label>
+            <input type="number" min="0" max="{{this.max_survival}}" matInput value="{{this.min_survival}}" (change)="setMinSurvival($event)">
+          </label>
+        </mat-form-field>
+      </div>
+
+      <div class="option_box">
+        <p class="option_name">Max # of cells for survival</p>
+        <mat-form-field class="options_input">
+          <label>
+            <input type="number" min="{{this.min_survival}}" max="8" matInput value="{{this.max_survival}}" (change)="setMaxSurvival($event)">
+          </label>
+        </mat-form-field>
+      </div>
+
+      <div class="option_box">
+        <p class="option_name"># of cells for birth</p>
+        <mat-form-field class="options_input">
+          <label>
+            <input type="number" min="1" max="8" matInput value="{{this.birth}}" (change)="setBirth($event)">
+          </label>
+        </mat-form-field>
+      </div>
 
       <div class="option_box">
         <p class="option_name">Prediction mode</p>
+        <mat-checkbox id="prediction_mode" value="{{this.prediction_mode}}" (change)="predictionMode()" class="example-margin" color="primary"></mat-checkbox>
+      </div>
+
+      <div class="option_box">
+        <p class="option_name">Developer mode</p>
         <mat-checkbox (change)="predictionMode()" class="example-margin" color="primary"></mat-checkbox>
       </div>
 
@@ -84,7 +118,7 @@
 
       <div class="option_box">
         <p class="option_name">Limit of returns</p>
-        <mat-form-field class="options_input" id="test">
+        <mat-form-field class="options_input">
           <label>
             <input type="number" min="0" matInput id="revert_count" value="{{this.getRevert()}}" (change)="setRevert($event)">
           </label>
@@ -93,7 +127,7 @@
 
       <div class="option_box">
         <p class="option_name">Background color</p>
-        <div class="color_sliders" disabled="{{this.prediction_mode}}">
+        <div class="color_sliders">
           <div class="option_box">
             R
             <mat-slider id="bg_r" (change)="sceneColor()" value="{{this.bg_color.r * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
@@ -128,6 +162,11 @@
       </div>
 
       <div class="option_box">
+        <p class="option_name">Hide grid</p>
+        <mat-checkbox (change)="hideGrid()" class="example-margin" color="primary"></mat-checkbox>
+      </div>
+
+      <div class="option_box">
         <p class="option_name">File input WIP</p>
         <button type="button" disabled mat-raised-button>Choose File</button>
       </div>
@@ -135,3 +174,6 @@
     </div>
   </mat-drawer>
 </mat-drawer-container>
+
+
+<div id="render_window"></div>

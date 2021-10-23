@@ -10,22 +10,42 @@ export class Renderer2D{
   private width: number;
   private height: number;
 
+  private wheel_down: boolean = false;
+
   constructor(width: number, height: number) {
     this.renderer = new THREE.WebGLRenderer();
-    // this.camera = new THREE.OrthographicCamera(width / - 500, width / 500, height / 500, height / - 500, 1, 1000);
     this.camera = new THREE.PerspectiveCamera( 75, width / height, 0.1, 1000 );
     this.camera.position.z = 5;
-    // this.camera.lookAt(0);
 
-    const cam = this.camera;
+    const that = this;
     document.addEventListener( 'wheel', (event) => {
       // cam.position.z +=event.deltaY/500;
-      if((cam.position.z < 10 && event.deltaY>0) || (cam.position.z > 2 && event.deltaY<0))
-        cam.position.z += Math.sign(event.deltaY)*0.5;
+      if((that.camera.position.z < 10 && event.deltaY>0) || (that.camera.position.z > 2 && event.deltaY<0))
+        that.camera.position.z += Math.sign(event.deltaY)*0.5;
     }, false);
+
+    // document.addEventListener('mousedown', function(e){
+    //   if(e.button == 1)
+    //     that.wheel_down = true;
+    // }, false);
+    //
+    // document.addEventListener('mousemove', function(e){
+    //   if(that.wheel_down){
+    //     // console.log([e.movementX, e.movementY]);
+    //     // that.camera.position.set(that.camera.position.x - e.movementX/scale, that.camera.position.y + e.movementY/scale, that.camera.position.z);
+    //     that.camera.position.set(that.camera.position.x, that.camera.position.y-1, that.camera.position.z);
+    //     console.log(that.camera.getWorldDirection());
+    //   }
+    // }, false);
+    //
+    // document.addEventListener('mouseup', function(e){
+    //   if(e.button == 1)
+    //     that.wheel_down = false;
+    // }, false);
 
     this.setSize(width, height);
   }
+
 
   public getRenderer() {
     return this.renderer.domElement;

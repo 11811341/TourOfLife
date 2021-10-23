@@ -59,7 +59,6 @@
   justify-content: space-around;
   align-items: flex-end;
   align-content: flex-end;
-  overflow: hidden;
 }
 
 #expand_sidenav{
@@ -72,11 +71,11 @@
   background-color: white;
   width: 2.5em;
   border-radius: 10px 0 0 10px;
+  overflow: hidden;
 }
 
 
 .sidebar{
-  height: 100%;
   display: flex;
   flex-flow: column;
   justify-content: space-around;
@@ -84,12 +83,20 @@
   align-content: center;
 }
 
+#sidebar_navigation{
+  height: 100%;
+}
+
+#sidebar_options{
+  height: 175%;
+}
+
 .sidenav_drawer {
   width: 50%;
 }
 
 .options_input{
-  width: 80%;
+  width: 60%;
 }
 
 .option_box{
