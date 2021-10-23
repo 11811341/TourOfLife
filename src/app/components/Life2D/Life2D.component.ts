@@ -36,6 +36,14 @@ export class Life2DComponent implements OnInit {
   private width;
   private height;
 
+  nr_to_die = 0;
+  nr_to_birth = 0;
+
+  bg_color = new THREE.Color("rgb(0,0,0)");
+  cell_color = new THREE.Color("rgb(255,255,0)");
+
+  prediction_mode: boolean = false;
+
   private grid = new Grid2D();
 
 
@@ -88,6 +96,7 @@ export class Life2DComponent implements OnInit {
     this.helperGrid.rotateOnAxis(new Vector3(1, 0, 0), 90 * Math.PI / 180);
     this.scene.add(this.helperGrid);
     this.scene.add(this.raycast_plane);
+    this.scene.background = this.bg_color;
   }
 
   private check_deletion() {
@@ -123,7 +132,7 @@ export class Life2DComponent implements OnInit {
   }
 
   generate_cell(x: number, y: number) {
-    const cell = new Cell2D(x, y);
+    const cell = new Cell2D(x, y, this.cell_color);
     this.grid.add_to_grid(cell);
     this.scene_reload();
   }
@@ -132,6 +141,7 @@ export class Life2DComponent implements OnInit {
     this.scene = new THREE.Scene();
     this.scene.add(this.helperGrid);
     this.scene.add(this.raycast_plane);
+    this.scene.background = this.bg_color;
     const cells = this.grid.get_cells();
     for (let c of cells) {
       this.scene.add(c.getCell());
@@ -168,6 +178,8 @@ export class Life2DComponent implements OnInit {
       this.grid.advance();
       this.scene_reload();
     }
+    this.nr_to_die = this.grid.getToDie().length;
+    this.nr_to_birth = this.grid.getToBirth().length;
   }
 
   public play() {
@@ -198,6 +210,32 @@ export class Life2DComponent implements OnInit {
   }
   getRevert(){
     return this.grid.getRevert();
+  }
+
+  sceneColor(){
+    let r = document.getElementById('bg_r').innerText;
+    let g = document.getElementById('bg_g').innerText;
+    let b = document.getElementById('bg_b').innerText;
+    this.bg_color = new THREE.Color("rgb("+r+","+g+","+b+")");
+    this.scene_reload();
+  }
+
+  cellColor(){
+    let r = document.getElementById('c_r').innerText;
+    let g = document.getElementById('c_g').innerText;
+    let b = document.getElementById('c_b').innerText;
+    this.cell_color = new THREE.Color("rgb("+r+","+g+","+b+")");
+    this.grid.cellColor(this.cell_color);
+    this.scene_reload();
+  }
+
+  predictionMode(){
+    this.bg_color = new THREE.Color(0x000000);
+    this.cell_color = new THREE.Color(0xffff00);
+    this.grid.cellColor( this.cell_color);
+    this.prediction_mode = !this.prediction_mode;
+    this.grid.predictionMode();
+    this.scene_reload();
   }
 
 

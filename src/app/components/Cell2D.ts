@@ -2,14 +2,14 @@ import * as THREE from 'three';
 
 export class Cell2D{
 
-  private x: number;
-  private y: number;
+  private readonly x: number;
+  private readonly y: number;
 
   private size: number = 1/10;
 
-  private readonly cell: THREE.Mesh;
+  private cell: THREE.Mesh;
 
-  constructor(x: number, y: number, color: number = 0xffff00) {
+  constructor(x: number, y: number, color: THREE.Color) {
     this.x = x;
     this.y = y;
 
@@ -30,6 +30,10 @@ export class Cell2D{
 
   public getY(){
     return this.y;
+  }
+
+  public setColor(color: THREE.Color){
+    this.cell.material = new THREE.MeshBasicMaterial({color: color});
   }
 
 }

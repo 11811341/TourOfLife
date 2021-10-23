@@ -1,4 +1,5 @@
 import {Cell2D} from './Cell2D';
+import * as THREE from 'three';
 
 export class Grid2D {
 
@@ -15,12 +16,18 @@ export class Grid2D {
 
   private revert_limit = 5;
 
+  private cell_color = new THREE.Color(0xffff00);
+
+  private prediction_mode: boolean = false;
+  private predicted_count: number = 0;
+
 
   public add_to_grid(cell: Cell2D) {
 
-    for(let c of this.active){
-      if(c.getX() == cell.getX() && c.getY() == cell.getY())
+    for (let c of this.active) {
+      if (c.getX() == cell.getX() && c.getY() == cell.getY()) {
         return;
+      }
     }
 
     this.active.push(cell);
@@ -33,9 +40,9 @@ export class Grid2D {
     this.restore = [];
   }
 
-  public remove_from_grid(x: number, y: number){
-    for(let c of this.active){
-      if(c.getX() == x && c.getY() == y){
+  public remove_from_grid(x: number, y: number) {
+    for (let c of this.active) {
+      if (c.getX() == x && c.getY() == y) {
         this.active.splice(this.active.indexOf(c), 1);
         this.coords[x][y] = null;
         // return;
@@ -44,35 +51,46 @@ export class Grid2D {
   }
 
   public advance() {
-    if (this.revert.length >= this.revert_limit)
+
+    if(this.predicted_count>0){
+      this.active.splice(this.active.length-this.predicted_count);
+    }
+
+    this.to_die = [];
+    this.to_birth = [];
+    if (this.revert.length >= this.revert_limit) {
       this.revert = this.revert.slice(1);
+    }
 
     this.revert.push(this.active.slice());
 
-    for(let a of this.active) {
+    for (let a of this.active) {
       this.check_neighbors(a.getX(), a.getY());
     }
 
-    for(let death of this.to_die){
+    for (let death of this.to_die) {
       this.active.splice(this.active.indexOf(death), 1);
       this.coords[death.getX()][death.getY()] = null;
     }
-    this.to_die = [];
-    for(let live of this.to_birth){
+
+    for (let live of this.to_birth) {
       this.active.push(live);
       if (this.coords[live.getX()] == null) {
         this.coords[live.getX()] = [];
       }
       this.coords[live.getX()][live.getY()] = live;
     }
-    this.to_birth = [];
+
+    if (this.prediction_mode) {
+      this.predict();
+    }
   }
 
   public get_cells() {
     return this.active;
   }
 
-  public clear_grid(){
+  public clear_grid() {
     this.restore = this.active;
     this.active = [];
     this.coords = [];
@@ -81,22 +99,31 @@ export class Grid2D {
     this.revert = [];
   }
 
-  public restore_grid(){
-    for(let c of this.restore)
+  public restore_grid() {
+    for (let c of this.restore) {
       this.add_to_grid(c);
+    }
   }
 
-  public setRevert(limit: number){
+  public setRevert(limit: number) {
     this.revert_limit = limit;
   }
 
-  public getRevert(){
+  public getRevert() {
     return this.revert_limit;
   }
 
+  public getToDie() {
+    return this.to_die;
+  }
+
+  public getToBirth() {
+    return this.to_birth;
+  }
+
   //reverts the grid to a previous state
-  public revert_grid(){
-    if(this.revert.length>0) {  //checks if any reverse steps exist
+  public revert_grid() {
+    if (this.revert.length > 0) {  //checks if any reverse steps exist
       const prev = this.revert.pop();
 
       //clear everything. computation starts fresh after a revert
@@ -107,8 +134,9 @@ export class Grid2D {
       this.restore = [];
 
       //go through last state and add cells to grid
-      for (let c of prev)
+      for (let c of prev) {
         this.add_to_grid(c);
+      }
     }
   }
 
@@ -133,9 +161,10 @@ export class Grid2D {
       for (let j = -1; j <= 1; j++) {
         const coord_x = (cell.getX() < 0 && cell.getX() + i == 0) ? 1 : ((cell.getX() > 0 && cell.getX() + i == 0) ? -1 : cell.getX() + i);
         const coord_y = (cell.getY() < 0 && cell.getY() + j == 0) ? 1 : ((cell.getY() > 0 && cell.getY() + j == 0) ? -1 : cell.getY() + j);
-        if(this.coords[coord_x] && this.coords[coord_x][coord_y] != null)
         if (this.coords[coord_x] && this.coords[coord_x][coord_y] != null) {
-          counter++;
+          if (this.coords[coord_x] && this.coords[coord_x][coord_y] != null) {
+            counter++;
+          }
         }
       }
     }
@@ -157,10 +186,50 @@ export class Grid2D {
     }
     if (counter == 3) {
       for (let cell of this.to_birth) {
-        if (cell.getX() == x && cell.getY() == y)
+        if (cell.getX() == x && cell.getY() == y) {
           return;
+        }
       }
-      this.to_birth.push(new Cell2D(x, y));
+      this.to_birth.push(new Cell2D(x, y, this.cell_color));
+    }
+  }
+
+  public cellColor(color: THREE.Color) {
+    this.cell_color = color;
+    for (let c of this.active) {
+      c.setColor(color);
+    }
+  }
+
+  public predictionMode() {
+    this.prediction_mode = !this.prediction_mode;
+    if (this.prediction_mode) {
+      this.predict();
+    } else {
+      for (let d of this.to_die) {
+        this.active[this.active.indexOf(d)].setColor(this.cell_color);
+      }
+      if(this.predicted_count>0){
+        this.active.splice(this.active.length-this.predicted_count);
+      }
+      this.predicted_count = 0;
+    }
+  }
+
+  private predict() {
+    this.to_die = [];
+    this.to_birth = [];
+    for (let a of this.active) {
+      this.check_neighbors(a.getX(), a.getY());
+    }
+
+    for (let d of this.to_die) {
+      this.active[this.active.indexOf(d)].setColor(new THREE.Color(0xff0000));
+    }
+    this.predicted_count = this.to_birth.length;
+    for (let b of this.to_birth){
+      b.setColor(new THREE.Color(0x00ff00));
+      this.active.push(b);
     }
   }
 

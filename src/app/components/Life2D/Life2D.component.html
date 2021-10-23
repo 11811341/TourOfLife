@@ -60,6 +60,23 @@
   </div>
   <mat-drawer #options class="sidenav_drawer" id="options_drawer" mode="side" position="end">
     <div class="sidebar" id="sidebar_options">
+
+      <div class="option_box">
+        <p class="option_name">Cells born</p>
+        <p>{{this.nr_to_birth}}</p>
+      </div>
+
+      <div class="option_box">
+        <p class="option_name">Cells died</p>
+        <p>{{this.nr_to_die}}</p>
+      </div>
+
+
+      <div class="option_box">
+        <p class="option_name">Prediction mode</p>
+        <mat-checkbox (change)="predictionMode()" class="example-margin" color="primary"></mat-checkbox>
+      </div>
+
       <div class="option_box">
         <p class="option_name">Simulation speed</p>
         <mat-slider color="primary" min="0.1" max="10" step="0.1" thumbLabel value="{{this.interval * 10}}" (change)="change_speed($event)"></mat-slider>
@@ -75,37 +92,37 @@
       </div>
 
       <div class="option_box">
-        <p class="option_name">Background color WIP</p>
-        <div class="color_sliders">
+        <p class="option_name">Background color</p>
+        <div class="color_sliders" disabled="{{this.prediction_mode}}">
           <div class="option_box">
             R
-            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="bg_r" (change)="sceneColor()" value="{{this.bg_color.r * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             G
-            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="bg_g" (change)="sceneColor()" value="{{this.bg_color.g * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             B
-            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="bg_b" (change)="sceneColor()" value="{{this.bg_color.b * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
         </div>
       </div>
 
       <div class="option_box">
-        <p class="option_name">Cell color WIP</p>
+        <p class="option_name">Cell color</p>
         <div class="color_sliders">
           <div class="option_box">
             R
-            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="c_r" (change)="cellColor()" value="{{this.cell_color.r * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             G
-            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="c_g" (change)="cellColor()" value="{{this.cell_color.g * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             B
-            <mat-slider color="primary" min="1" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="c_b" (change)="cellColor()" value="{{this.cell_color.b * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
         </div>
       </div>
