@@ -1,5 +1,24 @@
 <div class="container">
-  <life-2d></life-2d>
+
+  <mat-drawer-container id="navigation_container">
+    <mat-drawer #drawer class="sidenav_drawer" id="navigation_drawer" mode="side">
+      <div class="sidebar" id="sidebar_navigation">
+        <button type="button" mat-button routerLink="/life2d">2D Game of Life simulator</button>
+        <button type="button" mat-button routerLink="/touroflife">Tour of Life</button>
+        <button type="button" mat-button disabled routerLink="/life3d">3D Game of Life simulator</button>
+      </div>
+    </mat-drawer>
+    <div id="sidenav_button">
+      <div id="expand_sidenav">
+        <button type="button" class="selection_button" mat-button (click)="drawer.toggle(); $event.stopPropagation()">
+          <mat-icon style="margin-left: -100%">menu</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-drawer-container>
+
+
+  <router-outlet></router-outlet>
 </div>
 
 

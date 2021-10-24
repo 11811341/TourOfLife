@@ -100,12 +100,8 @@ export class Life2DComponent implements OnInit {
     this.scene.add(this.raycast_plane);
     this.scene.background = this.bg_color;
 
+    //Not sure why this needs to be here for the manual camera movement to work???????
     this.trackball = new TrackballControls(this.renderer.getCamera(), this.renderer.getRenderer());
-    // this.trackball.noRotate = true;
-    // this.trackball.noZoom = true;
-    // this.trackball.staticMoving = true;
-    // this.trackball.panSpeed = 1;
-    // this.trackball.mouseButtons = {RIGHT: null, MIDDLE: THREE.MOUSE.RIGHT, LEFT: null};
   }
 
   private check_deletion() {
@@ -175,8 +171,6 @@ export class Life2DComponent implements OnInit {
     requestAnimationFrame(this.animate);
 
     this.raycaster.setFromCamera(this.mouse, this.renderer.getCamera());
-
-    this.trackball.update();
 
     if (this.running) {
       this.delta += this.clock.getDelta();
@@ -283,6 +277,21 @@ export class Life2DComponent implements OnInit {
     this.prediction_mode = !this.prediction_mode;
     this.grid.predictionMode();
     this.scene_reload();
+  }
+
+  devMode(){
+    this.renderer.devMode();
+  }
+
+  //PLACEHOLDER FUNCTION TIL I FIND A BETTER FIX FOR CLICK EVENT BLOCKING
+  misclick(){
+    console.log("lel");
+    this.grid.misclick();
+    this.scene_reload();
+  }
+
+  public disableZoom(){
+    this.renderer.disableZoom();
   }
 
   ngOnInit(): void {

@@ -242,6 +242,11 @@ export class Grid2D {
     }
   }
 
+  //PLACEHOLDER FUNCTION TIL I FIND A BETTER FIX FOR CLICK EVENT BLOCKING
+  public misclick(){
+    this.remove_from_grid(this.active[this.active.length-1].getX(), this.active[this.active.length-1].getY());
+  }
+
   private predict() {
     this.to_die = [];
     this.to_birth = [];

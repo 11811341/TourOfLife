@@ -1,0 +1,37 @@
+#navigation_container {
+  width: 35%;
+  position: absolute;
+  height: 100%;
+  background-color: transparent;
+}
+
+#sidenav_button{
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+#expand_sidenav{
+  background-color: white;
+  width: 2.5em;
+  border-radius: 0 10px 10px 0;
+}
+
+.sidebar{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+#sidebar_navigation{
+  height: 100%;
+}
+
+.sidenav_drawer {
+  width: 50%;
+}

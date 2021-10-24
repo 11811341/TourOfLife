@@ -31,27 +31,12 @@
   </div>
 </div>
 
-<mat-drawer-container id="navigation_container">
-  <mat-drawer #drawer class="sidenav_drawer" id="navigation_drawer" mode="side">
-    <div class="sidebar" id="sidebar_navigation">
-      <button type="button" mat-button>2D Game of Life simulator</button>
-      <button type="button" mat-button>Tour of Life</button>
-      <button type="button" mat-button disabled>3D Game of Life simulator</button>
-    </div>
-  </mat-drawer>
-  <div id="sidenav_button">
-    <div id="expand_sidenav">
-      <button type="button" class="selection_button" mat-button (click)="drawer.toggle()">
-        <mat-icon style="margin-left: -100%">menu</mat-icon>
-      </button>
-    </div>
-  </div>
-</mat-drawer-container>
+
 
 <mat-drawer-container id="options_container">
   <div id="options_button">
     <div id="expand_options">
-      <button type="button" class="selection_button" mat-button (click)="options.toggle();">
+      <button type="button" class="selection_button" mat-button (click)="options.toggle(); misclick(); disableZoom();">
         <mat-icon style="margin-left: -100%">menu</mat-icon>
       </button>
     </div>
@@ -103,12 +88,12 @@
 
       <div class="option_box">
         <p class="option_name">Prediction mode</p>
-        <mat-checkbox id="prediction_mode" value="{{this.prediction_mode}}" (change)="predictionMode()" class="example-margin" color="primary"></mat-checkbox>
+        <mat-checkbox id="prediction_mode" [checked]="this.prediction_mode" (change)="predictionMode()" class="example-margin" color="primary"></mat-checkbox>
       </div>
 
       <div class="option_box">
         <p class="option_name">Developer mode</p>
-        <mat-checkbox (change)="predictionMode()" class="example-margin" color="primary"></mat-checkbox>
+        <mat-checkbox (change)="devMode()" class="example-margin" color="primary"></mat-checkbox>
       </div>
 
       <div class="option_box">
@@ -120,7 +105,7 @@
         <p class="option_name">Limit of returns</p>
         <mat-form-field class="options_input">
           <label>
-            <input type="number" min="0" matInput id="revert_count" value="{{this.getRevert()}}" (change)="setRevert($event)">
+            <input type="number" min="1" matInput id="revert_count" value="{{this.getRevert()}}" (change)="setRevert($event)">
           </label>
         </mat-form-field>
       </div>
