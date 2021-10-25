@@ -17,6 +17,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatInputModule,
     MatCheckboxModule,
     MatTabsModule,
+    MatCardModule,
     MatButtonModule
   ],
   providers: [],

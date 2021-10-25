@@ -31,25 +31,10 @@
 #options_container{
   position: absolute;
   right: 0;
+  top: 0;
   background-color: transparent;
-  width: 35%;
+  width: 50%;
   height: 100%;
-}
-
-#navigation_container {
-  width: 35%;
-  position: absolute;
-  height: 100%;
-  background-color: transparent;
-}
-
-#sidenav_button{
-  height: 100%;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  align-content: flex-start;
 }
 
 #options_button{
@@ -61,15 +46,9 @@
   align-content: flex-end;
 }
 
-#expand_sidenav{
-  background-color: white;
-  width: 2.5em;
-  border-radius: 0 10px 10px 0;
-}
-
 #expand_options{
   background-color: white;
-  width: 2.5em;
+  width: 1.5em;
   border-radius: 10px 0 0 10px;
   overflow: hidden;
 }
@@ -83,16 +62,8 @@
   align-content: center;
 }
 
-#sidebar_navigation{
-  height: 100%;
-}
-
 #sidebar_options{
   height: 175%;
-}
-
-.sidenav_drawer {
-  width: 50%;
 }
 
 .options_input{
@@ -109,6 +80,10 @@
 
 .option_name{
   font-weight: bold;
+}
+
+#options_drawer{
+  width: 40%;
 }
 
 .color_sliders{

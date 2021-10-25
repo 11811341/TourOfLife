@@ -1,21 +1,76 @@
-/*.mat-tab-group .mat-primary .mat-ink-bar { visibility: hidden !important;*/
+
+.lesson_page{
+  /*background-color: red;*/
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  /*margin-left: 10%;*/
+  /*margin-top: 10%;*/
+}
+
+.lesson_page h1{
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+.lessons{
+  /*background-color: green;*/
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  /*align-items: center;*/
+  /*align-content: center;*/
+}
+
+.lesson_container{
+  padding-top: 2em;
+  /*background-color: blue;*/
+  width: 45%;
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+  align-items: center;
+}
+
+.render_window{
+  background-color: black;
+  width: 75%;
+  height: 50%;
+
+}
+
+/*.controls_container{*/
+/*  z-index: 500;*/
+/*  position:fixed;*/
+/*  bottom:0;*/
+/*  display: flex;*/
+/*  flex-flow: row;*/
+/*  justify-content: center;*/
 /*}*/
 
-.example-small-box, .example-large-box {
+.controls {
+  background-color: lightgray;
+  border-radius: 0 0 20px 20px;
+}
+
+.explanation{
+  margin-top: 1em;
+  width: 70%;
   display: flex;
+  flex-flow: column;
+  align-content: center;
   align-items: center;
-  justify-content: center;
-  margin: 16px;
-  padding: 16px;
-  border-radius: 8px;
 }
 
-.example-small-box {
-  height: 100px;
-  width: 100px;
-}
-
-.example-large-box {
-  height: 300px;
-  width: 300px;
+.next_prev{
+  margin-top: 1em;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
 }

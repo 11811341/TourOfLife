@@ -1,13 +1,112 @@
+<div class="lesson_page">
+  <h1>Game of Life: Basics 00</h1>
 
-<mat-tab-group dynamicHeight>
-  <mat-tab label="Short tab">
-    <div class="example-small-box mat-elevation-z4">
-      Small content
-    </div>
-  </mat-tab>
-  <mat-tab label="Long tab">
-    <div class="example-large-box mat-elevation-z4">
-      Large content
-    </div>
-  </mat-tab>
-</mat-tab-group>
+  <div class="lessons">
+    <mat-card class="lesson_container" [class.mat-elevation-z8]="true">
+      <div class="render_window"></div>
+
+      <div class="controls_container">
+        <div class="controls">
+          <button mat-icon-button color="primary" matTooltip="Clear the Game board"
+                  matTooltipPosition="above">
+            <mat-icon>
+              close
+            </mat-icon>
+          </button>
+          <button mat-icon-button color="primary"
+                  matTooltip="Go back by one epoch" matTooltipPosition="above">
+            <mat-icon>
+              skip_previous
+            </mat-icon>
+          </button>
+          <button mat-icon-button color="primary" matTooltip="Play/Pause the Game"
+                  matTooltipPosition="above">
+            <mat-icon>
+              play_arrow
+            </mat-icon>
+<!--            <mat-icon *ngIf="this.running">-->
+<!--              pause-->
+<!--            </mat-icon>-->
+          </button>
+          <button mat-icon-button color="primary"
+                  matTooltip="Advance the game by one epoch" matTooltipPosition="above">
+            <mat-icon>
+              skip_next
+            </mat-icon>
+          </button>
+          <button mat-icon-button color="primary"
+                  matTooltip="Restore the cleared board" matTooltipPosition="above">
+            <mat-icon>
+              replay
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <h2>Lesson 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </mat-card>
+
+
+
+
+
+
+    <mat-card class="lesson_container" [class.mat-elevation-z8]="true">
+      <div class="render_window"></div>
+
+      <div class="controls_container">
+        <div class="controls">
+          <button mat-icon-button color="primary" matTooltip="Clear the Game board"
+                  matTooltipPosition="above">
+            <mat-icon>
+              close
+            </mat-icon>
+          </button>
+          <button mat-icon-button color="primary"
+                  matTooltip="Go back by one epoch" matTooltipPosition="above">
+            <mat-icon>
+              skip_previous
+            </mat-icon>
+          </button>
+          <button mat-icon-button color="primary" matTooltip="Play/Pause the Game"
+                  matTooltipPosition="above">
+            <mat-icon>
+              play_arrow
+            </mat-icon>
+<!--            <mat-icon *ngIf="this.running">-->
+<!--              pause-->
+<!--            </mat-icon>-->
+          </button>
+          <button mat-icon-button color="primary"
+                  matTooltip="Advance the game by one epoch" matTooltipPosition="above">
+            <mat-icon>
+              skip_next
+            </mat-icon>
+          </button>
+          <button mat-icon-button color="primary"
+                  matTooltip="Restore the cleared board" matTooltipPosition="above">
+            <mat-icon>
+              replay
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <h2>Lesson 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </mat-card>
+  </div>
+  <div class="next_prev">
+    <button mat-icon-button>
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+</div>

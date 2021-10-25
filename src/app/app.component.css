@@ -1,5 +1,5 @@
 #navigation_container {
-  width: 35%;
+  width: 100%;
   position: absolute;
   height: 100%;
   background-color: transparent;
@@ -16,7 +16,7 @@
 
 #expand_sidenav{
   background-color: white;
-  width: 2.5em;
+  width: 1.5em;
   border-radius: 0 10px 10px 0;
 }
 
@@ -33,5 +33,5 @@
 }
 
 .sidenav_drawer {
-  width: 50%;
+  width: 20%;
 }
