@@ -1,3 +1,18 @@
+<div  id="legend">
+  <button (click)="legend = !legend; $event.stopPropagation()" mat-raised-button cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+    Legend
+  </button>
+  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="legend">
+    <div id="legend_content">
+      <p id="overpopulation">This cell will die due to overpopulation</p>
+      <p id="underpopulation">This cell will die due to underpopulation</p>
+      <p id="birth">This cell will be born due to reproduction</p>
+      <p id="survival">This cell survives, unaffected</p>
+    </div>
+  </ng-template>
+
+</div>
+
 <div class="controls_container">
   <div id="controls">
     <button mat-icon-button color="primary" (click)="clear($event)" matTooltip="Clear the Game board" matTooltipPosition="above">

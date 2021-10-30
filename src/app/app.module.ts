@@ -18,6 +18,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
+import {OverlayModule} from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatCardModule} from '@angular/material/card';
     MatCheckboxModule,
     MatTabsModule,
     MatCardModule,
+    OverlayModule,
     MatButtonModule
   ],
   providers: [],

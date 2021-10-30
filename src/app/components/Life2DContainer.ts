@@ -1,20 +1,11 @@
-import {Component, OnInit} from '@angular/core';
 import * as THREE from 'three';
-import {Renderer2D} from '../../Renderer2D';
+import {Renderer2D} from '../Renderer2D';
 import {GridHelper, Vector3} from 'three';
-import {Cell2D} from '../Cell2D';
-import {Grid2D} from '../Grid2D';
-import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls.js';
+import {Grid2D} from './Grid2D';
+import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
+import {Cell2D} from './Cell2D';
 
-
-@Component({
-  selector: 'life-2d',
-  templateUrl: './Life2D.component.html',
-  styleUrls: ['./Life2D.component.css']
-})
-export class Life2DComponent implements OnInit {
-
-  title = 'lel';
+export class Life2DContainer{
 
   private scene = new THREE.Scene();
   private renderer: Renderer2D;
@@ -55,9 +46,30 @@ export class Life2DComponent implements OnInit {
 
   hide_grid: boolean = false;
 
+  constructor(width: number, height: number){
+    this.initialize_renderer(width, height);
+  }
 
-  initialize_renderer(): void {
-    this.renderer = new Renderer2D(this.width, this.height);
+
+  initialize_renderer(width, height): void {
+
+    window.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    }, false);
+
+    document.getElementById('controls').addEventListener('mousedown', function(e) {
+      e.stopPropagation();
+    }, false);
+    document.getElementById('options_drawer').addEventListener('mousedown', function(e) {
+      e.stopPropagation();
+    }, false);
+    document.getElementById('navigation_drawer').addEventListener('mousedown', function(e) {
+      e.stopPropagation();
+    }, false);
+
+    this.animate();
+
+    this.renderer = new Renderer2D(width, height);
     document.getElementById('render_window').appendChild(this.renderer.getRenderer());
     let that = this;
 
@@ -300,33 +312,7 @@ export class Life2DComponent implements OnInit {
     this.width = document.getElementById('render_window').offsetWidth;
     this.height = document.getElementById('render_window').offsetHeight;
 
-    window.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    }, false);
 
-    document.getElementById('controls').addEventListener('mousedown', function(e) {
-      e.stopPropagation();
-    }, false);
-    // document.getElementById('sidenav_options').addEventListener('mousedown', function(e){
-    //   e.stopPropagation();
-    // }, false);
-    // document.getElementById('sidenav_navigation').addEventListener('mousedown', function(e){
-    //   e.stopPropagation();
-    // }, false);
-    document.getElementById('options_drawer').addEventListener('mousedown', function(e) {
-      e.stopPropagation();
-    }, false);
-    document.getElementById('navigation_drawer').addEventListener('mousedown', function(e) {
-      e.stopPropagation();
-    }, false);
-    // document.getElementById('options_button').addEventListener('mousedown', function(e){
-    //   e.stopPropagation();
-    // }, false);
-
-
-    this.initialize_renderer();
-    this.animate();
   }
-
 
 }

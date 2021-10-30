@@ -93,3 +93,39 @@
   align-items: center;
   align-content: center;
 }
+
+#legend{
+  position: absolute;
+  top: 1%;
+  left: 1%;
+}
+
+#legend_content{
+  font-weight: bold;
+  margin-top: 1em;
+  background-color: white;
+  padding: 1em;
+  /*color: white;*/
+}
+
+#legend_content p{
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+#survival{
+  background-color: #FFC107;
+}
+
+#underpopulation{
+  background-color: #D81B60;
+}
+
+#overpopulation{
+  background-color: #1E88E5;
+}
+
+#birth{
+  background-color: #004D40;
+  color: white;
+}

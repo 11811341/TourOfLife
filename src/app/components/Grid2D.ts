@@ -10,13 +10,16 @@ export class Grid2D {
   private to_die = [];
   private to_birth = [];
 
+  private lonely = [];
+  private overcrowded = [];
+
   private restore = [];
 
   private revert = [];
 
   private revert_limit = 5;
 
-  private cell_color = new THREE.Color(0xffff00);
+  private cell_color = new THREE.Color(0xffc107);
 
   private prediction_mode: boolean = false;
   private predicted_count: number = 0;
@@ -50,11 +53,15 @@ export class Grid2D {
   }
 
   public add_to_grid(cell: Cell2D) {
-    for (let c of this.active) {
-      if (c.getX() == cell.getX() && c.getY() == cell.getY()) {
-        return;
-      }
-    }
+    // for (let c of this.active) {
+    //   if (c.getX() == cell.getX() && c.getY() == cell.getY()) {
+    //     return;
+    //   }
+    // }
+
+
+    if(this.coords[cell.getX()] && this.coords[cell.getX()][cell.getY()] != null)
+      return;
 
     this.active.push(cell);
 
@@ -67,13 +74,14 @@ export class Grid2D {
   }
 
   public remove_from_grid(x: number, y: number) {
-    for (let c of this.active) {
-      if (c.getX() == x && c.getY() == y) {
-        this.active.splice(this.active.indexOf(c), 1);
-        this.coords[x][y] = null;
-        // return;
-      }
-    }
+    // for (let c of this.active) {
+    //   if (c.getX() == x && c.getY() == y) {
+    //     this.active.splice(this.active.indexOf(c), 1);
+    //     this.coords[x][y] = null;
+    //   }
+    // }
+    this.active.splice(this.active.indexOf(this.coords[x][y]),1);
+    this.coords[x][y]=null;
   }
 
   public advance() {
@@ -84,6 +92,9 @@ export class Grid2D {
 
     this.to_die = [];
     this.to_birth = [];
+    this.lonely = [];
+    this.overcrowded = [];
+
     if (this.revert.length >= this.revert_limit) {
       this.revert = this.revert.slice(1);
     }
@@ -101,7 +112,7 @@ export class Grid2D {
 
     for (let live of this.to_birth) {
       this.active.push(live);
-      if (this.coords[live.getX()] == null) {
+      if (!this.coords[live.getX()]) {
         this.coords[live.getX()] = [];
       }
       this.coords[live.getX()][live.getY()] = live;
@@ -123,6 +134,8 @@ export class Grid2D {
     this.to_birth = [];
     this.to_die = [];
     this.revert = [];
+    this.lonely = [];
+    this.overcrowded = [];
   }
 
   public restore_grid() {
@@ -188,14 +201,18 @@ export class Grid2D {
         const coord_x = (cell.getX() < 0 && cell.getX() + i == 0) ? 1 : ((cell.getX() > 0 && cell.getX() + i == 0) ? -1 : cell.getX() + i);
         const coord_y = (cell.getY() < 0 && cell.getY() + j == 0) ? 1 : ((cell.getY() > 0 && cell.getY() + j == 0) ? -1 : cell.getY() + j);
         if (this.coords[coord_x] && this.coords[coord_x][coord_y] != null) {
-          if (this.coords[coord_x] && this.coords[coord_x][coord_y] != null) {
-            counter++;
-          }
+          counter++;
         }
       }
     }
-    if ((counter < this.min_survival+1 || counter > this.max_survival+1) && !this.to_die.includes(cell)) {
-      this.to_die.push(cell);
+    if (!this.to_die.includes(cell)) {
+      if(counter < this.min_survival+1){
+        this.to_die.push(cell);
+        this.lonely.push(cell);
+      }else if(counter > this.max_survival+1){
+        this.to_die.push(cell);
+        this.overcrowded.push(cell);
+      }
     }
   }
 
@@ -248,19 +265,23 @@ export class Grid2D {
   }
 
   private predict() {
+    this.overcrowded = [];
+    this.lonely = [];
     this.to_die = [];
     this.to_birth = [];
-    console.log("active count: "+this.active.length);
     for (let a of this.active) {
       this.check_neighbors(a.getX(), a.getY());
     }
 
-    for (let d of this.to_die) {
-      this.active[this.active.indexOf(d)].setColor(new THREE.Color(0xff0000));
+    for (let l of this.lonely) {
+      this.active[this.active.indexOf(l)].setColor(new THREE.Color(0xd81b60)); //pink
+    }
+    for (let o of this.overcrowded) {
+      this.active[this.active.indexOf(o)].setColor(new THREE.Color(0x1e88e5)); //blue
     }
     this.predicted_count = this.to_birth.length;
     for (let b of this.to_birth){
-      b.setColor(new THREE.Color(0x00ff00));
+      b.setColor(new THREE.Color(0x004d40)); //green
       this.active.push(b);
     }
   }
