@@ -261,6 +261,7 @@ export class Grid2D {
 
   //PLACEHOLDER FUNCTION TIL I FIND A BETTER FIX FOR CLICK EVENT BLOCKING
   public misclick(){
+    console.log(this.active);
     this.remove_from_grid(this.active[this.active.length-1].getX(), this.active[this.active.length-1].getY());
   }
 

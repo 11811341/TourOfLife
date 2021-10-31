@@ -1,4 +1,11 @@
 
+#render_window{
+  /*position: absolute;*/
+  /*top: 0; right: 0; bottom: 0; left: 0;*/
+  width: 500px;
+  height: 200px;
+}
+
 h1{
   margin-top: 1em;
 }
@@ -42,20 +49,13 @@ h1{
   align-items: center;
 }
 
-.render_window{
-  background-color: black;
-  width: 75%;
-  height: 50%;
+.renderer{
+  /*background-color: black;*/
+  width: 5em;
+  height: 5em;
+  /*width: 75%;*/
+  /*height: 50%;*/
 }
-
-/*.controls_container{*/
-/*  z-index: 500;*/
-/*  position:fixed;*/
-/*  bottom:0;*/
-/*  display: flex;*/
-/*  flex-flow: row;*/
-/*  justify-content: center;*/
-/*}*/
 
 .controls {
   background-color: lightgray;
@@ -84,4 +84,3 @@ mat-tab{
   background-color: blue;
 }
 
-mat-tab-group .mat-tab-header { display: none; }

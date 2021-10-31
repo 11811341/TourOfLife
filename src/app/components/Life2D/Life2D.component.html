@@ -1,8 +1,8 @@
 <div  id="legend">
-  <button (click)="legend = !legend; $event.stopPropagation()" mat-raised-button cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+  <button (click)="toggleLegend(); $event.stopPropagation()" mat-raised-button cdkOverlayOrigin #trigger="cdkOverlayOrigin">
     Legend
   </button>
-  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="legend">
+  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="getLegend()">
     <div id="legend_content">
       <p id="overpopulation">This cell will die due to overpopulation</p>
       <p id="underpopulation">This cell will die due to underpopulation</p>
@@ -14,31 +14,31 @@
 </div>
 
 <div class="controls_container">
-  <div id="controls">
+  <div id="controls" (click)="$event.stopPropagation()">
     <button mat-icon-button color="primary" (click)="clear($event)" matTooltip="Clear the Game board" matTooltipPosition="above">
       <mat-icon>
         close
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="revert($event)" [disabled]="this.running" matTooltip="Go back by one epoch" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="revert($event)" [disabled]="running" matTooltip="Go back by one epoch" matTooltipPosition="above">
       <mat-icon>
         skip_previous
       </mat-icon>
     </button>
     <button mat-icon-button color="primary" (click)="play($event)" matTooltip="Play/Pause the Game" matTooltipPosition="above">
-      <mat-icon *ngIf="!this.running">
+      <mat-icon *ngIf="!running">
         play_arrow
       </mat-icon>
-      <mat-icon *ngIf="this.running">
+      <mat-icon *ngIf="running">
         pause
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="advance($event)" [disabled]="this.running" matTooltip="Advance the game by one epoch" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="advance($event)" [disabled]="running" matTooltip="Advance the game by one epoch" matTooltipPosition="above">
       <mat-icon>
         skip_next
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="restore($event)" [disabled]="this.running" matTooltip="Restore the cleared board" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="restore($event)" [disabled]="running" matTooltip="Restore the cleared board" matTooltipPosition="above">
       <mat-icon>
         replay
       </mat-icon>
@@ -56,7 +56,7 @@
       </button>
     </div>
   </div>
-  <mat-drawer #options class="sidenav_drawer" id="options_drawer" mode="side" position="end">
+  <mat-drawer #options class="sidenav_drawer" id="options_drawer" (click)="$event.stopPropagation()" mode="side" position="end">
     <div class="sidebar" id="sidebar_options">
 
       <div class="option_box">
@@ -78,7 +78,7 @@
         <p class="option_name">Min # of cells for survival</p>
         <mat-form-field class="options_input">
           <label>
-            <input type="number" min="0" max="{{this.max_survival}}" matInput value="{{this.min_survival}}" (change)="setMinSurvival($event)">
+            <input type="number" min="0" max="{{max_survival}}" matInput value="{{min_survival}}" (change)="setMinSurvival($event)">
           </label>
         </mat-form-field>
       </div>
@@ -87,7 +87,7 @@
         <p class="option_name">Max # of cells for survival</p>
         <mat-form-field class="options_input">
           <label>
-            <input type="number" min="{{this.min_survival}}" max="8" matInput value="{{this.max_survival}}" (change)="setMaxSurvival($event)">
+            <input type="number" min="{{min_survival}}" max="8" matInput value="{{max_survival}}" (change)="setMaxSurvival($event)">
           </label>
         </mat-form-field>
       </div>
@@ -96,14 +96,14 @@
         <p class="option_name"># of cells for birth</p>
         <mat-form-field class="options_input">
           <label>
-            <input type="number" min="1" max="8" matInput value="{{this.birth}}" (change)="setBirth($event)">
+            <input type="number" min="1" max="8" matInput value="{{birth}}" (change)="setBirth($event)">
           </label>
         </mat-form-field>
       </div>
 
       <div class="option_box">
         <p class="option_name">Prediction mode</p>
-        <mat-checkbox id="prediction_mode" [checked]="this.prediction_mode" (change)="predictionMode()" class="example-margin" color="primary"></mat-checkbox>
+        <mat-checkbox id="prediction_mode" [checked]="prediction_mode" (change)="predictionMode()" class="example-margin" color="primary"></mat-checkbox>
       </div>
 
       <div class="option_box">
@@ -113,14 +113,14 @@
 
       <div class="option_box">
         <p class="option_name">Simulation speed</p>
-        <mat-slider color="primary" min="0.1" max="10" step="0.1" thumbLabel value="{{this.interval * 10}}" (change)="change_speed($event)"></mat-slider>
+        <mat-slider color="primary" min="0.1" max="10" step="0.1" thumbLabel value="{{interval * 10}}" (change)="change_speed($event)"></mat-slider>
       </div>
 
       <div class="option_box">
         <p class="option_name">Limit of returns</p>
         <mat-form-field class="options_input">
           <label>
-            <input type="number" min="1" matInput id="revert_count" value="{{this.getRevert()}}" (change)="setRevert($event)">
+            <input type="number" min="1" matInput id="revert_count" value="{{getRevert()}}" (change)="setRevert($event)">
           </label>
         </mat-form-field>
       </div>
@@ -130,15 +130,15 @@
         <div class="color_sliders">
           <div class="option_box">
             R
-            <mat-slider id="bg_r" (change)="sceneColor()" value="{{this.bg_color.r * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="bg_r" (change)="sceneColor()" value="{{bg_color.r * 255}}" disabled="{{prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             G
-            <mat-slider id="bg_g" (change)="sceneColor()" value="{{this.bg_color.g * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="bg_g" (change)="sceneColor()" value="{{bg_color.g * 255}}" disabled="{{prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             B
-            <mat-slider id="bg_b" (change)="sceneColor()" value="{{this.bg_color.b * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="bg_b" (change)="sceneColor()" value="{{bg_color.b * 255}}" disabled="{{prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
         </div>
       </div>
@@ -148,15 +148,15 @@
         <div class="color_sliders">
           <div class="option_box">
             R
-            <mat-slider id="c_r" (change)="cellColor()" value="{{this.cell_color.r * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="c_r" (change)="cellColor()" value="{{cell_color.r * 255}}" disabled="{{prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             G
-            <mat-slider id="c_g" (change)="cellColor()" value="{{this.cell_color.g * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="c_g" (change)="cellColor()" value="{{cell_color.g * 255}}" disabled="{{prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             B
-            <mat-slider id="c_b" (change)="cellColor()" value="{{this.cell_color.b * 255}}" disabled="{{this.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="c_b" (change)="cellColor()" value="{{cell_color.b * 255}}" disabled="{{prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
           </div>
         </div>
       </div>
@@ -174,6 +174,5 @@
     </div>
   </mat-drawer>
 </mat-drawer-container>
-
 
 <div id="render_window"></div>

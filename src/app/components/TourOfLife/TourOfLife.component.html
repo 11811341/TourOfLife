@@ -2,10 +2,13 @@
     <mat-tab-group>
 
       <mat-tab label="GoL: Basics 01">
+        <ng-template matTabContent>
         <h1>Game of Life: Basics 00, Rules of life</h1>
         <div class="lessons">
-          <mat-card class="lesson_container" [class.mat-elevation-z8]="true">
-            <div class="render_window"></div>
+          <mat-card class="lesson_container" [class.mat-elevation-z8]="true" style="background-color: transparent">
+            <div class="renderer" id="lesson00">
+              <life2d-container></life2d-container>
+            </div>
             <div class="controls_container">
               <div class="controls">
                 <button mat-icon-button color="primary" matTooltip="Clear the Game board"
@@ -50,8 +53,8 @@
             </div>
           </mat-card>
 
-          <mat-card class="lesson_container" [class.mat-elevation-z8]="true">
-            <div class="render_window"></div>
+          <mat-card class="lesson_container" [class.mat-elevation-z8]="true" style="background-color: transparent">
+            <div class="renderer" id="lesson01"></div>
             <div class="controls_container">
               <div class="controls">
                 <button mat-icon-button color="primary" matTooltip="Clear the Game board"
@@ -95,221 +98,222 @@
             </div>
           </mat-card>
         </div>
+        </ng-template>
       </mat-tab>
 
-      <mat-tab label="GoL: Basics 02">
-        <h1>Game of Life: Basics 00, Rules of Life con.</h1>
-        <div class="lessons">
-          <mat-card class="lesson_container" [class.mat-elevation-z8]="true">
-            <div class="render_window"></div>
+<!--      <mat-tab label="GoL: Basics 02">-->
+<!--        <h1>Game of Life: Basics 00, Rules of Life con.</h1>-->
+<!--        <div class="lessons">-->
+<!--          <mat-card class="lesson_container" [class.mat-elevation-z8]="true">-->
+<!--            <div class="renderer" id="lesson02"></div>-->
 
-            <div class="controls_container">
-              <div class="controls">
-                <button mat-icon-button color="primary" matTooltip="Clear the Game board"
-                        matTooltipPosition="above">
-                  <mat-icon>
-                    close
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Go back by one epoch" matTooltipPosition="above">
-                  <mat-icon>
-                    skip_previous
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary" matTooltip="Play/Pause the Game"
-                        matTooltipPosition="above">
-                  <mat-icon>
-                    play_arrow
-                  </mat-icon>
-                  <!--            <mat-icon *ngIf="this.running">-->
-                  <!--              pause-->
-                  <!--            </mat-icon>-->
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Advance the game by one epoch" matTooltipPosition="above">
-                  <mat-icon>
-                    skip_next
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Restore the cleared board" matTooltipPosition="above">
-                  <mat-icon>
-                    replay
-                  </mat-icon>
-                </button>
-              </div>
-            </div>
+<!--            <div class="controls_container">-->
+<!--              <div class="controls">-->
+<!--                <button mat-icon-button color="primary" matTooltip="Clear the Game board"-->
+<!--                        matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    close-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Go back by one epoch" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    skip_previous-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary" matTooltip="Play/Pause the Game"-->
+<!--                        matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    play_arrow-->
+<!--                  </mat-icon>-->
+<!--                  &lt;!&ndash;            <mat-icon *ngIf="this.running">&ndash;&gt;-->
+<!--                  &lt;!&ndash;              pause&ndash;&gt;-->
+<!--                  &lt;!&ndash;            </mat-icon>&ndash;&gt;-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Advance the game by one epoch" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    skip_next-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Restore the cleared board" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    replay-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
 
-            <div class="explanation">
-              <h2>Lesson 1</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-          </mat-card>
+<!--            <div class="explanation">-->
+<!--              <h2>Lesson 1</h2>-->
+<!--              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
+<!--            </div>-->
+<!--          </mat-card>-->
 
-          <mat-card class="lesson_container" [class.mat-elevation-z8]="true">
-            <div class="render_window"></div>
+<!--          <mat-card class="lesson_container" [class.mat-elevation-z8]="true">-->
+<!--            <div class="renderer" id="lesson03"></div>-->
 
-            <div class="controls_container">
-              <div class="controls">
-                <button mat-icon-button color="primary" matTooltip="Clear the Game board"
-                        matTooltipPosition="above">
-                  <mat-icon>
-                    close
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Go back by one epoch" matTooltipPosition="above">
-                  <mat-icon>
-                    skip_previous
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary" matTooltip="Play/Pause the Game"
-                        matTooltipPosition="above">
-                  <mat-icon>
-                    play_arrow
-                  </mat-icon>
-                  <!--            <mat-icon *ngIf="this.running">-->
-                  <!--              pause-->
-                  <!--            </mat-icon>-->
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Advance the game by one epoch" matTooltipPosition="above">
-                  <mat-icon>
-                    skip_next
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Restore the cleared board" matTooltipPosition="above">
-                  <mat-icon>
-                    replay
-                  </mat-icon>
-                </button>
-              </div>
-            </div>
+<!--            <div class="controls_container">-->
+<!--              <div class="controls">-->
+<!--                <button mat-icon-button color="primary" matTooltip="Clear the Game board"-->
+<!--                        matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    close-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Go back by one epoch" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    skip_previous-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary" matTooltip="Play/Pause the Game"-->
+<!--                        matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    play_arrow-->
+<!--                  </mat-icon>-->
+<!--                  &lt;!&ndash;            <mat-icon *ngIf="this.running">&ndash;&gt;-->
+<!--                  &lt;!&ndash;              pause&ndash;&gt;-->
+<!--                  &lt;!&ndash;            </mat-icon>&ndash;&gt;-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Advance the game by one epoch" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    skip_next-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Restore the cleared board" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    replay-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
 
-            <div class="explanation">
-              <h2>Lesson 1</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-          </mat-card>
-        </div>
-        <div class="next_prev">
-          <button mat-icon-button>
-            <mat-icon>keyboard_arrow_left</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>keyboard_arrow_right</mat-icon>
-          </button>
-        </div>
-      </mat-tab>
+<!--            <div class="explanation">-->
+<!--              <h2>Lesson 1</h2>-->
+<!--              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
+<!--            </div>-->
+<!--          </mat-card>-->
+<!--        </div>-->
+<!--        <div class="next_prev">-->
+<!--          <button mat-icon-button>-->
+<!--            <mat-icon>keyboard_arrow_left</mat-icon>-->
+<!--          </button>-->
+<!--          <button mat-icon-button>-->
+<!--            <mat-icon>keyboard_arrow_right</mat-icon>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </mat-tab>-->
 
-      <mat-tab label="GoL: Basics task">
-        <h1>Game of Life: Task 1</h1>
-        <div class="lessons">
-          <mat-card class="lesson_container" [class.mat-elevation-z8]="true">
-            <div class="render_window"></div>
+<!--      <mat-tab label="GoL: Basics task">-->
+<!--        <h1>Game of Life: Task 1</h1>-->
+<!--        <div class="lessons">-->
+<!--          <mat-card class="lesson_container" [class.mat-elevation-z8]="true">-->
+<!--            <div class="renderer" id="lesson04"></div>-->
 
-            <div class="controls_container">
-              <div class="controls">
-                <button mat-icon-button color="primary" matTooltip="Clear the Game board"
-                        matTooltipPosition="above">
-                  <mat-icon>
-                    close
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Go back by one epoch" matTooltipPosition="above">
-                  <mat-icon>
-                    skip_previous
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary" matTooltip="Play/Pause the Game"
-                        matTooltipPosition="above">
-                  <mat-icon>
-                    play_arrow
-                  </mat-icon>
-                  <!--            <mat-icon *ngIf="this.running">-->
-                  <!--              pause-->
-                  <!--            </mat-icon>-->
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Advance the game by one epoch" matTooltipPosition="above">
-                  <mat-icon>
-                    skip_next
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Restore the cleared board" matTooltipPosition="above">
-                  <mat-icon>
-                    replay
-                  </mat-icon>
-                </button>
-              </div>
-            </div>
+<!--            <div class="controls_container">-->
+<!--              <div class="controls">-->
+<!--                <button mat-icon-button color="primary" matTooltip="Clear the Game board"-->
+<!--                        matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    close-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Go back by one epoch" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    skip_previous-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary" matTooltip="Play/Pause the Game"-->
+<!--                        matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    play_arrow-->
+<!--                  </mat-icon>-->
+<!--                  &lt;!&ndash;            <mat-icon *ngIf="this.running">&ndash;&gt;-->
+<!--                  &lt;!&ndash;              pause&ndash;&gt;-->
+<!--                  &lt;!&ndash;            </mat-icon>&ndash;&gt;-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Advance the game by one epoch" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    skip_next-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Restore the cleared board" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    replay-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
 
-            <div class="explanation">
-              <h2>Lesson 1</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-          </mat-card>
+<!--            <div class="explanation">-->
+<!--              <h2>Lesson 1</h2>-->
+<!--              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
+<!--            </div>-->
+<!--          </mat-card>-->
 
-          <mat-card class="lesson_container" [class.mat-elevation-z8]="true">
-            <div class="render_window"></div>
+<!--          <mat-card class="lesson_container" [class.mat-elevation-z8]="true">-->
+<!--            <div class="renderer" id="lesson05"></div>-->
 
-            <div class="controls_container">
-              <div class="controls">
-                <button mat-icon-button color="primary" matTooltip="Clear the Game board"
-                        matTooltipPosition="above">
-                  <mat-icon>
-                    close
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Go back by one epoch" matTooltipPosition="above">
-                  <mat-icon>
-                    skip_previous
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary" matTooltip="Play/Pause the Game"
-                        matTooltipPosition="above">
-                  <mat-icon>
-                    play_arrow
-                  </mat-icon>
-                  <!--            <mat-icon *ngIf="this.running">-->
-                  <!--              pause-->
-                  <!--            </mat-icon>-->
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Advance the game by one epoch" matTooltipPosition="above">
-                  <mat-icon>
-                    skip_next
-                  </mat-icon>
-                </button>
-                <button mat-icon-button color="primary"
-                        matTooltip="Restore the cleared board" matTooltipPosition="above">
-                  <mat-icon>
-                    replay
-                  </mat-icon>
-                </button>
-              </div>
-            </div>
+<!--            <div class="controls_container">-->
+<!--              <div class="controls">-->
+<!--                <button mat-icon-button color="primary" matTooltip="Clear the Game board"-->
+<!--                        matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    close-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Go back by one epoch" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    skip_previous-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary" matTooltip="Play/Pause the Game"-->
+<!--                        matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    play_arrow-->
+<!--                  </mat-icon>-->
+<!--                  &lt;!&ndash;            <mat-icon *ngIf="this.running">&ndash;&gt;-->
+<!--                  &lt;!&ndash;              pause&ndash;&gt;-->
+<!--                  &lt;!&ndash;            </mat-icon>&ndash;&gt;-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Advance the game by one epoch" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    skip_next-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--                <button mat-icon-button color="primary"-->
+<!--                        matTooltip="Restore the cleared board" matTooltipPosition="above">-->
+<!--                  <mat-icon>-->
+<!--                    replay-->
+<!--                  </mat-icon>-->
+<!--                </button>-->
+<!--              </div>-->
+<!--            </div>-->
 
-            <div class="explanation">
-              <h2>Lesson 1</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-          </mat-card>
-        </div>
-        <div class="next_prev">
-          <button mat-icon-button>
-            <mat-icon>keyboard_arrow_left</mat-icon>
-          </button>
-          <button mat-icon-button>
-            <mat-icon>keyboard_arrow_right</mat-icon>
-          </button>
-        </div>
-      </mat-tab>
+<!--            <div class="explanation">-->
+<!--              <h2>Lesson 1</h2>-->
+<!--              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
+<!--            </div>-->
+<!--          </mat-card>-->
+<!--        </div>-->
+<!--        <div class="next_prev">-->
+<!--          <button mat-icon-button>-->
+<!--            <mat-icon>keyboard_arrow_left</mat-icon>-->
+<!--          </button>-->
+<!--          <button mat-icon-button>-->
+<!--            <mat-icon>keyboard_arrow_right</mat-icon>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </mat-tab>-->
 
     </mat-tab-group>
     <div class="next_prev">

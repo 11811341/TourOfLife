@@ -1,11 +1,18 @@
 import * as THREE from 'three';
-import {Renderer2D} from '../Renderer2D';
+import {Renderer2D} from '../../Renderer2D';
 import {GridHelper, Vector3} from 'three';
-import {Grid2D} from './Grid2D';
+import {Grid2D} from '../Grid2D';
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
-import {Cell2D} from './Cell2D';
+import {Cell2D} from '../Cell2D';
+import {Component, OnInit} from '@angular/core';
 
-export class Life2DContainer{
+@Component({
+  selector: 'life2d-container',
+  templateUrl: './Life2DContainer.component.html',
+  styleUrls: ['./Life2DContainer.component.css']
+})
+
+export class Life2DContainer implements OnInit{
 
   private scene = new THREE.Scene();
   private renderer: Renderer2D;
@@ -13,8 +20,8 @@ export class Life2DContainer{
   private helperGrid: GridHelper;
   private clock = new THREE.Clock();
   private delta = 0;
-  public interval = 0.1;
-  public running: boolean = false;
+  interval = 0.1;
+  running: boolean = false;
 
   private raycaster = new THREE.Raycaster();
   private mouse = new THREE.Vector2();
@@ -22,9 +29,6 @@ export class Life2DContainer{
   private mouse_down: boolean = false;
 
   private trackball;
-
-  private width;
-  private height;
 
   nr_to_die = 0;
   nr_to_birth = 0;
@@ -46,35 +50,31 @@ export class Life2DContainer{
 
   hide_grid: boolean = false;
 
-  constructor(width: number, height: number){
-    this.initialize_renderer(width, height);
-  }
-
-
-  initialize_renderer(width, height): void {
+  ngOnInit(): void{
 
     window.addEventListener('contextmenu', function(e) {
       e.preventDefault();
     }, false);
 
-    document.getElementById('controls').addEventListener('mousedown', function(e) {
-      e.stopPropagation();
-    }, false);
-    document.getElementById('options_drawer').addEventListener('mousedown', function(e) {
-      e.stopPropagation();
-    }, false);
-    document.getElementById('navigation_drawer').addEventListener('mousedown', function(e) {
-      e.stopPropagation();
-    }, false);
+    // document.getElementById('controls').addEventListener('mousedown', function(e) {
+    //   e.stopPropagation();
+    // }, false);
+    // document.getElementById('options_drawer').addEventListener('mousedown', function(e) {
+    //   e.stopPropagation();
+    // }, false);
+    // document.getElementById('navigation_drawer').addEventListener('mousedown', function(e) {
+    //   e.stopPropagation();
+    // }, false);
 
-    this.animate();
-
+    const width = document.getElementById("render_window").offsetWidth;
+    const height = document.getElementById("render_window").offsetHeight;
+    
     this.renderer = new Renderer2D(width, height);
-    document.getElementById('render_window').appendChild(this.renderer.getRenderer());
+    document.getElementById("render_window").appendChild(this.renderer.getRenderer());
     let that = this;
 
     window.addEventListener('resize', function() {
-      that.renderer.setSize(document.getElementById('render_window').offsetWidth, document.getElementById('render_window').offsetHeight);
+      that.renderer.setSize(document.getElementById("render_window").offsetWidth, document.getElementById("render_window").offsetHeight);
     }, false);
 
     window.addEventListener('mousemove', function(e) {
@@ -116,6 +116,8 @@ export class Life2DContainer{
 
     //Not sure why this needs to be here for the manual camera movement to work???????
     this.trackball = new TrackballControls(this.renderer.getCamera(), this.renderer.getRenderer());
+
+    this.animate();
   }
 
   private check_deletion() {
@@ -267,6 +269,17 @@ export class Life2DContainer{
     this.grid.setBirth(this.birth);
   }
 
+  public toggleLegend(){
+    this.legend = !this.legend;
+  }
+  public getLegend(){
+    return this.legend;
+  }
+
+  getRunning(){
+    return this.running;
+  }
+
   sceneColor() {
     let r = document.getElementById('bg_r').innerText;
     let g = document.getElementById('bg_g').innerText;
@@ -299,7 +312,6 @@ export class Life2DContainer{
 
   //PLACEHOLDER FUNCTION TIL I FIND A BETTER FIX FOR CLICK EVENT BLOCKING
   misclick(){
-    console.log("lel");
     this.grid.misclick();
     this.scene_reload();
   }
@@ -308,11 +320,5 @@ export class Life2DContainer{
     this.renderer.disableZoom();
   }
 
-  ngOnInit(): void {
-    this.width = document.getElementById('render_window').offsetWidth;
-    this.height = document.getElementById('render_window').offsetHeight;
-
-
-  }
 
 }
