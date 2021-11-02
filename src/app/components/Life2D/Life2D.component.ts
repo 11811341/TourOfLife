@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Life2DContainer} from '../Life2DContainer/Life2DContainer.component';
+import {Life2DContainer} from '../../Life2DContainer';
 
 
 @Component({
@@ -7,12 +7,12 @@ import {Life2DContainer} from '../Life2DContainer/Life2DContainer.component';
   templateUrl: './Life2D.component.html',
   styleUrls: ['./Life2D.component.css']
 })
-export class Life2DComponent extends Life2DContainer{
+export class Life2DComponent implements OnInit{
 
-  ngOnInit(): void {
-    // window.location.reload();
-    super.ngOnInit();
+  life2DContainer: Life2DContainer;
+
+  ngOnInit(): void{
+    this.life2DContainer = new Life2DContainer("render_window");
   }
-
 
 }
