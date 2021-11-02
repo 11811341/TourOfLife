@@ -10,6 +10,7 @@ import {Life2DContainer} from '../Life2DContainer/Life2DContainer.component';
 export class Life2DComponent extends Life2DContainer{
 
   ngOnInit(): void {
+    // window.location.reload();
     super.ngOnInit();
   }
 

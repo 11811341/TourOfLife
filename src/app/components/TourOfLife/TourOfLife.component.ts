@@ -11,8 +11,7 @@ export class TourOfLifeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(document);
-    console.log(document.getElementById("lesson00"));
+
   }
 
 }

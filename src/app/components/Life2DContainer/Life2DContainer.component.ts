@@ -68,7 +68,10 @@ export class Life2DContainer implements OnInit{
 
     const width = document.getElementById("render_window").offsetWidth;
     const height = document.getElementById("render_window").offsetHeight;
-    
+
+    console.log("renderer size");
+    console.log([width, height]);
+
     this.renderer = new Renderer2D(width, height);
     document.getElementById("render_window").appendChild(this.renderer.getRenderer());
     let that = this;
@@ -147,6 +150,9 @@ export class Life2DContainer implements OnInit{
     if (intersects.length != 0) {
       let x = intersects[0].point.x < 0 ? Math.trunc(intersects[0].point.x * 10) - 1 : Math.trunc(intersects[0].point.x * 10) + 1;
       let y = intersects[0].point.y < 0 ? Math.trunc(intersects[0].point.y * 10) - 1 : Math.trunc(intersects[0].point.y * 10) + 1;
+
+      console.log([x,y]);
+
       this.generate_cell(x, y);
       this.scene_reload();
     }
