@@ -15,17 +15,17 @@
 
 <div class="controls_container">
   <div id="controls" (click)="$event.stopPropagation()">
-    <button mat-icon-button color="primary" (click)="life2DContainer.clear($event)" matTooltip="Clear the Game board" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="life2DContainer.clear()" matTooltip="Clear the Game board" matTooltipPosition="above">
       <mat-icon>
         close
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="life2DContainer.revert($event)" [disabled]="life2DContainer.running" matTooltip="Go back by one epoch" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="life2DContainer.revert()" [disabled]="life2DContainer.running" matTooltip="Go back by one epoch" matTooltipPosition="above">
       <mat-icon>
         skip_previous
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="life2DContainer.play($event)" matTooltip="Play/Pause the Game" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="life2DContainer.play()" matTooltip="Play/Pause the Game" matTooltipPosition="above">
       <mat-icon *ngIf="!life2DContainer.running">
         play_arrow
       </mat-icon>
@@ -33,12 +33,12 @@
         pause
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="life2DContainer.advance($event)" [disabled]="life2DContainer.running" matTooltip="Advance the game by one epoch" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="life2DContainer.advance()" [disabled]="life2DContainer.running" matTooltip="Advance the game by one epoch" matTooltipPosition="above">
       <mat-icon>
         skip_next
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="life2DContainer.restore($event)" [disabled]="life2DContainer.running" matTooltip="Restore the cleared board" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="life2DContainer.restore()" [disabled]="life2DContainer.running" matTooltip="Restore the cleared board" matTooltipPosition="above">
       <mat-icon>
         replay
       </mat-icon>
@@ -51,7 +51,7 @@
 <mat-drawer-container id="options_container">
   <div id="options_button">
     <div id="expand_options">
-      <button type="button" class="selection_button" mat-icon-button (click)="options.toggle(); life2DContainer.disableZoom();" style="width: 1em">
+      <button type="button" class="selection_button" mat-icon-button (click)="options.toggle()" style="width: 1em">
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
     </div>

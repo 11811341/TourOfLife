@@ -2,13 +2,13 @@ import * as THREE from 'three';
 import {GridHelper, Vector3} from 'three';
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
 import {Renderer2D} from './Renderer2D';
-import {Grid2D} from './components/Grid2D';
-import {Cell2D} from './components/Cell2D';
+import {Grid2D} from './Grid2D';
+import {Cell2D} from './Cell2D';
 
 export class Life2DContainer{
 
   private scene = new THREE.Scene();
-  private renderer: Renderer2D;
+  protected renderer: Renderer2D;
 
   private helperGrid: GridHelper;
   private clock = new THREE.Clock();
@@ -49,31 +49,22 @@ export class Life2DContainer{
       e.preventDefault();
     }, false);
 
-    // document.getElementById('controls').addEventListener('mousedown', function(e) {
-    //   e.stopPropagation();
-    // }, false);
-    // document.getElementById('options_drawer').addEventListener('mousedown', function(e) {
-    //   e.stopPropagation();
-    // }, false);
-    // document.getElementById('navigation_drawer').addEventListener('mousedown', function(e) {
-    //   e.stopPropagation();
-    // }, false);
-
     const width = document.getElementById(parent).offsetWidth;
     const height = document.getElementById(parent).offsetHeight;
-
 
     this.renderer = new Renderer2D(width, height);
     document.getElementById(parent).appendChild(this.renderer.getRenderer());
     let that = this;
 
     window.addEventListener('resize', function() {
-      that.renderer.setSize(document.getElementById("render_window").offsetWidth, document.getElementById("render_window").offsetHeight);
+      that.renderer.setSize(document.getElementById(parent).offsetWidth, document.getElementById(parent).offsetHeight);
     }, false);
 
     this.renderer.getRenderer().addEventListener('mousemove', function(e) {
-      that.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-      that.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      const rect = that.renderer.getRenderer().getBoundingClientRect();
+      that.mouse.x = ( ( e.clientX - rect.left ) / ( rect.right - rect.left ) ) * 2 - 1;
+      that.mouse.y = - ( ( e.clientY - rect.top ) / ( rect.bottom - rect.top) ) * 2 + 1;
+
       if (that.mouse_down) {
         if (e.which == 1 && !that.prediction_mode) {
           that.check_addition();
@@ -101,8 +92,8 @@ export class Life2DContainer{
     }, false);
 
 
-    this.helperGrid = new THREE.GridHelper(100, 1000, new THREE.Color(0x888888));
-    // this.helperGrid = new THREE.GridHelper(100, 1000);
+    // this.helperGrid = new THREE.GridHelper(100, 1000, new THREE.Color(0x888888));
+    this.helperGrid = new THREE.GridHelper(100, 1000);
     this.helperGrid.rotateOnAxis(new Vector3(1, 0, 0), 90 * Math.PI / 180);
     this.scene.add(this.helperGrid);
     this.scene.add(this.raycast_plane);
@@ -196,8 +187,7 @@ export class Life2DContainer{
     this.renderer.render(this.scene);
   };
 
-  public advance(e) {
-    e.stopPropagation();
+  public advance() {
     if (!this.running) {
       this.grid.advance();
       this.scene_reload();
@@ -206,25 +196,21 @@ export class Life2DContainer{
     this.nr_to_birth = this.grid.getToBirth().length;
   }
 
-  public play(e) {
-    e.stopPropagation();
+  public play() {
     this.running = !this.running;
   }
 
-  public clear(e) {
-    e.stopPropagation();
+  public clear() {
     this.grid.clear_grid();
     this.scene_reload();
   }
 
-  public restore(e) {
-    e.stopPropagation();
+  public restore() {
     this.grid.restore_grid();
     this.scene_reload();
   }
 
-  public revert(e) {
-    e.stopPropagation();
+  public revert() {
     this.grid.revert_grid();
     this.scene_reload();
   }
@@ -304,16 +290,5 @@ export class Life2DContainer{
   devMode(){
     this.renderer.devMode();
   }
-
-  //PLACEHOLDER FUNCTION TIL I FIND A BETTER FIX FOR CLICK EVENT BLOCKING
-  misclick(){
-    this.grid.misclick();
-    this.scene_reload();
-  }
-
-  public disableZoom(){
-    this.renderer.disableZoom();
-  }
-
 
 }

@@ -10,9 +10,11 @@ import {Life2DContainer} from '../../Life2DContainer';
 })
 export class TourOfLifeComponent implements OnInit {
 
-  private active_a: Life2DContainer;
-  private active_b: Life2DContainer;
+  active_a: Life2DLesson;
+  active_b: Life2DLesson;
 
+  running_a: boolean = false;
+  running_b: boolean = false;
 
   ngOnInit(): void {
     // const that = this;
@@ -26,8 +28,20 @@ export class TourOfLifeComponent implements OnInit {
   onTabClick(idx){
     document.getElementById(idx+"lesson1").innerHTML = '';
     document.getElementById(idx+"lesson2").innerHTML = '';
-    this.active_a = new Life2DContainer(idx+"lesson1");
-    this.active_b = new Life2DContainer(idx+"lesson2");
+    this.active_a = new Life2DLesson(idx+"lesson1");
+    this.active_b = new Life2DLesson(idx+"lesson2");
+
+    this.active_a.setDefaultZoom(1, 3);
+    this.active_b.setDefaultZoom(1, 3);
+
+  }
+
+}
+
+class Life2DLesson extends Life2DContainer{
+
+  setDefaultZoom(min_zoom: number, max_zoom: number){
+    this.renderer.setZoom(min_zoom, max_zoom);
   }
 
 }

@@ -13,7 +13,9 @@ export class Renderer2D{
   private wheel_down: boolean = false;
 
   private dev_mode: boolean = false;
-  private zoomMode: boolean = true;
+
+  private min_zoom: number = 2;
+  private max_zoom: number = 15;
 
   constructor(width: number, height: number) {
     this.renderer = new THREE.WebGLRenderer();
@@ -22,17 +24,17 @@ export class Renderer2D{
     this.camera.lookAt(new THREE.Vector3(-200,-55000,-50));
 
     const that = this;
-    document.addEventListener( 'wheel', (event) => {
-      if(((that.camera.position.z < 20 && event.deltaY>0) || (that.camera.position.z > 2 && event.deltaY<0) || that.dev_mode) && that.zoomMode)
+    this.renderer.domElement.addEventListener( 'wheel', (event) => {
+      if((that.camera.position.z < that.max_zoom && event.deltaY>0) || (that.camera.position.z > that.min_zoom && event.deltaY<0) || that.dev_mode)
         that.camera.position.z += Math.sign(event.deltaY)*0.5;
     }, false);
 
-    document.addEventListener('mousedown', function(e){
+    this.renderer.domElement.addEventListener('mousedown', function(e){
       if(e.button == 1)
         that.wheel_down = true;
     }, false);
 
-    document.addEventListener('mousemove', function(e){
+    this.renderer.domElement.addEventListener('mousemove', function(e){
       if(that.wheel_down){
         if(!that.dev_mode)
           that.camera.position.set(Math.min(Math.max(that.camera.position.x - e.movementX/that.getScale(), -10), 10), Math.min(Math.max(that.camera.position.y + e.movementY/that.getScale(), -10), 10), that.camera.position.z);
@@ -41,7 +43,7 @@ export class Renderer2D{
       }
     }, false);
 
-    document.addEventListener('mouseup', function(e){
+    this.renderer.domElement.addEventListener('mouseup', function(e){
       if(e.button == 1)
         that.wheel_down = false;
     }, false);
@@ -64,6 +66,12 @@ export class Renderer2D{
     return this.camera;
   }
 
+  public setZoom(min_zoom: number, max_zoom: number){
+    this.camera.position.z = min_zoom;
+    this.min_zoom = min_zoom;
+    this.max_zoom = max_zoom;
+  }
+
   public setSize(width: number, height: number): void{
     this.width = width;
     this.height = height;
@@ -77,10 +85,6 @@ export class Renderer2D{
     const scale_height = 2 * Math.tan(fov / 2) * this.camera.position.z;
     const scale = this.height / scale_height;
     return scale;
-  }
-
-  public disableZoom(){
-    this.zoomMode = !this.zoomMode;
   }
 
   public render(scene: THREE.Scene): void{
