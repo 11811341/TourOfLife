@@ -92,8 +92,8 @@ export class Life2DContainer{
     }, false);
 
 
-    // this.helperGrid = new THREE.GridHelper(100, 1000, new THREE.Color(0x888888));
-    this.helperGrid = new THREE.GridHelper(100, 1000);
+    this.helperGrid = new THREE.GridHelper(100, 1000, new THREE.Color(0x888888));
+    // this.helperGrid = new THREE.GridHelper(100, 1000);
     this.helperGrid.rotateOnAxis(new Vector3(1, 0, 0), 90 * Math.PI / 180);
     this.scene.add(this.helperGrid);
     this.scene.add(this.raycast_plane);
