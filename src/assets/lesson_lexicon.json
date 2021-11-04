@@ -5,105 +5,49 @@
     "lessons": [
       {
         "lesson": true,
-        "title": "Cell survival",
-        "description": "A cell in the Game of Life needs a couple things to survive. One of the reasons, we call this automaton the Game of Life is, that each cell can bla bla bla not gonna do this now when i dont have the basic functionality of this page figured out lol",
-        "cell_layout": {
-          "0": {
-            "x": -1,
-            "y": 1
-          },
-          "1": {
-            "x": 1,
-            "y": 1
-          },
-          "2": {
-            "x": -1,
-            "y": -1
-          },
-          "3": {
-            "x": 1,
-            "y": -1
-          }
-        }
+        "title": "Cell birth",
+        "description": "Just like the actual life starts at birth, so let us first examine the 3rd rule of Life, that being the birth of a cell. As you have found out in the last segment, for a new cell to be born, it needs to have at least 3 living neighbors in its 3x3 grid vicinity. This example shows you, how the next epoch of the algorithm will give birth to the bottom left corner cell. No other cells are born, because they only have a maximum of 2 living neighbors. Don't forget to use the prediction mode feature, to always stay one step ahead of the algorithm.",
+        "cell_layout": [
+          [-1,1],[1,1],[1,-1]
+        ],
+        "min_zoom": 0.5,
+        "max_zoom": 0.5
       },
       {
         "lesson": true,
-        "title": "Cell death: underpopulation",
-        "description": "A cell in the Game of Life needs a couple things to survive. One of the reasons, we call this automaton the Game of Life is, that each cell can bla bla bla not gonna do this now when i dont have the basic functionality of this page figured out lol",
-        "cell_layout": {
-          "0": {
-            "x": -1,
-            "y": 1
-          },
-          "1": {
-            "x": 1,
-            "y": 1
-          },
-          "2": {
-            "x": -1,
-            "y": -1
-          },
-          "3": {
-            "x": 1,
-            "y": -1
-          }
-        }
+        "title": "Cell survival",
+        "description": "As you probably already know, for a living cell to survive, there need to be no less than 2 and no more than 3 other living cells in it's neighborhood. Let's take a look at the small square from the previous lesson. Every living cell has exactly 3 other living neighbors, which means, all the cells will survive, and no new ones will be born. Without interception, this shape will stay constant forever. We have found a so-called still life pattern. This one is appropriately called the block.",
+        "cell_layout": [
+          [-1,1],[1,1],[-1,-1],[1,-1]
+        ],
+        "min_zoom": 0.5,
+        "max_zoom": 0.5
       }
     ]
   },
   {
     "header": "GoL:Basics 02",
-    "chapter": "Game of Life: Basics 01, test",
+    "chapter": "Game of Life: Basics 02, Rules of Life",
     "lessons": [
       {
         "lesson": true,
-        "title": "Cell survival",
-        "description": "A cell in the Game of Life needs a couple things to survive. One of the reasons, we call this automaton the Game of Life is, that each cell can bla bla bla not gonna do this now when i dont have the basic functionality of this page figured out lol",
-        "cell_layout": {
-          "0": {
-            "x": -1,
-            "y": 1
-          },
-          "1": {
-            "x": 1,
-            "y": 1
-          },
-          "2": {
-            "x": -1,
-            "y": -1
-          },
-          "3": {
-            "x": 1,
-            "y": -1
-          }
-        },
-        "min_zoom": 1,
-        "max_zoom": 3
+        "title": "Cell death: underpopulation",
+        "description": "As this one single cell has no other cells around it, it is bound to die in the next epoch. This is the simplest example of a cell dying from underpopulation. As we have established, a cell needs at least 2 living neighbors to survive. This means, that even by adding another cell, anywhere in the grid, the next epoch would look the same. Go ahead. Try adding one single cell anywhere in the grid, and check out the prediction for the next step.",
+        "cell_layout": [
+          [-1,1]
+        ],
+        "min_zoom": 0.5,
+        "max_zoom": 0.5
       },
       {
         "lesson": true,
-        "title": "Cell death: underpopulation",
-        "description": "A cell in the Game of Life needs a couple things to survive. One of the reasons, we call this automaton the Game of Life is, that each cell can bla bla bla not gonna do this now when i dont have the basic functionality of this page figured out lol",
-        "cell_layout": {
-          "0": {
-            "x": -1,
-            "y": 1
-          },
-          "1": {
-            "x": 1,
-            "y": 1
-          },
-          "2": {
-            "x": -1,
-            "y": -1
-          },
-          "3": {
-            "x": 1,
-            "y": -1
-          }
-        },
-        "min_zoom": 1,
-        "max_zoom": 3
+        "title": "Cell death: overpopulation",
+        "description": "It is a little more tricky to easily display a death from overpopulation. The game screen shows a pair of the familiar block patterns, fused into each other. As the prediction shows, a plus sign will get cut out of it by the next epoch, due to the number of neighbors of the cells forming the plus sign exceeding the maximum of 3. We can also observe 2 cells being born, as the dead corners both have 3 living neighbors. The result consists of 4 individual cells, which will die off in the next step, due to the rules explained in the previous lesson.",
+        "cell_layout": [
+          [-1,1],[1,1],[-1,-1],[1,-1],[2,-1],[2,-2],[1,-2]
+        ],
+        "min_zoom": 0.5,
+        "max_zoom": 0.5
       }
     ]
   }

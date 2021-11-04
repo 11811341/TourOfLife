@@ -68,11 +68,12 @@ h1{
 
 .explanation{
   margin-top: 1em;
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-flow: column;
   align-content: center;
   align-items: center;
+  /*overflow: hidden;*/
 }
 
 .next_prev{

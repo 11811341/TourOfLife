@@ -13,7 +13,7 @@ export class Life2DContainer{
   private helperGrid: GridHelper;
   private clock = new THREE.Clock();
   private delta = 0;
-  interval = 0.1;
+  interval = 0.3;
   running: boolean = false;
 
   private raycaster = new THREE.Raycaster();
@@ -32,8 +32,6 @@ export class Life2DContainer{
   cell_color = new THREE.Color('rgb(255,193,7)');
 
   prediction_mode: boolean = false;
-
-  private sidebar_open: boolean = false;
 
   private grid = new Grid2D();
 
@@ -94,6 +92,7 @@ export class Life2DContainer{
 
     this.helperGrid = new THREE.GridHelper(100, 1000, new THREE.Color(0x888888));
     // this.helperGrid = new THREE.GridHelper(100, 1000);
+    this.helperGrid.position.z = 0.001;
     this.helperGrid.rotateOnAxis(new Vector3(1, 0, 0), 90 * Math.PI / 180);
     this.scene.add(this.helperGrid);
     this.scene.add(this.raycast_plane);

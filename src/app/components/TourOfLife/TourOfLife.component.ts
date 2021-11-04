@@ -20,6 +20,8 @@ export class TourOfLifeComponent implements OnInit {
 
   lessons = lesson_lexicon;
 
+  private selected: number = 0;
+
   ngOnInit(): void {
     // const that = this;
     //
@@ -41,24 +43,37 @@ export class TourOfLifeComponent implements OnInit {
     //   'test' +
     //   '</mat-tab>';
     // console.log(parent.innerHTML);
-
   }
 
   onTabClick(idx:number){
-    document.getElementById(idx+"lesson0").innerHTML = '';
-    document.getElementById(idx+"lesson1").innerHTML = '';
+    if(idx==0)
+      return;
+
+    this.selected = idx-1;
+
+    // if(this.active_a != null){
+    //   this.active_a.closeContext();
+    //   this.active_a = null;
+    // }
+    // if(this.active_b != null){
+    //   this.active_b.closeContext();
+    //   this.active_b = null;
+    // }
+
+    document.getElementById(idx+"lesson0").innerHTML = null;
+    document.getElementById(idx+"lesson1").innerHTML = null;
     this.active_a = new Life2DLesson(idx+"lesson0");
     this.active_b = new Life2DLesson(idx+"lesson1");
 
+    this.active_a.setDefaultZoom(lesson_lexicon[this.selected].lessons[0].min_zoom, lesson_lexicon[this.selected].lessons[0].max_zoom);
+    this.active_b.setDefaultZoom(lesson_lexicon[this.selected].lessons[1].min_zoom, lesson_lexicon[this.selected].lessons[1].max_zoom);
 
-
-    this.active_a.setDefaultZoom(1, 3);
-    this.active_b.setDefaultZoom(1, 3);
-
+    this.reset(0);
+    this.reset(1);
   }
 
-  clear(idx:number){
-    idx==0?this.active_a.clear():this.active_b.clear();
+  predictionMode(idx:number){
+    idx==0?this.active_a.predictionMode():this.active_b.predictionMode();
   }
   revert(idx:number){
     idx==0?this.active_a.revert():this.active_b.revert();
@@ -76,9 +91,22 @@ export class TourOfLifeComponent implements OnInit {
   advance(idx:number){
     idx==0?this.active_a.advance():this.active_b.advance();
   }
-  restore(idx:number){
-    idx==0?this.active_a.restore():this.active_b.restore();
+  reset(idx:number){
+    if(idx==0){
+      if(this.active_a.prediction_mode)
+        this.active_a.predictionMode();
+      this.active_a.resetCells(lesson_lexicon[this.selected].lessons[0].cell_layout);
+      this.active_a.devMode();
+      this.active_a.devMode();
+    }else{
+      if(this.active_b.prediction_mode)
+        this.active_b.predictionMode();
+      this.active_b.resetCells(lesson_lexicon[this.selected].lessons[1].cell_layout);
+      this.active_b.devMode();
+      this.active_b.devMode();
+    }
   }
+
 
 }
 
@@ -87,5 +115,16 @@ class Life2DLesson extends Life2DContainer{
   setDefaultZoom(min_zoom: number, max_zoom: number){
     this.renderer.setZoom(min_zoom, max_zoom);
   }
+
+  resetCells(cells: any[]){
+    this.clear();
+    for(let c of cells)
+      this.generate_cell(c[0], c[1]);
+  }
+
+  // method to close webgl context
+  // closeContext(){
+  //   this.renderer.closeContext();
+  // }
 
 }

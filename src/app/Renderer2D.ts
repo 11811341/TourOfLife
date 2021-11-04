@@ -54,7 +54,7 @@ export class Renderer2D{
   public devMode(){
     this.dev_mode = !this.dev_mode;
     if(!this.dev_mode)
-      this.camera.position.set(0, 0, 5);
+      this.camera.position.set(0, 0, this.min_zoom);
   }
 
   public getRenderer() {
@@ -90,6 +90,14 @@ export class Renderer2D{
   public render(scene: THREE.Scene): void{
     this.scene = scene;
     this.renderer.render(this.scene, this.camera);
+  }
+
+  //unused method to close webgl context
+  public closeContext(){
+    this.renderer.forceContextLoss();
+    this.renderer.context = null;
+    this.renderer.domElement = null;
+    this.renderer = null;
   }
 
 }

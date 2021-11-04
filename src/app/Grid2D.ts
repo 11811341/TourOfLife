@@ -17,7 +17,7 @@ export class Grid2D {
 
   private revert = [];
 
-  private revert_limit = 5;
+  private revert_limit = 50;
 
   private cell_color = new THREE.Color(0xffc107);
 

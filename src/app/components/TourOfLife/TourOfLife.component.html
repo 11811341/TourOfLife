@@ -1,9 +1,8 @@
 <div class="lesson_page">
   <mat-tab-group id="tab_group" (selectedTabChange)="onTabClick($event.index)">
-    <mat-tab label="Intro">
+    <mat-tab label="Intro: GoL">
       <h1>Introduction: Game of Life</h1>
       lol haha intro brrrt
-      length: {{lessons.length}}
     </mat-tab>
 
     <mat-tab *ngFor="let tab of lessons; let i = index" label="{{tab.header}}">
@@ -15,10 +14,10 @@
               <div class="renderer" id="{{i+1+'lesson'+idx}}"></div>
               <div class="controls_container">
                 <div class="controls">
-                  <button mat-icon-button color="primary" matTooltip="Clear the Game board"
-                          matTooltipPosition="above" (click)="clear(idx)">
+                  <button mat-icon-button color="primary" matTooltip="Toggle prediction mode"
+                          matTooltipPosition="above" (click)="predictionMode(idx)">
                     <mat-icon>
-                      close
+                      visibility
                     </mat-icon>
                   </button>
                   <button mat-icon-button color="primary"
@@ -44,8 +43,8 @@
                     </mat-icon>
                   </button>
                   <button mat-icon-button color="primary"
-                          matTooltip="Restore the cleared board" matTooltipPosition="above"
-                          (click)="restore(idx)">
+                          matTooltip="Reset the board" matTooltipPosition="above"
+                          (click)="reset(idx)">
                     <mat-icon>
                       replay
                     </mat-icon>
