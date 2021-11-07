@@ -17,7 +17,7 @@ export class Grid2D {
 
   private revert = [];
 
-  private revert_limit = 50;
+  private revert_limit = 20;
 
   private cell_color = new THREE.Color(0xffc107);
 
@@ -27,6 +27,8 @@ export class Grid2D {
   private min_survival: number = 2;
   private max_survival: number = 3;
   private birth: number = 3;
+
+  private max_cells = 0;
 
   public getMinSurvival(){
     return this.min_survival;
@@ -52,18 +54,17 @@ export class Grid2D {
     this.birth = n;
   }
 
-  public add_to_grid(cell: Cell2D) {
-    // for (let c of this.active) {
-    //   if (c.getX() == cell.getX() && c.getY() == cell.getY()) {
-    //     return;
-    //   }
-    // }
+  public add_to_grid(cell: Cell2D, auto: boolean = false) {
 
-
-    if(this.coords[cell.getX()] && this.coords[cell.getX()][cell.getY()] != null)
+    if((this.coords[cell.getX()] && this.coords[cell.getX()][cell.getY()] != null) || (!auto && this.max_cells > 0 && this.active.length > this.max_cells))
       return;
 
     this.active.push(cell);
+
+    let config = "";
+    for(let a of this.active)
+      config+="["+a.getX()+","+a.getY()+"],";
+    console.log(config);
 
     if (this.coords[cell.getX()] == null) {
       this.coords[cell.getX()] = [];
@@ -259,10 +260,8 @@ export class Grid2D {
     }
   }
 
-  //PLACEHOLDER FUNCTION TIL I FIND A BETTER FIX FOR CLICK EVENT BLOCKING
-  public misclick(){
-    console.log(this.active);
-    this.remove_from_grid(this.active[this.active.length-1].getX(), this.active[this.active.length-1].getY());
+  public maxCells(count: number){
+    this.max_cells = count;
   }
 
   private predict() {

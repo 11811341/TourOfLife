@@ -7,16 +7,14 @@
         <button type="button" mat-button disabled routerLink="/life3d">3D Game of Life simulator</button>
       </div>
     </mat-drawer>
-    <div id="sidenav_button">
+    <div id="sidenav_button" style="position: absolute; z-index: 1000">
       <div id="expand_sidenav">
-        <button type="button" class="selection_button" mat-icon-button (click)="drawer.toggle(); $event.stopPropagation()" style="width: 1em">
+        <button type="button" class="selection_button" mat-icon-button (click)="drawer.toggle()" style="width: 1em">
           <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
       </div>
     </div>
-
     <router-outlet></router-outlet>
-
   </mat-drawer-container>
 </div>
 

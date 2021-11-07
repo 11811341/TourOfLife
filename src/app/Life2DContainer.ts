@@ -33,7 +33,7 @@ export class Life2DContainer{
 
   prediction_mode: boolean = false;
 
-  private grid = new Grid2D();
+  protected grid = new Grid2D();
 
   min_survival:number = this.grid.getMinSurvival();
   max_survival:number = this.grid.getMaxSurvival();
@@ -63,13 +63,23 @@ export class Life2DContainer{
       that.mouse.x = ( ( e.clientX - rect.left ) / ( rect.right - rect.left ) ) * 2 - 1;
       that.mouse.y = - ( ( e.clientY - rect.top ) / ( rect.bottom - rect.top) ) * 2 + 1;
 
+      let set_pred = false;
+      if(that.prediction_mode){
+        set_pred = true;
+        that.predictionMode();
+      }
+
+
       if (that.mouse_down) {
-        if (e.which == 1 && !that.prediction_mode) {
+        if (e.which == 1) {
           that.check_addition();
-        } else if (e.which == 3 && !that.prediction_mode) {
+        } else if (e.which == 3) {
           that.check_deletion();
         }
       }
+
+      if(set_pred && !that.prediction_mode)
+        that.predictionMode();
     }, false);
 
 
@@ -81,11 +91,21 @@ export class Life2DContainer{
     this.raycast_plane.material.colorWrite = false;
     this.renderer.getRenderer().addEventListener('mousedown', function(e) {
       that.mouse_down = true;
-      if (e.button == 0 && !that.prediction_mode) {  //perform left click action -> add
+
+      let set_pred = false;
+      if(that.prediction_mode){
+        set_pred = true;
+        that.predictionMode();
+      }
+
+      if (e.button == 0) {  //perform left click action -> add
         that.check_addition();
-      } else if (e.button == 2 && !that.prediction_mode) {  //perform right click action -> delete
+      } else if (e.button == 2) {  //perform right click action -> delete
         that.check_deletion();
       }
+
+      if(set_pred && !that.prediction_mode)
+        that.predictionMode();
 
     }, false);
 
@@ -137,9 +157,9 @@ export class Life2DContainer{
     }
   }
 
-  generate_cell(x: number, y: number) {
+  generate_cell(x: number, y: number, auto: boolean = false) {
     const cell = new Cell2D(x, y, this.cell_color);
-    this.grid.add_to_grid(cell);
+    this.grid.add_to_grid(cell, auto);
     this.scene_reload();
   }
 

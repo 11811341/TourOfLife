@@ -2,6 +2,7 @@
   {
     "header": "GoL:Basics 01",
     "chapter": "Game of Life: Basics 00, Rules of Life",
+    "hint": "Experienced users may add/remove cells as they please, but if this is your first time, it is advised to stick to the instructions",
     "lessons": [
       {
         "lesson": true,
@@ -27,7 +28,8 @@
   },
   {
     "header": "GoL:Basics 02",
-    "chapter": "Game of Life: Basics 02, Rules of Life",
+    "chapter": "Game of Life: Basics 02, Rules of Life con.",
+    "hint": "Zooming is disabled for the early lessons, but you can move the viewport around freely using the middle mouse button",
     "lessons": [
       {
         "lesson": true,
@@ -48,6 +50,88 @@
         ],
         "min_zoom": 0.5,
         "max_zoom": 0.5
+      }
+    ]
+  },
+  {
+    "header": "GoL:Basics 03",
+    "chapter": "Game of Life: Basics 03, Explored patterns",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Still lifes",
+        "description": "If you were to toggle the prediction mode, this shape would not produce any changes in the viewport. That's because it is a static shape, that will stay like this forever. We have already seen one shape like this in the previous lessons, the block. Both the block, and this so-called beehive are still lifes. This is their final stage in life and they do not change if not disturbed. See if you can find another still life pattern yourself, right here in the lesson grid.",
+        "cell_layout": [
+          [-1,1],[1,1],[-2,-1],[2,-1],[-1,-2],[1,-2]
+        ],
+        "min_zoom": 0.5,
+        "max_zoom": 0.5
+      },
+      {
+        "lesson": true,
+        "title": "Oscillators",
+        "description": "An oscillator is, to put it simply, a repeating pattern. You start with an initial configuration, the pattern changes accordingly, yet it always returns to it's initial state, and the cycle repeats. Oscillators are further categorized by their periods. A period specifies the number of epochs the pattern needs, to start repeating itself. The shape you see above is a so-called Blinker, and it is a period-2 oscillator. (It repeats every 2 epochs)",
+        "cell_layout": [
+          [1,-1],[-1,-1],[-2,-1]
+        ],
+        "min_zoom": 0.5,
+        "max_zoom": 0.5
+      }
+    ]
+  },
+  {
+    "header": "GoL:Basics 04",
+    "chapter": "Game of Life: Basics 04, Explored patterns con.",
+    "hint": "Zoom functionality is unlocked for this chapter, so you can better follow the developments of the patterns. Resetting the board also resets the View",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Oscillators con.",
+        "description": "This well-known period-3 oscillator is called the pulsar. It gives birth to some interesting patterns, which on first glance don't look very stable. Stability in a cellular automaton like Life means, that the existing patterns will no longer change or grow, and the configuration remains constant unless influenced. An oscillator is paradoxically also considered a stable shape, as it only repeats and does not evolve by itself.",
+        "cell_layout": [
+          [2,2],[2,3],[2,4],[3,1],[4,1],[5,1],[3,-2],[4,-2],[5,-2],[2,-3],[2,-4],[2,-5],[-1,-3],[-1,-4],[-1,-5],[-2,-2],[-3,-2],[-4,-2],[-2,1],[-3,1],[-4,1],[-1,2],[-1,3],[-1,4],[-6,2],[-6,3],[-6,4],[7,2],[7,3],[7,4],[7,-3],[7,-4],[7,-5],[-6,-3],[-6,-4],[-6,-5],[3,-7],[4,-7],[5,-7],[-2,-7],[-3,-7],[-4,-7],[-2,6],[-3,6],[-4,6],[3,6],[4,6],[5,6]
+        ],
+        "min_zoom": 1,
+        "max_zoom": 3
+      },
+      {
+        "lesson": true,
+        "title": "Spaceships",
+        "description": "Spaceships are interesting patterns that actually get displaced in space with each epoch. They are basically oscillators, that do not stay in one place, but instead also move around. The smallest known spaceship is this one, called the glider. During it's life, the glider travels 1 block diagonally, every 4 epochs. Other spaceships exist, which can travel orthogonally, and the so-called oblique spaceships travel neither orthogonally, nor diagonally. The glider will become very important in future lessons.",
+        "cell_layout": [
+          [-1,-1],[1,-1],[1,1],[1,2],[-2,1]
+        ],
+        "min_zoom": 0.5,
+        "max_zoom": 1.5
+      }
+    ]
+  },
+  {
+    "header": "GoL:Exercise 01",
+    "chapter": "Game of Life: Exercise 01, Explored patterns",
+    "hint": "The zoom being locked during an exercise could be a hint regarding the size of the solution.",
+    "lessons": [
+      {
+        "lesson": false,
+        "title": "Complete the oscillator",
+        "description": "In this first proper exercise, you can place 2 cells anywhere in the grid. With those 2 cells, you should be able to create an oscillator from the initial configuration. Coincidentally, by adding 2 cells, there is a way to create two different oscillators, one of which you should already be familiar with. The pattern I would actually like you to create is called the beacon, and it is a phase-2 oscillator. By now, you should know what that means, and it should be enough of a hint for you to complete this task.",
+        "cell_layout": [
+          [2,-2],[1,-2],[-1,2],[-2,2]
+        ],
+        "min_zoom": 0.5,
+        "max_zoom": 0.5,
+        "placeable": 2
+      },
+      {
+        "lesson": false,
+        "title": "Placeholder",
+        "description": "",
+        "cell_layout": [
+          [-1,-1],[1,-1],[1,1],[1,2],[-2,1]
+        ],
+        "min_zoom": 0.5,
+        "max_zoom": 1.5,
+        "placeable": 2
       }
     ]
   }

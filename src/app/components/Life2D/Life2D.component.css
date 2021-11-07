@@ -1,7 +1,9 @@
 #render_window{
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
-  /*z-index: -1000;*/
+  /*z-index: -1;*/
+  /*display: flex;*/
+  /*margin-top: -50em;*/
   /*width: 500px;*/
   /*height: 200px;*/
 }
@@ -105,7 +107,7 @@
 }
 
 #legend_content{
-  font-weight: bold;
+  /*font-weight: bold;*/
   margin-top: 1em;
   background-color: white;
   padding: 1em;
@@ -123,10 +125,12 @@
 
 #underpopulation{
   background-color: #D81B60;
+  color: white;
 }
 
 #overpopulation{
   background-color: #1E88E5;
+  color: white;
 }
 
 #birth{

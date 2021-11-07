@@ -68,6 +68,11 @@ export class TourOfLifeComponent implements OnInit {
     this.active_a.setDefaultZoom(lesson_lexicon[this.selected].lessons[0].min_zoom, lesson_lexicon[this.selected].lessons[0].max_zoom);
     this.active_b.setDefaultZoom(lesson_lexicon[this.selected].lessons[1].min_zoom, lesson_lexicon[this.selected].lessons[1].max_zoom);
 
+    if(!lesson_lexicon[this.selected].lessons[0].lesson)
+      this.active_a.maxCells(lesson_lexicon[this.selected].lessons[0].placeable + lesson_lexicon[this.selected].lessons[0].cell_layout.length-1);
+    if(!lesson_lexicon[this.selected].lessons[1].lesson)
+      this.active_b.maxCells(lesson_lexicon[this.selected].lessons[1].placeable + lesson_lexicon[this.selected].lessons[1].cell_layout.length-1);
+
     this.reset(0);
     this.reset(1);
   }
@@ -119,12 +124,16 @@ class Life2DLesson extends Life2DContainer{
   resetCells(cells: any[]){
     this.clear();
     for(let c of cells)
-      this.generate_cell(c[0], c[1]);
+      this.generate_cell(c[0], c[1], true);
   }
 
   // method to close webgl context
   // closeContext(){
   //   this.renderer.closeContext();
   // }
+
+  maxCells(count: number){
+    this.grid.maxCells(count);
+  }
 
 }

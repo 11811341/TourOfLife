@@ -2,7 +2,19 @@
   <mat-tab-group id="tab_group" (selectedTabChange)="onTabClick($event.index)">
     <mat-tab label="Intro: GoL">
       <h1>Introduction: Game of Life</h1>
-      lol haha intro brrrt
+      <br>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <br>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </mat-tab>
 
     <mat-tab *ngFor="let tab of lessons; let i = index" label="{{tab.header}}">
@@ -10,7 +22,7 @@
         <h1>{{tab.chapter}}</h1>
         <div class="lessons">
           <mat-card class="lesson_container" [class.mat-elevation-z8]="true" *ngFor="let l of tab.lessons; let idx = index">
-            <ng-container *ngIf="l.lesson">
+            <ng-container>
               <div class="renderer" id="{{i+1+'lesson'+idx}}"></div>
               <div class="controls_container">
                 <div class="controls">
@@ -52,16 +64,21 @@
                 </div>
               </div>
               <div class="explanation">
+                <ng-container *ngIf="!l.lesson">
+                  <h3 style="margin-top: -1em">Placeable cells: {{l.placeable}}</h3>
+                </ng-container>
                 <h2>{{l.title}}</h2>
                 <p>{{l.description}}</p>
               </div>
             </ng-container>
-            <ng-container *ngIf="!l.lesson">
-
-            </ng-container>
           </mat-card>
         </div>
+        <div id="chapter_tip" *ngIf="tab.hint">
+          <h3 style="font-weight: bold; margin-right: 1em;">Chapter hint:</h3><p>{{tab.hint}}</p>
+        </div>
+
       </ng-template>
+
     </mat-tab>
 
 
@@ -74,4 +91,7 @@
   <!--      <mat-icon>keyboard_arrow_right</mat-icon>-->
   <!--    </button>-->
   <!--  </div>-->
+
+
+
 </div>

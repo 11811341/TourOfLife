@@ -20,7 +20,7 @@ export class Renderer2D{
   constructor(width: number, height: number) {
     this.renderer = new THREE.WebGLRenderer();
     this.camera = new THREE.PerspectiveCamera( 75, width / height, 0.1, 1000 );
-    this.camera.position.z = 5;
+    this.camera.position.z = this.min_zoom;
     this.camera.lookAt(new THREE.Vector3(-200,-55000,-50));
 
     const that = this;
