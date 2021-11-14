@@ -75,6 +75,16 @@ export class TourOfLifeComponent implements OnInit {
 
     this.reset(0);
     this.reset(1);
+
+    if(lesson_lexicon[this.selected].lessons[0].cell_layout.length == 0 && lesson_lexicon[this.selected].lessons[0].lesson) {
+      let el = document.getElementById(idx + "lesson0");
+      el.parentNode.removeChild(el);
+    }
+    if(lesson_lexicon[this.selected].lessons[1].cell_layout.length == 0 && lesson_lexicon[this.selected].lessons[1].lesson) {
+      let el = document.getElementById(idx + "lesson1");
+      el.parentNode.removeChild(el);
+    }
+
   }
 
   predictionMode(idx:number){
@@ -103,12 +113,16 @@ export class TourOfLifeComponent implements OnInit {
       this.active_a.resetCells(lesson_lexicon[this.selected].lessons[0].cell_layout);
       this.active_a.devMode();
       this.active_a.devMode();
+      if(this.running_a)
+        this.play(idx);
     }else{
       if(this.active_b.prediction_mode)
         this.active_b.predictionMode();
       this.active_b.resetCells(lesson_lexicon[this.selected].lessons[1].cell_layout);
       this.active_b.devMode();
       this.active_b.devMode();
+      if(this.running_b)
+        this.play(idx);
     }
   }
 

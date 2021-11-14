@@ -24,7 +24,7 @@
           <mat-card class="lesson_container" [class.mat-elevation-z8]="true" *ngFor="let l of tab.lessons; let idx = index">
             <ng-container>
               <div class="renderer" id="{{i+1+'lesson'+idx}}"></div>
-              <div class="controls_container">
+              <div class="controls_container" *ngIf="!(l.cell_layout.length == 0 && l.lesson)">
                 <div class="controls">
                   <button mat-icon-button color="primary" matTooltip="Toggle prediction mode"
                           matTooltipPosition="above" (click)="predictionMode(idx)">
