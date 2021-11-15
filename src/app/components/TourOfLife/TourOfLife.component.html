@@ -26,6 +26,13 @@
               <div class="renderer" id="{{i+1+'lesson'+idx}}"></div>
               <div class="controls_container" *ngIf="!(l.cell_layout.length == 0 && l.lesson)">
                 <div class="controls">
+                  <a mat-icon-button color="primary"
+                          matTooltip="Wiki reference" matTooltipPosition="above"
+                          href="{{l.reference}}">
+                    <mat-icon>
+                      info
+                    </mat-icon>
+                  </a>
                   <button mat-icon-button color="primary" matTooltip="Toggle prediction mode"
                           matTooltipPosition="above" (click)="predictionMode(idx)">
                     <mat-icon>
@@ -59,6 +66,13 @@
                           (click)="reset(idx)">
                     <mat-icon>
                       replay
+                    </mat-icon>
+                  </button>
+                  <button mat-icon-button color="primary"
+                          matTooltip="Edit in Life2D" matTooltipPosition="above"
+                          (click)="export(idx)">
+                    <mat-icon>
+                      edit
                     </mat-icon>
                   </button>
                 </div>

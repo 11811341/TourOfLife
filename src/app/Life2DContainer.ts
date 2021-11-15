@@ -13,7 +13,7 @@ export class Life2DContainer{
   private helperGrid: GridHelper;
   private clock = new THREE.Clock();
   private delta = 0;
-  interval = 0.3;
+  interval: number = 0.3;
   running: boolean = false;
 
   private raycaster = new THREE.Raycaster();
@@ -267,6 +267,10 @@ export class Life2DContainer{
     }
     this.birth = parseInt(e.target.value);
     this.grid.setBirth(this.birth);
+  }
+
+  setSpeed(s: number){
+    this.interval = s;
   }
 
   public toggleLegend(){

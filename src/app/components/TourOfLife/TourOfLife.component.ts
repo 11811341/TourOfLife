@@ -68,6 +68,9 @@ export class TourOfLifeComponent implements OnInit {
     this.active_a.setDefaultZoom(lesson_lexicon[this.selected].lessons[0].min_zoom, lesson_lexicon[this.selected].lessons[0].max_zoom);
     this.active_b.setDefaultZoom(lesson_lexicon[this.selected].lessons[1].min_zoom, lesson_lexicon[this.selected].lessons[1].max_zoom);
 
+    this.active_a.setSpeed(lesson_lexicon[this.selected].lessons[0].speed);
+    this.active_b.setSpeed(lesson_lexicon[this.selected].lessons[1].speed);
+
     if(!lesson_lexicon[this.selected].lessons[0].lesson)
       this.active_a.maxCells(lesson_lexicon[this.selected].lessons[0].placeable + lesson_lexicon[this.selected].lessons[0].cell_layout.length-1);
     if(!lesson_lexicon[this.selected].lessons[1].lesson)
@@ -126,6 +129,10 @@ export class TourOfLifeComponent implements OnInit {
     }
   }
 
+  export(idx:number){
+    //add routing with config passing for edits etc
+  }
+
 
 }
 
@@ -149,5 +156,7 @@ class Life2DLesson extends Life2DContainer{
   maxCells(count: number){
     this.grid.maxCells(count);
   }
+
+
 
 }
