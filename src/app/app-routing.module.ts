@@ -7,6 +7,7 @@ import {TourOfLifeComponent} from './components/TourOfLife/TourOfLife.component'
 const routes: Routes = [
   {path: '', redirectTo: '/life2d', pathMatch: 'full'},
   {path: 'life2d', component: Life2DComponent},
+  {path: 'life2d/:config', component: Life2DComponent},
   {path: 'touroflife', component: TourOfLifeComponent}
 ];
 

@@ -14,13 +14,14 @@ export class Renderer2D{
 
   private dev_mode: boolean = false;
 
+  private def_zoom: number = 2
   private min_zoom: number = 2;
   private max_zoom: number = 15;
 
   constructor(width: number, height: number) {
     this.renderer = new THREE.WebGLRenderer();
     this.camera = new THREE.PerspectiveCamera( 75, width / height, 0.1, 1000 );
-    this.camera.position.z = this.min_zoom;
+    this.camera.position.z = this.def_zoom;
     this.camera.lookAt(new THREE.Vector3(-200,-55000,-50));
 
     const that = this;
@@ -54,7 +55,7 @@ export class Renderer2D{
   public devMode(){
     this.dev_mode = !this.dev_mode;
     if(!this.dev_mode)
-      this.camera.position.set(0, 0, this.min_zoom);
+      this.camera.position.set(0, 0, this.def_zoom);
   }
 
   public getRenderer() {
@@ -66,10 +67,11 @@ export class Renderer2D{
     return this.camera;
   }
 
-  public setZoom(min_zoom: number, max_zoom: number){
+  public setZoom(min_zoom: number, max_zoom: number, def_zoom: number){
     this.camera.position.z = min_zoom;
     this.min_zoom = min_zoom;
     this.max_zoom = max_zoom;
+    this.def_zoom = def_zoom;
   }
 
   public setSize(width: number, height: number): void{
