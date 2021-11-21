@@ -76,7 +76,7 @@
       {
         "lesson": true,
         "title": "Still lifes",
-        "reference": "https://www.conwaylife.com/wiki/Category:Still_lifes",
+        "reference": "https://www.conwaylife.com/wiki/Still_life",
         "description": "If you were to toggle the prediction mode, this shape would not produce any changes in the viewport. That's because it is a static shape, that will stay like this forever. We have already seen one shape like this in the previous lessons, the block. Both the block, and this so-called beehive are still lifes. This is their final stage in life and they do not change if not disturbed. See if you can find another still life pattern yourself, right here in the lesson grid.",
         "cell_layout": [
           [-1,1],[1,1],[-2,-1],[2,-1],[-1,-2],[1,-2]
@@ -90,7 +90,7 @@
       {
         "lesson": true,
         "title": "Oscillators",
-        "reference": "https://www.conwaylife.com/wiki/Category:Oscillators",
+        "reference": "https://www.conwaylife.com/wiki/Oscillator",
         "description": "An oscillator is, to put it simply, a repeating pattern. You start with an initial configuration, the pattern changes accordingly, yet it always returns to it's initial state, and the cycle repeats. Oscillators are further categorized by their periods. A period specifies the number of epochs the pattern needs, to start repeating itself. The shape you see above is a so-called Blinker, and it is a period-2 oscillator. (It repeats every 2 epochs)",
         "cell_layout": [
           [1,-1],[-1,-1],[-2,-1]
@@ -125,7 +125,7 @@
       {
         "lesson": true,
         "title": "Spaceships",
-        "reference": "https://www.conwaylife.com/wiki/Category:Spaceships",
+        "reference": "https://www.conwaylife.com/wiki/Spaceship",
         "description": "Spaceships are interesting patterns that actually get displaced in space with each epoch. They are basically oscillators, that do not stay in one place, but instead also move around. The smallest known spaceship is this one, called the glider. During it's life, the glider travels 1 block diagonally, every 4 epochs. Other spaceships exist, which can travel orthogonally, and the so-called oblique spaceships travel neither orthogonally, nor diagonally. The glider will become very important in future lessons.",
         "cell_layout": [
           [-1,-1],[1,-1],[1,1],[1,2],[-2,1]
@@ -216,7 +216,7 @@
         "lesson": true,
         "title": "Stable pattern",
         "reference": "https://www.conwaylife.com/wiki/Still_life",
-        "description": "Placeholder",
+        "description": "Technically, a stable pattern is another word for a still life. A cluster of cells, that does not change from one epoch to another. Yet more generally, stable pattern is also the name for a configuration of cells, that will not further evolve on their own. These can be the aforementioned still lifes, but also oscillators. As long as a state is reached, that can be completely predicted, and that does not evolve, but at most oscillates, it's called a stable pattern. Run the simulation, and watch the plus sign evolve into a set of oscillators, which are for all intents and purposes considered stable.",
         "cell_layout": [
           [1,1],[1,-1],[1,-2],[-1,-1],[2,-1]
         ],
@@ -230,7 +230,7 @@
         "lesson": true,
         "title": "Spark",
         "reference": "https://www.conwaylife.com/wiki/Spark",
-        "description": "Placeholder",
+        "description": "To put it quite simply, a spark is a pattern that dies. They can be as small as 1 cell and die in the very next epoch, but they can also live for hundreds of periods. As long as the pattern eventually ceases to exist, it can be considered a spark. The spark you see above is called the table, for obvious reasons, and it burns out after 15 periods. Typically, spark is a name for any pattern that gets automatically produced by a spaceship or an oscillator. You will experience patterns that produce other patterns later in this section of the tour.",
         "cell_layout": [
           [1,1],[-1,1],[-2,1],[2,1],[2,-1],[-2,-1]
         ],
@@ -250,7 +250,7 @@
         "lesson": true,
         "title": "Eater 1",
         "reference": "https://www.conwaylife.com/wiki/Eater_1",
-        "description": "Placeholder",
+        "description": "Before we cover pattern-producing patterns, there is one more kind of shape that will become very important in the later lessons. It is called the eater, and it's sole purpose is to consistently destroy other patterns. This one in particular is called eater 1, and it can destroy a glider coming at it diagonally from the top left (Depending on the direction you built it). It does this, without getting destroyed itself, which means, you can periodically send gliders it's way, and they will get eaten, instead of propagating into infinity. ",
         "cell_layout": [
           [-2,2],[-9,7],[-8,6],[-7,6],[-7,7],[-7,8],[-2,1],[-1,2],[1,1],[1,-1],[1,-2],[2,-2]
         ],
@@ -264,7 +264,7 @@
         "lesson": true,
         "title": "Eater 2",
         "reference": "https://www.conwaylife.com/wiki/Eater_2",
-        "description": "Placeholder",
+        "description": "The eater 1 is good for getting rid of gliders coming from one specific direction. The eater 2 however, manages to consume gliders coming from 4 different parallel diagonals, ones that would destroy its simpler cousin. This is demonstrated above. Every one of the four gliders moves on a different diagonal, and they all get consumed by the same top right corner of the eater 2. The only downside compared to the first eater, is that it takes longer to recover from each glider it destroys.",
         "cell_layout": [
           [2,2],[2,3],[3,3],[3,2],[3,-1],[2,-1],[2,-2],[2,-3],[1,-4],[-1,-3],[-1,-2],[-1,-1],[-2,-1],[-3,-1],[-4,1],[-3,2],[-2,2],[-1,2],[-1,3],[7,6],[8,6],[9,6],[7,7],[8,8],[12,12],[13,12],[14,12],[12,13],[13,14],[17,18],[18,18],[19,18],[17,19],[18,20],[22,24],[23,24],[24,24],[22,25],[23,26]
         ],
@@ -284,7 +284,7 @@
         "lesson": true,
         "title": "Wick",
         "reference": "https://www.conwaylife.com/wiki/Wick",
-        "description": "Placeholder",
+        "description": "Having a slightly confusing name, the wick is a name for any pattern that repeats linearly. Wicks are a parent category to the fuse, which will be discussed next, in that they CAN be made to burn at one end. They also can be comprised of multiple stable patterns, or even oscillators. Wicks can be infinitely long, by being closed in a loop. The wick shown here is simply called ants. It's a period 5 wick, and it's an umbrella term for any set of patterns, moving orthogonally by one cell every epoch.",
         "cell_layout": [
           [1,1],[2,1],[2,-1],[1,-1],[-1,2],[-2,2],[-1,-2],[-2,-2],[-4,1],[-4,-1],[-5,-1],[-5,1],[-6,2],[-7,2],[-6,-2],[-7,-2],[-9,1],[-9,-1],[-10,-1],[-10,1],[-11,2],[-12,2],[-11,-2],[-12,-2],[-14,1],[-14,-1],[-15,-1],[-15,1],[-16,2],[-17,2],[-16,-2],[-17,-2],[-19,1],[-19,-1],[-20,-1],[-20,1],[-21,2],[-21,-2],[-22,-2],[-22,2],[4,2],[5,2],[4,-2],[5,-2],[6,1],[6,-1],[7,-1],[7,1],[9,-2],[10,-2],[9,2],[10,2],[11,1],[11,-1],[12,-1],[12,1],[14,-2],[15,-2],[14,2],[15,2],[16,1],[16,-1],[17,-1],[17,1],[19,-2],[20,-2],[19,2],[20,2],[21,1],[21,-1],[22,-1],[22,1]
         ],
@@ -298,7 +298,7 @@
         "lesson": true,
         "title": "Fuse",
         "reference": "https://www.conwaylife.com/wiki/Fuse",
-        "description": "Placeholder",
+        "description": "A fuse, like the one you see above, is just a wick, that 'burns' at one end. It generally consists of multiple separate patterns, that interact in documented ways. Using these predictable interactions, you can create a chain reaction that starts at one trigger point, and propagates to the last link in the chain, before it burns out completely, turning into a spark. This one is called the beehive fuse, because the triggering pattern burns through a set of beehives. Wicks or Fuses won't really be too important in future lessons, but they are nonetheless interesting patterns worth examining.",
         "cell_layout": [
           [1,1],[2,1],[-1,-1],[1,-2],[2,-2],[3,-1],[4,-9],[4,-10],[5,-8],[6,-9],[6,-10],[5,-11],[13,-12],[14,-12],[12,-13],[13,-14],[14,-14],[15,-13],[-8,2],[-7,3],[-9,3],[-9,4],[-7,4],[-8,5],[-10,12],[-11,13],[-12,13],[-13,12],[-12,11],[-11,11],[-12,16],[-13,16],[-14,16],[-15,17],[-15,18],[-14,18],[-11,17],[-11,18],[-12,18]
         ],
@@ -313,12 +313,13 @@
   {
     "header": "GoL:Advanced 04",
     "chapter": "Game of Life: Advanced 04, Puffers and debris",
+    "hint": "For big cell configurations like this, it can be beneficial to use the edit function, so you can examine the pattern in the 2D Life simulator",
     "lessons": [
       {
         "lesson": true,
         "title": "Frothing puffer",
         "reference": "https://www.conwaylife.com/wiki/Frothing_puffer",
-        "description": "Placeholder",
+        "description": "By now, you have seen patterns, that can destroy other patterns, without getting deleted themselves. But what about the opposite? Puffers are patterns, that move, just like spaceships, but they also leave behind other patterns as they traverse the simulation plane. These generated patterns are generally referred to as debris. This so-called frothing puffer for example generates 10 blinkers and 2 blocks each period, and it's a period 78 pattern.",
         "cell_layout": [
           [-1,3],[-1,4],[-3,3],[-3,4],[2,3],[2,4],[3,5],[-4,5],[-2,6],[-2,7],[1,7],[1,6],[-3,8],[-4,9],[2,8],[3,9],[-5,9],[-6,9],[4,9],[5,9],[5,8],[5,7],[-6,8],[-6,7],[-7,8],[-8,8],[-8,7],[-7,6],[6,8],[7,8],[7,7],[6,6],[-9,6],[-9,5],[-8,4],[8,6],[8,5],[7,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[9,11],[11,9],[12,8],[12,7],[12,6],[13,8],[11,4],[13,4],[14,4],[15,4],[14,5],[15,5],[15,6],[14,6],[15,3],[16,3],[-11,5],[-11,6],[-11,7],[-11,8],[-11,9],[-11,10],[-9,10],[-10,10],[-10,11],[-12,9],[-14,8],[-13,8],[-13,7],[-13,6],[-12,4],[-14,4],[-15,4],[-16,4],[-16,5],[-16,6],[-15,6],[-15,5],[-16,3],[-17,3],[4,3],[5,3],[4,2],[4,1],[6,1],[7,1],[6,-1],[6,-2],[-6,3],[-5,3],[-5,2],[-5,1],[-8,1],[-7,1],[-7,-1],[-7,-2],[-10,-2],[-9,-2],[-9,-3],[-10,-3],[-10,-4],[-10,-5],[-11,-5],[-11,-6],[-12,-8],[-11,-8],[-8,-4],[-8,-6],[-8,-7],[-7,-7],[-8,-9],[-7,-10],[-6,-8],[-6,-9],[-5,-9],[-5,-10],[-5,-11],[-6,-12],[-4,-12],[-6,-5],[-6,-4],[-4,-4],[-3,-4],[-2,-4],[-2,-5],[-2,-6],[-2,-7],[-2,-8],[1,-8],[1,-7],[1,-6],[1,-5],[1,-4],[2,-4],[3,-4],[-4,-6],[3,-6],[-3,-9],[-3,-10],[-2,-11],[-1,-10],[1,-11],[2,-9],[2,-10],[5,-4],[5,-5],[7,-4],[8,-3],[8,-2],[9,-2],[9,-3],[9,-4],[9,-5],[10,-5],[10,-6],[10,-8],[11,-8],[7,-6],[7,-7],[6,-7],[5,-8],[5,-9],[4,-9],[4,-10],[4,-11],[5,-12],[3,-12],[6,-10],[7,-9]
         ],
@@ -332,7 +333,7 @@
         "lesson": true,
         "title": "Glider train",
         "reference": "https://www.conwaylife.com/wiki/Glider_train",
-        "description": "Placeholder",
+        "description": "The so-called glider train is also an orthogonal puffer, this time with a period of 64. The reason you're looking at another puffer, is because this one, as it travels, spawns not only 2 rows of blocks, but also 2 waves, traveling away from it along the 2 possible diagonals. You see, as was probably expected at this point, it is possible to create patterns, that actually produce gliders. This is a very important feature, especially for future lessons. ",
         "cell_layout": [
           [1,2],[-1,3],[-1,4],[1,5],[2,5],[2,3],[3,4],[1,-3],[-1,-4],[-1,-5],[1,-6],[2,-6],[3,-5],[2,-4],[10,3],[11,3],[11,2],[10,2],[10,-3],[11,-3],[11,-4],[10,-4],[-6,3],[-7,3],[-7,2],[-6,2],[-6,-4],[-7,-4],[-7,-3],[-6,-3],[-6,8],[-8,7],[-10,8],[-10,10],[-9,11],[-8,11],[-7,11],[-6,11],[-5,11],[-5,10],[-5,9],[-6,-9],[-8,-8],[-10,-9],[-10,-11],[-9,-12],[-8,-12],[-7,-12],[-6,-12],[-5,-12],[-5,-11],[-5,-10],[-4,15],[-3,15],[-3,16],[-2,16],[-2,14],[-4,-16],[-3,-16],[-3,-17],[-2,-17],[-2,-15],[-12,-6],[-13,-6],[-13,-5],[-14,-5],[-14,-7],[-16,-8],[-17,-8],[-17,-9],[-16,-9],[-19,-7],[-20,-7],[-21,-7],[-19,-6],[-20,-6],[-20,-5],[-18,-5],[-17,-4],[-18,-4],[-19,-4],[-20,-4],[-21,-4],[-22,-4],[-22,-5],[-22,-6],[-23,-5],[-21,-3],[-20,-3],[-19,-3],[-18,-3],[-21,2],[-20,2],[-19,2],[-18,2],[-17,3],[-18,3],[-19,3],[-20,3],[-21,3],[-22,3],[-18,4],[-20,4],[-22,4],[-23,4],[-22,5],[-20,5],[-19,5],[-19,6],[-20,6],[-21,6],[-17,7],[-16,7],[-16,8],[-17,8],[-14,6],[-13,5],[-12,5],[-13,4],[-14,4],[-32,3],[-33,4],[-34,4],[-35,3],[-34,2],[-33,2],[-34,-3],[-33,-3],[-35,-4],[-34,-5],[-33,-5],[-32,-4],[16,1],[16,-2],[18,1],[18,-2],[19,2],[19,-3],[17,-4],[18,-4],[18,-5],[17,-5],[18,-6],[18,3],[17,3],[17,4],[18,4],[18,5],[17,6],[18,7],[19,8],[20,7],[17,-7],[18,-8],[19,-9],[20,-8],[19,-11],[18,-11],[16,-12],[16,-14],[17,-15],[18,-15],[19,-15],[20,-15],[21,-15],[22,-15],[22,-14],[22,-13],[21,-12],[20,-6],[21,-5],[22,-4],[23,-4],[22,-6],[23,-7],[24,-6],[25,-5],[25,-4],[25,-3],[25,2],[25,3],[25,4],[24,5],[23,6],[22,5],[21,4],[20,5],[22,3],[23,3],[19,10],[18,10],[16,11],[16,13],[17,14],[18,14],[19,14],[20,14],[21,14],[21,11],[22,12],[22,13],[22,14],[30,2],[31,1],[30,1],[30,3],[31,4],[31,5],[32,4],[32,3],[32,2],[33,3],[31,-2],[30,-2],[30,-3],[30,-4],[31,-5],[31,-6],[32,-5],[32,-4],[32,-3],[33,-4],[31,10],[32,10],[33,10],[30,10],[29,10],[28,10],[27,11],[27,13],[29,14],[30,14],[32,13],[33,12],[33,11],[31,-11],[32,-11],[33,-11],[30,-11],[29,-11],[28,-11],[27,-12],[27,-14],[29,-15],[30,-15],[32,-14],[33,-13],[33,-12]
         ],
@@ -352,7 +353,7 @@
         "lesson": false,
         "title": "Complete the fuse",
         "reference": "https://conwaylife.com/ref/lexicon/lex_f.htm",
-        "description": "Placeholder",
+        "description": "Your task here is to use the 4 cells you have been given, to complete a glider somewhere on the grid. Think about how many cells a glider consists of. That should give you an idea of where to start drawing, using the already existing 'environment'. As to the direction of the glider, that is for you to find out. Though thinking logically, you don't have many options to choose from. You will know that you have found the correct configuration, when at the end of the simulation, all the blocks will be gone.",
         "cell_layout": [
           [1,-14],[-1,-14],[-1,-15],[1,-15],[5,-13],[6,-13],[6,-12],[5,-12],[5,-7],[4,-7],[4,-6],[5,-6],[-2,-7],[-2,-6],[-3,-6],[-3,-7],[11,-13],[12,-13],[12,-14],[11,-14],[15,-14],[15,-15],[16,-15],[16,-14],[19,-18],[19,-19],[20,-19],[20,-18],[24,-14],[24,-15],[25,-15],[25,-14],[29,-13],[30,-13],[30,-12],[29,-12],[29,-7],[28,-7],[28,-6],[29,-6],[23,-7],[22,-7],[22,-6],[23,-6],[-5,-19],[-5,-18],[-6,-18],[-6,-19],[-9,-15],[-10,-15],[-10,-14],[-9,-14],[-13,-14],[-13,-13],[-14,-13],[-14,-14],[-19,-13],[-20,-13],[-20,-12],[-19,-12],[-20,-7],[-21,-7],[-21,-6],[-20,-6],[-26,-6],[-27,-6],[-27,-7],[-26,-7],[-8,5],[-9,5],[-9,6],[-8,6],[-14,5],[-15,6],[-14,6],[-15,5],[-8,11],[-7,11],[-7,12],[-8,12],[-2,12],[-1,12],[-1,13],[-2,13],[3,13],[4,13],[4,14],[3,14],[7,17],[8,17],[8,18],[7,18],[12,13],[12,14],[13,14],[13,13],[17,12],[17,11],[18,11],[18,12],[23,12],[24,12],[24,13],[23,13],[27,13],[28,14],[28,13],[27,14],[17,6],[16,6],[16,5],[17,5],[11,6],[10,6],[10,5],[11,5],[-12,13],[-13,13],[-13,14],[-12,14],[-17,18],[-17,17],[-18,17],[-18,18],[-21,14],[-21,13],[-22,13],[-22,14],[-25,13],[-25,12],[-26,12],[-26,13],[-27,-13]
         ],
@@ -364,17 +365,255 @@
       },
       {
         "lesson": false,
-        "title": "Stop the glider",
-        "reference": "https://www.conwaylife.com/wiki/Glider_train",
-        "description": "Placeholder",
+        "title": "Stop the gliders",
+        "reference": "https://www.conwaylife.com/wiki/Eater_1",
+        "description": "A series of gliders is hurling towards the middle of the screen, and it is your job to stop them. Use the cell already provided to you in the center of the grid to complete an eater. Think about the kind of eater you can produce with the amount of cells given to you. You will need to mind the orientation of the eater also, since if it should point the wrong way, it will just get destroyed along with the first glider, and the others would move on unaffected. And we don't want that!",
         "cell_layout": [
-          [-13,12],[-14,12],[-15,13],[-13,13],[-13,14],[-2,2]
+          [-13,12],[-14,12],[-15,13],[-13,13],[-13,14],[-2,2],[-18,17],[-19,17],[-18,18],[-18,19],[-20,18],[-23,22],[-24,22],[-23,23],[-25,23],[-23,24],[-28,27],[-29,27],[-28,28],[-28,29],[-30,28]
         ],
         "min_zoom": 0.5,
         "def_zoom": 2,
         "max_zoom": 3,
         "speed": 0.1,
         "placeable": 6
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 05",
+    "chapter": "Game of Life: Advanced 05, Complex patterns con.",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Agars",
+        "reference": "https://www.conwaylife.com/wiki/Agar",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Conduits",
+        "reference": "https://www.conwaylife.com/wiki/Conduit",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 06",
+    "chapter": "Game of Life: Advanced 06, The gun",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Methuselahs",
+        "reference": "https://www.conwaylife.com/wiki/Methuselah",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Guns",
+        "reference": "https://www.conwaylife.com/wiki/Gun",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Exercise 03",
+    "chapter": "Game of Life: Exercise 03, Placeholder",
+    "lessons": [
+      {
+        "lesson": false,
+        "title": "Placeholder",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": false,
+        "title": "Placeholder",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 07",
+    "chapter": "Game of Life: Advanced 07, Key glider interactions",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Rotator",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Duplicator",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 08",
+    "chapter": "Game of Life: Advanced 08, Key glider interactions con. + Summary",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Crossover",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "What you should remember",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "Logic: Basics 01",
+    "chapter": "Computer Logic: Basics 01, Intro to computer logic",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Computer logic",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "AND Gate",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "Logic: Basics 02",
+    "chapter": "Computer Logic: Basics 02, Intro to computer logic con.",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "OR Gate",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "NOT Gate",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+
+        ],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 0
       }
     ]
   }

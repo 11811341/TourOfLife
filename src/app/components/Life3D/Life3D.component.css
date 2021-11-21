@@ -1,0 +1,139 @@
+#render_window{
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  /*z-index: -1;*/
+  /*display: flex;*/
+  /*margin-top: -50em;*/
+  /*width: 500px;*/
+  /*height: 200px;*/
+}
+
+.controls_container{
+  width:100%;
+  z-index: 500;
+  position:fixed;
+  bottom:0;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+#controls{
+  width: 50%;
+  background-color: white;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+#options_container{
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  pointer-events: none;
+  width: 50%;
+  height: 100%;
+}
+
+#options_button{
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  align-content: flex-end;
+}
+
+#expand_options{
+  background-color: white;
+  pointer-events: all;
+  width: 1.5em;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+}
+
+
+.sidebar{
+  /*background-color: blue;*/
+  pointer-events: all;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+
+#sidebar_options{
+  height: 175%;
+}
+
+.options_input{
+  width: 60%;
+}
+
+.option_box{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.option_name{
+  font-weight: bold;
+}
+
+#options_drawer{
+  pointer-events: all;
+  width: 40%;
+}
+
+.color_sliders{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+#legend{
+  position: absolute;
+  top: 1%;
+  left: 1%;
+}
+
+#legend_content{
+  /*font-weight: bold;*/
+  margin-top: 1em;
+  background-color: white;
+  padding: 1em;
+  /*color: white;*/
+}
+
+#legend_content p{
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+#survival{
+  background-color: #FFC107;
+}
+
+#underpopulation{
+  background-color: #D81B60;
+  color: white;
+}
+
+#overpopulation{
+  background-color: #1E88E5;
+  color: white;
+}
+
+#birth{
+  background-color: #004D40;
+  color: white;
+}
