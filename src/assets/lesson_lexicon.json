@@ -12,6 +12,7 @@
         "cell_layout": [
           [-1,1],[1,1],[1,-1]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 0.5,
         "max_zoom": 0.5,
@@ -26,6 +27,7 @@
         "cell_layout": [
           [-1,1],[1,1],[-1,-1],[1,-1]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 0.5,
         "max_zoom": 0.5,
@@ -47,6 +49,7 @@
         "cell_layout": [
           [-1,1]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 0.5,
         "max_zoom": 0.5,
@@ -61,6 +64,7 @@
         "cell_layout": [
           [-1,1],[1,1],[-1,-1],[1,-1],[2,-1],[2,-2],[1,-2]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 0.5,
         "max_zoom": 0.5,
@@ -81,6 +85,7 @@
         "cell_layout": [
           [-1,1],[1,1],[-2,-1],[2,-1],[-1,-2],[1,-2]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 0.5,
         "max_zoom": 0.5,
@@ -95,6 +100,7 @@
         "cell_layout": [
           [1,-1],[-1,-1],[-2,-1]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 0.5,
         "max_zoom": 0.5,
@@ -116,6 +122,7 @@
         "cell_layout": [
           [2,2],[2,3],[2,4],[3,1],[4,1],[5,1],[3,-2],[4,-2],[5,-2],[2,-3],[2,-4],[2,-5],[-1,-3],[-1,-4],[-1,-5],[-2,-2],[-3,-2],[-4,-2],[-2,1],[-3,1],[-4,1],[-1,2],[-1,3],[-1,4],[-6,2],[-6,3],[-6,4],[7,2],[7,3],[7,4],[7,-3],[7,-4],[7,-5],[-6,-3],[-6,-4],[-6,-5],[3,-7],[4,-7],[5,-7],[-2,-7],[-3,-7],[-4,-7],[-2,6],[-3,6],[-4,6],[3,6],[4,6],[5,6]
         ],
+        "repeated":[],
         "min_zoom": 1,
         "def_zoom": 1,
         "max_zoom": 3,
@@ -130,6 +137,7 @@
         "cell_layout": [
           [-1,-1],[1,-1],[1,1],[1,2],[-2,1]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 0.5,
         "max_zoom": 1.5,
@@ -151,6 +159,7 @@
         "cell_layout": [
           [2,-2],[1,-2],[-1,2],[-2,2]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 0.5,
         "max_zoom": 0.5,
@@ -165,6 +174,7 @@
         "cell_layout": [
 
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 0.5,
         "max_zoom": 1.5,
@@ -186,6 +196,7 @@
         "cell_layout": [
           [1,1],[-1,1],[2,1],[-2,1],[-2,-1],[-1,-1],[1,-1],[2,-1],[2,-2],[1,-2],[-1,-2],[-2,-2],[5,-3],[5,-4],[6,-3],[7,-4],[7,-5],[7,-6],[8,-6],[5,2],[5,3],[6,2],[7,3],[7,4],[7,5],[8,5],[-5,2],[-6,2],[-5,3],[-7,3],[-7,4],[-7,5],[-8,5],[-5,-3],[-5,-4],[-6,-3],[-7,-4],[-7,-5],[-7,-6],[-8,-6]
         ],
+        "repeated":[],
         "min_zoom": 1,
         "def_zoom": 1,
         "max_zoom": 3,
@@ -200,6 +211,7 @@
         "cell_layout": [
           [1,-1],[1,-2],[1,-3],[2,-3],[2,-2],[2,-1],[3,-1],[3,-2],[3,-3],[-1,1],[-2,1],[-3,1],[-3,2],[-2,2],[-1,2],[-1,3],[-2,3],[-3,3]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 1,
         "max_zoom": 3,
@@ -220,9 +232,10 @@
         "cell_layout": [
           [1,1],[1,-1],[1,-2],[-1,-1],[2,-1]
         ],
+        "repeated":[],
         "min_zoom": 0.75,
         "def_zoom": 0.75,
-        "max_zoom": 1.5,
+        "max_zoom": 2,
         "speed": 0.2,
         "placeable": 0
       },
@@ -234,9 +247,10 @@
         "cell_layout": [
           [1,1],[-1,1],[-2,1],[2,1],[2,-1],[-2,-1]
         ],
-        "min_zoom": 0.75,
-        "def_zoom": 0.75,
-        "max_zoom": 1.5,
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 2,
         "speed": 0.1,
         "placeable": 0
       }
@@ -254,6 +268,7 @@
         "cell_layout": [
           [-2,2],[-9,7],[-8,6],[-7,6],[-7,7],[-7,8],[-2,1],[-1,2],[1,1],[1,-1],[1,-2],[2,-2]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 1,
         "max_zoom": 3,
@@ -268,6 +283,7 @@
         "cell_layout": [
           [2,2],[2,3],[3,3],[3,2],[3,-1],[2,-1],[2,-2],[2,-3],[1,-4],[-1,-3],[-1,-2],[-1,-1],[-2,-1],[-3,-1],[-4,1],[-3,2],[-2,2],[-1,2],[-1,3],[7,6],[8,6],[9,6],[7,7],[8,8],[12,12],[13,12],[14,12],[12,13],[13,14],[17,18],[18,18],[19,18],[17,19],[18,20],[22,24],[23,24],[24,24],[22,25],[23,26]
         ],
+        "repeated":[],
         "min_zoom": 1,
         "def_zoom": 1.5,
         "max_zoom": 3.5,
@@ -288,9 +304,10 @@
         "cell_layout": [
           [1,1],[2,1],[2,-1],[1,-1],[-1,2],[-2,2],[-1,-2],[-2,-2],[-4,1],[-4,-1],[-5,-1],[-5,1],[-6,2],[-7,2],[-6,-2],[-7,-2],[-9,1],[-9,-1],[-10,-1],[-10,1],[-11,2],[-12,2],[-11,-2],[-12,-2],[-14,1],[-14,-1],[-15,-1],[-15,1],[-16,2],[-17,2],[-16,-2],[-17,-2],[-19,1],[-19,-1],[-20,-1],[-20,1],[-21,2],[-21,-2],[-22,-2],[-22,2],[4,2],[5,2],[4,-2],[5,-2],[6,1],[6,-1],[7,-1],[7,1],[9,-2],[10,-2],[9,2],[10,2],[11,1],[11,-1],[12,-1],[12,1],[14,-2],[15,-2],[14,2],[15,2],[16,1],[16,-1],[17,-1],[17,1],[19,-2],[20,-2],[19,2],[20,2],[21,1],[21,-1],[22,-1],[22,1]
         ],
+        "repeated":[],
         "min_zoom": 1,
         "def_zoom": 2.5,
-        "max_zoom": 3.5,
+        "max_zoom": 4,
         "speed": 0.1,
         "placeable": 0
       },
@@ -302,8 +319,9 @@
         "cell_layout": [
           [1,1],[2,1],[-1,-1],[1,-2],[2,-2],[3,-1],[4,-9],[4,-10],[5,-8],[6,-9],[6,-10],[5,-11],[13,-12],[14,-12],[12,-13],[13,-14],[14,-14],[15,-13],[-8,2],[-7,3],[-9,3],[-9,4],[-7,4],[-8,5],[-10,12],[-11,13],[-12,13],[-13,12],[-12,11],[-11,11],[-12,16],[-13,16],[-14,16],[-15,17],[-15,18],[-14,18],[-11,17],[-11,18],[-12,18]
         ],
+        "repeated":[],
         "min_zoom": 1,
-        "def_zoom": 3,
+        "def_zoom": 2.5,
         "max_zoom": 4,
         "speed": 0.05,
         "placeable": 0
@@ -323,6 +341,7 @@
         "cell_layout": [
           [-1,3],[-1,4],[-3,3],[-3,4],[2,3],[2,4],[3,5],[-4,5],[-2,6],[-2,7],[1,7],[1,6],[-3,8],[-4,9],[2,8],[3,9],[-5,9],[-6,9],[4,9],[5,9],[5,8],[5,7],[-6,8],[-6,7],[-7,8],[-8,8],[-8,7],[-7,6],[6,8],[7,8],[7,7],[6,6],[-9,6],[-9,5],[-8,4],[8,6],[8,5],[7,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[9,11],[11,9],[12,8],[12,7],[12,6],[13,8],[11,4],[13,4],[14,4],[15,4],[14,5],[15,5],[15,6],[14,6],[15,3],[16,3],[-11,5],[-11,6],[-11,7],[-11,8],[-11,9],[-11,10],[-9,10],[-10,10],[-10,11],[-12,9],[-14,8],[-13,8],[-13,7],[-13,6],[-12,4],[-14,4],[-15,4],[-16,4],[-16,5],[-16,6],[-15,6],[-15,5],[-16,3],[-17,3],[4,3],[5,3],[4,2],[4,1],[6,1],[7,1],[6,-1],[6,-2],[-6,3],[-5,3],[-5,2],[-5,1],[-8,1],[-7,1],[-7,-1],[-7,-2],[-10,-2],[-9,-2],[-9,-3],[-10,-3],[-10,-4],[-10,-5],[-11,-5],[-11,-6],[-12,-8],[-11,-8],[-8,-4],[-8,-6],[-8,-7],[-7,-7],[-8,-9],[-7,-10],[-6,-8],[-6,-9],[-5,-9],[-5,-10],[-5,-11],[-6,-12],[-4,-12],[-6,-5],[-6,-4],[-4,-4],[-3,-4],[-2,-4],[-2,-5],[-2,-6],[-2,-7],[-2,-8],[1,-8],[1,-7],[1,-6],[1,-5],[1,-4],[2,-4],[3,-4],[-4,-6],[3,-6],[-3,-9],[-3,-10],[-2,-11],[-1,-10],[1,-11],[2,-9],[2,-10],[5,-4],[5,-5],[7,-4],[8,-3],[8,-2],[9,-2],[9,-3],[9,-4],[9,-5],[10,-5],[10,-6],[10,-8],[11,-8],[7,-6],[7,-7],[6,-7],[5,-8],[5,-9],[4,-9],[4,-10],[4,-11],[5,-12],[3,-12],[6,-10],[7,-9]
         ],
+        "repeated":[],
         "min_zoom": 1,
         "def_zoom": 2,
         "max_zoom": 4,
@@ -337,6 +356,7 @@
         "cell_layout": [
           [1,2],[-1,3],[-1,4],[1,5],[2,5],[2,3],[3,4],[1,-3],[-1,-4],[-1,-5],[1,-6],[2,-6],[3,-5],[2,-4],[10,3],[11,3],[11,2],[10,2],[10,-3],[11,-3],[11,-4],[10,-4],[-6,3],[-7,3],[-7,2],[-6,2],[-6,-4],[-7,-4],[-7,-3],[-6,-3],[-6,8],[-8,7],[-10,8],[-10,10],[-9,11],[-8,11],[-7,11],[-6,11],[-5,11],[-5,10],[-5,9],[-6,-9],[-8,-8],[-10,-9],[-10,-11],[-9,-12],[-8,-12],[-7,-12],[-6,-12],[-5,-12],[-5,-11],[-5,-10],[-4,15],[-3,15],[-3,16],[-2,16],[-2,14],[-4,-16],[-3,-16],[-3,-17],[-2,-17],[-2,-15],[-12,-6],[-13,-6],[-13,-5],[-14,-5],[-14,-7],[-16,-8],[-17,-8],[-17,-9],[-16,-9],[-19,-7],[-20,-7],[-21,-7],[-19,-6],[-20,-6],[-20,-5],[-18,-5],[-17,-4],[-18,-4],[-19,-4],[-20,-4],[-21,-4],[-22,-4],[-22,-5],[-22,-6],[-23,-5],[-21,-3],[-20,-3],[-19,-3],[-18,-3],[-21,2],[-20,2],[-19,2],[-18,2],[-17,3],[-18,3],[-19,3],[-20,3],[-21,3],[-22,3],[-18,4],[-20,4],[-22,4],[-23,4],[-22,5],[-20,5],[-19,5],[-19,6],[-20,6],[-21,6],[-17,7],[-16,7],[-16,8],[-17,8],[-14,6],[-13,5],[-12,5],[-13,4],[-14,4],[-32,3],[-33,4],[-34,4],[-35,3],[-34,2],[-33,2],[-34,-3],[-33,-3],[-35,-4],[-34,-5],[-33,-5],[-32,-4],[16,1],[16,-2],[18,1],[18,-2],[19,2],[19,-3],[17,-4],[18,-4],[18,-5],[17,-5],[18,-6],[18,3],[17,3],[17,4],[18,4],[18,5],[17,6],[18,7],[19,8],[20,7],[17,-7],[18,-8],[19,-9],[20,-8],[19,-11],[18,-11],[16,-12],[16,-14],[17,-15],[18,-15],[19,-15],[20,-15],[21,-15],[22,-15],[22,-14],[22,-13],[21,-12],[20,-6],[21,-5],[22,-4],[23,-4],[22,-6],[23,-7],[24,-6],[25,-5],[25,-4],[25,-3],[25,2],[25,3],[25,4],[24,5],[23,6],[22,5],[21,4],[20,5],[22,3],[23,3],[19,10],[18,10],[16,11],[16,13],[17,14],[18,14],[19,14],[20,14],[21,14],[21,11],[22,12],[22,13],[22,14],[30,2],[31,1],[30,1],[30,3],[31,4],[31,5],[32,4],[32,3],[32,2],[33,3],[31,-2],[30,-2],[30,-3],[30,-4],[31,-5],[31,-6],[32,-5],[32,-4],[32,-3],[33,-4],[31,10],[32,10],[33,10],[30,10],[29,10],[28,10],[27,11],[27,13],[29,14],[30,14],[32,13],[33,12],[33,11],[31,-11],[32,-11],[33,-11],[30,-11],[29,-11],[28,-11],[27,-12],[27,-14],[29,-15],[30,-15],[32,-14],[33,-13],[33,-12]
         ],
+        "repeated":[],
         "min_zoom": 1.5,
         "def_zoom": 4,
         "max_zoom": 6,
@@ -357,9 +377,10 @@
         "cell_layout": [
           [1,-14],[-1,-14],[-1,-15],[1,-15],[5,-13],[6,-13],[6,-12],[5,-12],[5,-7],[4,-7],[4,-6],[5,-6],[-2,-7],[-2,-6],[-3,-6],[-3,-7],[11,-13],[12,-13],[12,-14],[11,-14],[15,-14],[15,-15],[16,-15],[16,-14],[19,-18],[19,-19],[20,-19],[20,-18],[24,-14],[24,-15],[25,-15],[25,-14],[29,-13],[30,-13],[30,-12],[29,-12],[29,-7],[28,-7],[28,-6],[29,-6],[23,-7],[22,-7],[22,-6],[23,-6],[-5,-19],[-5,-18],[-6,-18],[-6,-19],[-9,-15],[-10,-15],[-10,-14],[-9,-14],[-13,-14],[-13,-13],[-14,-13],[-14,-14],[-19,-13],[-20,-13],[-20,-12],[-19,-12],[-20,-7],[-21,-7],[-21,-6],[-20,-6],[-26,-6],[-27,-6],[-27,-7],[-26,-7],[-8,5],[-9,5],[-9,6],[-8,6],[-14,5],[-15,6],[-14,6],[-15,5],[-8,11],[-7,11],[-7,12],[-8,12],[-2,12],[-1,12],[-1,13],[-2,13],[3,13],[4,13],[4,14],[3,14],[7,17],[8,17],[8,18],[7,18],[12,13],[12,14],[13,14],[13,13],[17,12],[17,11],[18,11],[18,12],[23,12],[24,12],[24,13],[23,13],[27,13],[28,14],[28,13],[27,14],[17,6],[16,6],[16,5],[17,5],[11,6],[10,6],[10,5],[11,5],[-12,13],[-13,13],[-13,14],[-12,14],[-17,18],[-17,17],[-18,17],[-18,18],[-21,14],[-21,13],[-22,13],[-22,14],[-25,13],[-25,12],[-26,12],[-26,13],[-27,-13]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
-        "def_zoom": 3,
-        "max_zoom": 4,
+        "def_zoom": 2.5,
+        "max_zoom": 4.5,
         "speed": 0.05,
         "placeable": 4
       },
@@ -371,6 +392,7 @@
         "cell_layout": [
           [-13,12],[-14,12],[-15,13],[-13,13],[-13,14],[-2,2],[-18,17],[-19,17],[-18,18],[-18,19],[-20,18],[-23,22],[-24,22],[-23,23],[-25,23],[-23,24],[-28,27],[-29,27],[-28,28],[-28,29],[-30,28]
         ],
+        "repeated":[],
         "min_zoom": 0.5,
         "def_zoom": 2,
         "max_zoom": 3,
@@ -391,9 +413,10 @@
         "cell_layout": [
           [1,1],[-1,-1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],[2,1],[3,1],[4,1],[5,1],[6,1],[6,2],[6,3],[6,4],[6,5],[3,4],[3,3],[4,3],[4,4],[-1,-2],[-1,-3],[-1,-4],[-1,-5],[-1,-6],[-2,-6],[-3,-6],[-4,-6],[-5,-6],[-6,-6],[-6,-5],[-6,-4],[-6,-3],[-6,-2],[-6,-1],[-5,-1],[-4,-1],[-3,-1],[-2,-1],[-4,-3],[-4,-4],[-3,-4],[-3,-3],[2,-2],[2,-3],[2,-4],[2,-5],[3,-5],[4,-5],[5,-5],[5,-4],[5,-3],[5,-2],[4,-2],[3,-2],[-5,5],[-5,4],[-5,3],[-5,2],[-4,2],[-3,2],[-2,2],[-2,3],[-2,4],[-2,5],[-3,5],[-4,5],[1,-7],[1,-8],[1,-9],[1,-10],[1,-11],[1,-12],[2,-12],[3,-12],[4,-12],[5,-12],[6,-12],[6,-11],[6,-10],[6,-9],[6,-8],[6,-7],[5,-7],[4,-7],[3,-7],[2,-7],[-1,7],[-2,7],[-3,7],[-4,7],[-5,7],[-6,7],[-6,8],[-6,9],[-6,10],[-6,11],[-1,8],[-1,9],[-1,10],[-1,11],[-1,12],[-2,12],[-3,12],[-4,12],[-5,12],[-6,12],[-4,10],[-4,9],[-3,9],[-3,10],[3,-9],[3,-10],[4,-10],[4,-9],[-1,-13],[-2,-13],[-3,-13],[-4,-13],[-5,-13],[-6,-13],[-1,-14],[-1,-15],[-1,-16],[-1,-17],[-1,-18],[-2,-18],[-3,-18],[-4,-18],[-5,-18],[-6,-18],[-6,-17],[-6,-16],[-6,-15],[-6,-14],[-4,-15],[-4,-16],[-3,-16],[-3,-15],[-5,-8],[-5,-9],[-5,-10],[-5,-11],[-4,-11],[-3,-11],[-2,-11],[-2,-10],[-2,-9],[-2,-8],[-3,-8],[-4,-8],[7,-1],[7,-2],[7,-3],[7,-4],[7,-5],[7,-6],[8,-6],[9,-6],[10,-6],[11,-6],[12,-6],[8,-1],[9,-1],[10,-1],[11,-1],[12,-1],[12,-2],[12,-3],[12,-4],[12,-5],[9,-3],[9,-4],[10,-4],[10,-3],[-7,6],[-7,5],[-7,4],[-7,3],[-7,2],[-7,1],[-8,1],[-9,1],[-10,1],[-11,1],[-12,1],[-12,2],[-12,3],[-12,4],[-12,5],[-12,6],[-11,6],[-10,6],[-9,6],[-8,6],[-10,4],[-10,3],[-9,3],[-9,4],[-7,-7],[-8,-7],[-9,-7],[-10,-7],[-11,-7],[-12,-7],[-12,-8],[-12,-9],[-12,-10],[-12,-11],[-12,-12],[-11,-12],[-10,-12],[-9,-12],[-8,-12],[-7,-12],[-7,-11],[-7,-10],[-7,-9],[-7,-8],[-10,-9],[-10,-10],[-9,-10],[-9,-9],[2,11],[2,10],[2,9],[2,8],[3,8],[4,8],[5,8],[5,9],[5,10],[5,11],[4,11],[3,11],[8,5],[8,4],[8,3],[8,2],[9,2],[10,2],[11,2],[11,3],[11,4],[11,5],[10,5],[9,5],[-11,-2],[-11,-3],[-11,-4],[-11,-5],[-10,-5],[-9,-5],[-8,-5],[-8,-4],[-8,-3],[-8,-2],[-9,-2],[-10,-2],[8,-8],[8,-9],[8,-10],[8,-11],[9,-11],[10,-11],[11,-11],[11,-10],[11,-9],[11,-8],[10,-8],[9,-8],[2,-14],[2,-15],[2,-16],[2,-17],[3,-17],[4,-17],[5,-17],[5,-16],[5,-15],[5,-14],[4,-14],[3,-14],[7,-13],[7,-14],[7,-15],[7,-16],[7,-17],[7,-18],[8,-18],[9,-18],[10,-18],[11,-18],[12,-18],[12,-17],[12,-16],[11,-13],[12,-13],[12,-14],[12,-15],[10,-13],[9,-13],[8,-13],[9,-15],[9,-16],[10,-16],[10,-15],[-11,-14],[-11,-15],[-11,-16],[-11,-17],[-10,-17],[-9,-17],[-8,-17],[-8,-16],[-8,-15],[-8,-14],[-9,-14],[-10,-14],[7,7],[7,8],[7,9],[7,10],[7,11],[7,12],[8,12],[9,12],[10,12],[11,12],[12,12],[12,11],[12,10],[12,9],[12,8],[12,7],[11,7],[10,7],[9,7],[8,7],[-11,11],[-11,10],[-11,9],[-11,8],[-10,8],[-9,8],[-8,8],[-8,9],[-8,10],[-8,11],[-9,11],[-10,11],[9,10],[9,9],[10,9],[10,10],[-13,-1],[-13,-2],[-13,-3],[-13,-4],[-13,-5],[-13,-6],[-14,-6],[-15,-6],[-16,-6],[-17,-6],[-18,-6],[-18,-5],[-18,-4],[-18,-3],[-18,-2],[-18,-1],[-17,-1],[-16,-1],[-15,-1],[-14,-1],[-13,7],[-14,7],[-15,7],[-16,7],[-17,7],[-18,7],[-18,8],[-18,9],[-18,10],[-18,11],[-18,12],[-17,12],[-16,12],[-15,12],[-14,12],[-13,12],[-13,11],[-13,10],[-13,9],[-13,8],[-13,-13],[-14,-13],[-15,-13],[-16,-13],[-17,-13],[-18,-13],[-18,-14],[-18,-15],[-18,-16],[-18,-17],[-18,-18],[-13,-18],[-13,-17],[-13,-16],[-13,-15],[-13,-14],[-14,-18],[-15,-18],[-16,-18],[-17,-18],[-16,-16],[-15,-16],[-15,-15],[-16,-15],[-16,-3],[-16,-4],[-15,-4],[-15,-3],[-16,10],[-16,9],[-15,9],[-15,10],[-17,5],[-17,4],[-17,3],[-17,2],[-16,2],[-15,2],[-14,2],[-14,3],[-14,4],[-14,5],[-15,5],[-16,5],[-17,-8],[-17,-9],[-17,-10],[-17,-11],[-16,-11],[-15,-11],[-14,-11],[-14,-10],[-14,-9],[-14,-8],[-15,-8],[-16,-8],[13,-12],[13,-11],[13,-10],[13,-9],[13,-8],[13,-7],[14,-7],[15,-7],[16,-7],[17,-7],[18,-7],[18,-12],[17,-12],[16,-12],[15,-12],[14,-12],[18,-8],[18,-9],[18,-10],[18,-11],[15,-9],[15,-10],[16,-10],[16,-9],[13,1],[14,1],[15,1],[16,1],[17,1],[18,1],[18,2],[18,3],[18,6],[18,5],[18,4],[17,6],[16,6],[15,6],[14,6],[13,6],[13,5],[13,4],[13,3],[13,2],[15,4],[15,3],[16,3],[16,4],[14,-2],[14,-3],[14,-4],[14,-5],[15,-5],[16,-5],[17,-5],[17,-4],[17,-3],[17,-2],[16,-2],[15,-2],[14,11],[14,10],[14,9],[14,8],[15,8],[16,8],[17,8],[17,9],[17,10],[17,11],[16,11],[15,11],[14,-14],[14,-15],[14,-16],[14,-17],[15,-17],[16,-17],[17,-17],[17,-16],[17,-15],[17,-14],[16,-14],[15,-14],[-12,13],[-11,13],[-10,13],[-9,13],[-8,13],[-7,13],[-7,14],[-7,15],[-7,16],[-7,17],[-7,18],[-8,18],[-9,18],[-10,18],[-11,18],[-12,18],[-12,17],[-12,16],[-12,15],[-12,14],[-10,16],[-10,15],[-9,15],[-9,16],[-17,17],[-17,16],[-17,15],[-17,14],[-16,14],[-15,14],[-14,14],[-14,15],[-14,16],[-14,17],[-15,17],[-16,17],[-5,17],[-5,16],[-5,15],[-5,14],[-4,14],[-3,14],[-2,14],[-2,15],[-2,16],[-2,17],[-3,17],[-4,17],[1,13],[1,14],[1,15],[1,16],[1,17],[1,18],[2,18],[3,18],[4,18],[5,18],[6,18],[6,17],[6,16],[6,15],[6,14],[6,13],[5,13],[4,13],[3,13],[2,13],[3,16],[3,15],[4,15],[4,16],[8,17],[8,16],[8,15],[8,14],[9,14],[10,14],[11,14],[11,15],[11,16],[11,17],[10,17],[9,17],[13,13],[14,13],[15,13],[16,13],[17,13],[18,13],[18,14],[18,15],[18,17],[18,16],[18,18],[17,18],[16,18],[15,18],[14,18],[13,18],[13,17],[13,16],[13,15],[13,14],[15,16],[15,15],[16,16],[16,15]
         ],
+        "repeated":[],
         "min_zoom": 1,
         "def_zoom": 1,
-        "max_zoom": 2,
+        "max_zoom": 3,
         "speed": 0.1,
         "placeable": 0
       },
@@ -405,8 +428,9 @@
         "cell_layout": [
           [-2,-1],[-1,-2],[-1,-3],[-2,-4],[-3,-3],[-3,-2],[-8,-2],[-9,-2],[-9,-1],[-8,-1],[-3,-9],[-4,-9],[-3,-10],[-5,-10],[-5,-11],[-4,-11],[-2,-13],[-1,-13],[-2,-14],[-1,-15],[1,-15],[2,-15],[2,-16],[4,-9],[5,-9],[5,-8],[4,-8],[15,-8],[16,-8],[15,-7],[15,-6],[14,-5],[13,-5],[13,-6],[6,6],[7,6],[6,7],[6,8],[8,7],[-19,18],[-20,18],[-19,19],[-19,20],[-21,19],[11,11],[11,12],[11,13],[12,11],[13,12],[48,48],[48,49],[48,50],[49,48],[50,49],[53,53],[53,54],[53,55],[54,53],[55,54]
         ],
+        "repeated":[],
         "min_zoom": 1.5,
-        "def_zoom": 2.5,
+        "def_zoom": 2,
         "max_zoom": 4,
         "speed": 0.05,
         "placeable": 0
@@ -425,6 +449,7 @@
         "cell_layout": [
           [1,1],[1,-1],[1,-2],[-1,1],[-2,1],[-2,2],[-2,-1]
         ],
+        "repeated":[],
         "min_zoom": 1,
         "def_zoom": 1,
         "max_zoom": 4,
@@ -439,43 +464,10 @@
         "cell_layout": [
           [-1,-1],[-1,-2],[-1,-3],[1,-2],[-2,-4],[-2,1],[-3,-2],[-4,2],[-5,2],[-6,1],[-7,-1],[-7,-2],[-7,-3],[-6,-4],[-5,-5],[-4,-5],[4,-1],[4,1],[4,2],[5,2],[5,1],[5,-1],[6,-2],[6,3],[8,3],[8,4],[8,-2],[8,-3],[-16,-1],[-16,-2],[-17,-2],[-17,-1],[18,2],[18,1],[19,1],[19,2]
         ],
+        "repeated":[],
         "min_zoom": 2,
         "def_zoom": 2,
         "max_zoom": 4,
-        "speed": 0.05,
-        "placeable": 0
-      }
-    ]
-  },
-  {
-    "header": "GoL:Exercise 03",
-    "chapter": "Game of Life: Exercise 03, Placeholder",
-    "lessons": [
-      {
-        "lesson": false,
-        "title": "Placeholder",
-        "reference": "",
-        "description": "Placeholder",
-        "cell_layout": [
-
-        ],
-        "min_zoom": 1,
-        "def_zoom": 2,
-        "max_zoom": 4,
-        "speed": 0.1,
-        "placeable": 0
-      },
-      {
-        "lesson": false,
-        "title": "Placeholder",
-        "reference": "",
-        "description": "Placeholder",
-        "cell_layout": [
-
-        ],
-        "min_zoom": 1.5,
-        "def_zoom": 4,
-        "max_zoom": 6,
         "speed": 0.05,
         "placeable": 0
       }
@@ -487,60 +479,101 @@
     "lessons": [
       {
         "lesson": true,
-        "title": "Rotator",
-        "reference": "",
-        "description": "Placeholder",
+        "title": "Reflector",
+        "reference": "https://www.conwaylife.com/wiki/Buckaroo",
+        "description": "We are slowly approaching the end of this section of the 'tutorial', and the final thing you should definitely know before diving into computer logic, is how different patterns of Life interact with each other. More specifically, how patterns interact with the glider. In the following lessons, the simulations may turn out bigger and more cluttered than before, and you might need a way to deflect or redirect gliders to complete certain assignments. That's what reflectors are for, and this one is called Buckaroo. It's a period 30 oscillator, that can deflect incoming gliders by 90 degrees. By adjusting the timing and the horizontal position of the incoming glider, Buckaroo can even reflect it by 180 degrees, back to where it came from. This is a less useful feature of the pattern.",
         "cell_layout": [
-
+          [-3,1],[-3,2],[-3,-1],[-2,3],[-2,4],[-2,-2],[-2,-3],[-4,3],[-5,2],[-6,1],[-5,-1],[-4,-2],[-10,1],[-11,1],[-11,-1],[-10,-1],[9,-2],[9,-3],[10,-2],[11,-3],[11,-4],[11,-5],[12,-5],[14,10],[15,10],[15,9],[16,9],[16,11]
         ],
+        "repeated":[],
         "min_zoom": 1,
-        "def_zoom": 2,
-        "max_zoom": 4,
+        "def_zoom": 1.5,
+        "max_zoom": 3,
         "speed": 0.1,
         "placeable": 0
       },
       {
         "lesson": true,
         "title": "Duplicator",
-        "reference": "",
-        "description": "Placeholder",
+        "reference": "https://www.conwaylife.com/wiki/Fanout",
+        "description": "Notice how the two travelling gliders in the bottom right corner pass through the pattern(with a slight horizontal shift), and for every glider, a duplicate gets ejected at a 90 degrees angle from the original. This is because the pattern the gliders just passed through is a duplicator, called Fanout. It accepts as input a glider from a specific direction and it pushes out an identical shifted glider, but also creates a copy that gets sent out a different way. In order to be usable, especially in bigger, more complex pattern configurations, duplicators should have a low period. The Fanout is a period-30 oscillator. You could have already guessed the period of this pattern, since upon closer inspection, you can see that it consists of 2 Glider Guns, which as you already know have a period of 30.",
         "cell_layout": [
-
+          [1,1],[1,2],[2,2],[2,1],[11,-7],[10,-8],[11,-9],[12,-9],[13,-9],[13,-10],[7,26],[6,26],[-16,10],[-17,9],[-17,11],[-18,11],[-19,11],[-19,12],[-12,-24],[-13,-24],[10,-7],[5,21],[-13,-23],[-11,3],[-17,3],[7,25],[-16,9],[-8,-2],[-1,7],[-16,3],[-12,3],[7,6],[9,6],[5,14],[6,12],[7,14],[-12,-23],[-9,-1],[1,6],[6,5],[10,5],[8,7],[-11,2],[-17,2],[6,3],[10,3],[6,25],[-15,-14],[-14,-14],[-10,-14],[-9,-14],[-8,-1],[1,7],[-13,-10],[-11,-10],[8,6],[4,14],[5,13],[7,13],[8,14],[-14,-2],[5,4],[11,4],[4,21],[3,16],[4,16],[8,16],[9,16],[-9,-3],[-7,-2],[-2,6],[-1,8],[-12,-9],[7,7],[9,7],[4,13],[4,15],[5,15],[6,15],[5,12],[7,12],[7,15],[8,13],[8,15],[-15,-2],[-13,-2],[-16,-1],[-12,-1],[-15,-12],[-14,-10],[-10,-10],[-9,-12],[7,2],[9,2],[-12,-14],[8,2],[8,-12],[8,-13],[7,-13],[7,-14],[9,-14],[15,-20],[16,-20],[15,-21],[14,-21],[16,-22]
         ],
+        "repeated":[],
         "min_zoom": 1.5,
-        "def_zoom": 4,
-        "max_zoom": 6,
+        "def_zoom": 3.5,
+        "max_zoom": 4,
         "speed": 0.05,
         "placeable": 0
       }
     ]
   },
   {
-    "header": "GoL:Advanced 08",
-    "chapter": "Game of Life: Advanced 08, Key glider interactions con. + Summary",
+    "header": "GoL:Exercise 03",
+    "chapter": "Game of Life: Exercise 03, Glider shenanigans",
+    "hint": "There is one intended solution for most exercises, but with some creative thinking, you can reach the desired outcome with a different approach",
     "lessons": [
       {
-        "lesson": true,
-        "title": "Crossover",
-        "reference": "",
-        "description": "Placeholder",
+        "lesson": false,
+        "title": "Jam the signal",
+        "reference": "https://www.conwaylife.com/wiki/Category:Conduits",
+        "description": "You might recognize this, seemingly incomplete conduit from a couple chapters back. Knowing what you know about the beehive stopper, your task is to block the first of the two incoming gliders. But this time, it will not be as easy as just scrolling back to the conduit lesson and copying the solution. That's because you only have 5 Cells to place. If you have found the correct solution, only the second Glider will pass through the stopper, and no beehive will be left standing at the end.",
+        "cell_layout": [
+          [-8,-2],[-9,-2],[-9,-1],[-3,-9],[-4,-9],[-3,-10],[-5,-10],[-5,-11],[-4,-11],[-2,-13],[-1,-13],[-2,-14],[-1,-15],[1,-15],[2,-15],[2,-16],[4,-9],[5,-9],[5,-8],[4,-8],[15,-8],[16,-8],[15,-7],[15,-6],[14,-5],[13,-5],[13,-6],[37,36],[42,41],[36,36],[41,41],[35,37],[40,42],[35,36],[36,38],[40,41],[41,43],[-8,-1]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 5,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 5
+      },
+      {
+        "lesson": false,
+        "title": "Reflect the signal",
+        "reference": "https://www.conwaylife.com/wiki/Reflector",
+        "description": "Use the provided reflector to create a Glider, which gets reflected into the eater positioned above. Carefully study the Buckaroo from the previous chapter, to determine the right starting position. Notice how the Glider gets reflected, and try to predict the path it's gonna take, if you place it at various points on the grid. If you are feeling stuck, consider the period of the Buckaroo oscillator, and the movement speed of the Glider, to more easily predict their next positions. Also don't be worried to try the trial-and-error approach.",
+        "cell_layout": [
+          [-3,1],[-3,2],[-3,-1],[-2,3],[-2,4],[-2,-2],[-2,-3],[-4,3],[-5,2],[-6,1],[-5,-1],[-4,-2],[-10,1],[-11,1],[-11,-1],[-10,-1],[9,-2],[9,-3],[11,-3],[11,-4],[11,-5],[12,-5],[10,-2],[-3,13],[-4,12],[-5,13],[-5,14],[-5,15],[-6,15],[-3,12]
+        ],
+        "repeated":[],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 5
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 08",
+    "chapter": "Game of Life: Advanced 08, Summary",
+    "lessons": [
+      {
+        "lesson": false,
+        "title": "Final exam",
+        "reference": "https://www.conwaylife.com/wiki/Queen_bee_shuttle",
+        "description": "For this final test of your skill and knowledge, you are tasked to construct a the Gosper Glider Gun. It might seem like an easy task, especially considering this is the last chapter of the Game of Life segment of this tutorial. However, this will prove that you are confident in crafting patterns from scratch on your own, and also that you possess some form of a grasp of the concept of periods. Your hint for this exercise is the fact that a Gosper Glider Gun consists of 2 so-called Queen Bee Shuttles, which are just spaceships moving back and forth between stable patterns, in this case, blocks. You can find out more about the Queen Bee by clicking the info icon. Good luck!",
         "cell_layout": [
 
         ],
+        "repeated":[],
         "min_zoom": 1,
         "def_zoom": 2,
         "max_zoom": 4,
         "speed": 0.1,
-        "placeable": 0
+        "placeable": 36
       },
       {
         "lesson": true,
         "title": "What you should remember",
         "reference": "",
-        "description": "Placeholder",
+        "description": "The lessons and exercises you have experienced so far were meant to introduce the very basics rules and concepts of the Game of Life to you, and later also properly solidify them, by slowly introducing more complex patterns and ideas into the mix. A lot of these were interesting, and to varying degrees important to understanding Life itself, but will not be very relevant in the following chapters. Ideally, you could stop at this point, and leave an expert in the Game of Life, but there are so many patterns and ideas around it, still yet to be explored. These have been left out here, mainly because their significance regarding the understanding of Life itself was deemed insufficient. There's thousands of explored and documented patterns and tens of categories and sub-categories under which they fall, so it would be unrealistic, or even counterproductive, to examine them all. What you should remember is the 4 basic rules of Life. You should know that there are still lifes, and oscillators, and that oscillators have certain periods in which they repeat. Oscillators that move are called spaceships, and probably the most important one is called the Glider. Patterns can be produced by other patterns, and a Glider producing pattern you will see the most is called the Gosper Glider Gun. You can use patterns to influence the flow of gliders (and other patterns for that matter). Knowing this, you should be more than ready to dive into the next chapters that will teach you the basics of computer logic.",
         "cell_layout": [
 
         ],
+        "repeated":[],
         "min_zoom": 1.5,
         "def_zoom": 4,
         "max_zoom": 6,
@@ -557,14 +590,55 @@
         "lesson": true,
         "title": "Computer logic",
         "reference": "",
-        "description": "Placeholder",
+        "description": "In this second, rather quick section of the Tour of Life, you will find out the basics of how computers do their computing. Over the next couple chapters, you will be presented with a concept from the field of logic, transformed into the Game of Life. Logical concepts will get a real meaning and representation. The goal of this section is to introduce to you the building blocks of the most basic of computers... a Turing machine. As to what a turing machine actually is, you will find that out in the next section. This will be a mainly hands-off experience, and will not involve many exercises where you have to complete a certain pattern or circuit. Due to the combinations of multiple different patterns, and the size of the overall circuit, it would be difficult to interact with the setup directly, as a very precise placement of cells is required. This would lead to a trial-and-error-centric way of solving these exercises, thus losing it's informative value. You can however always transfer the configuration into the Life2D sandbox and experiment with it there. Have fun learning!",
         "cell_layout": [
 
         ],
+        "repeated":[],
         "min_zoom": 1,
         "def_zoom": 2,
         "max_zoom": 4,
         "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Signal",
+        "reference": "",
+        "description": "Once you press play on the simulation, you will soon notice a continuous stream of gliders flow into frame. You should already be familiar with the glider, so from now on, you are not to think of it as a singular pattern, but as a part of something bigger. Peeking behind all the layers of abstraction, computers essentially communicate using a stream of 1s and 0s. This is the so-called bit stream, and it carries all the information. If you imagine the top left part of the grid as input, and the bottom right part as output, you can see that at the start, there's no gliders reaching the output. The gliders get spawned at a period of 30, so every 30 epochs that you do NOT detect a glider at the output, this means a 0. Once the gliders do come in, they represent a 1.",
+        "cell_layout": [
+          [1000,1000]
+        ],
+        "repeated": [
+          [-40,41],[-40,42],[-40,43],[-41,41],[-42,42]
+        ],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 3,
+        "speed": 0.025,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "Logic: Basics 02",
+    "chapter": "Computer Logic: Basics 02, Gates",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "NOT Gate",
+        "reference": "",
+        "description": "Placeholder",
+        "cell_layout": [
+          [23,34],[23,33],[24,33],[24,34],[24,24],[23,24],[22,24],[25,23],[26,22],[26,21],[21,23],[20,22],[20,21],[21,19],[22,18],[23,18],[24,18],[25,19],[23,20],[23,17],[24,14],[25,14],[26,14],[24,13],[25,13],[26,13],[27,12],[23,12],[23,10],[22,10],[27,10],[28,10],[26,-1],[25,-1],[25,-2],[26,-2]
+        ],
+        "repeated":[
+          [-37,31],[-37,32],[-37,30],[-38,30],[-39,31]
+        ],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.05,
         "placeable": 0
       },
       {
@@ -575,6 +649,7 @@
         "cell_layout": [
 
         ],
+        "repeated":[],
         "min_zoom": 1.5,
         "def_zoom": 4,
         "max_zoom": 6,
@@ -584,8 +659,8 @@
     ]
   },
   {
-    "header": "Logic: Basics 02",
-    "chapter": "Computer Logic: Basics 02, Intro to computer logic con.",
+    "header": "Logic: Basics 03",
+    "chapter": "Computer Logic: Basics 03, Gates con. + Memory",
     "lessons": [
       {
         "lesson": true,
@@ -595,6 +670,7 @@
         "cell_layout": [
 
         ],
+        "repeated":[],
         "min_zoom": 1,
         "def_zoom": 2,
         "max_zoom": 4,
@@ -603,12 +679,13 @@
       },
       {
         "lesson": true,
-        "title": "NOT Gate",
+        "title": "SR Latch",
         "reference": "",
         "description": "Placeholder",
         "cell_layout": [
 
         ],
+        "repeated":[],
         "min_zoom": 1.5,
         "def_zoom": 4,
         "max_zoom": 6,

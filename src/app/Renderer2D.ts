@@ -17,6 +17,7 @@ export class Renderer2D{
   private def_zoom: number = 2
   private min_zoom: number = 2;
   private max_zoom: number = 15;
+  private current_zoom: number = this.def_zoom;
 
   constructor(width: number, height: number) {
     this.renderer = new THREE.WebGLRenderer();
@@ -27,7 +28,7 @@ export class Renderer2D{
     const that = this;
     this.renderer.domElement.addEventListener( 'wheel', (event) => {
       if((that.camera.position.z < that.max_zoom && event.deltaY>0) || (that.camera.position.z > that.min_zoom && event.deltaY<0) || that.dev_mode)
-        that.camera.position.z += Math.sign(event.deltaY)*0.5;
+        that.camera.position.z += Math.sign(event.deltaY) * 0.5;
     }, false);
 
     this.renderer.domElement.addEventListener('mousedown', function(e){
@@ -62,6 +63,9 @@ export class Renderer2D{
     return this.renderer.domElement;
   }
 
+  // public shouldHideGrid(): boolean{
+  //   return this.camera.position.z>this.def_zoom+1;
+  // }
 
   public getCamera(){
     return this.camera;

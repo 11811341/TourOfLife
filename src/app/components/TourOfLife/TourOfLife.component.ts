@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Life2DContainer} from '../../Life2DContainer';
 
 import lesson_lexicon from '../../../assets/lesson_lexicon.json';
+import {Cell2D} from '../../Cell2D';
 
 
 
@@ -114,6 +115,8 @@ export class TourOfLifeComponent implements OnInit {
       if(this.active_a.prediction_mode)
         this.active_a.predictionMode();
       this.active_a.resetCells(lesson_lexicon[this.selected].lessons[0].cell_layout);
+      if(lesson_lexicon[this.selected].lessons[0].repeated.length!=0)
+        this.active_a.setRepeating(lesson_lexicon[this.selected].lessons[0].repeated);
       this.active_a.devMode();
       this.active_a.devMode();
       if(this.running_a)
@@ -122,18 +125,14 @@ export class TourOfLifeComponent implements OnInit {
       if(this.active_b.prediction_mode)
         this.active_b.predictionMode();
       this.active_b.resetCells(lesson_lexicon[this.selected].lessons[1].cell_layout);
+      if(lesson_lexicon[this.selected].lessons[1].repeated.length!=0)
+        this.active_b.setRepeating(lesson_lexicon[this.selected].lessons[1].repeated);
       this.active_b.devMode();
       this.active_b.devMode();
       if(this.running_b)
         this.play(idx);
     }
   }
-
-  export(idx:number){
-    //add routing with config passing for edits etc
-  }
-
-
 }
 
 class Life2DLesson extends Life2DContainer{
@@ -148,6 +147,11 @@ class Life2DLesson extends Life2DContainer{
       this.generate_cell(c[0], c[1], true);
   }
 
+  setRepeating(cells: any[]){
+    this.repeating = cells;
+    this.repeating_counter = 0;
+  }
+
   // method to close webgl context
   // closeContext(){
   //   this.renderer.closeContext();
@@ -156,7 +160,4 @@ class Life2DLesson extends Life2DContainer{
   maxCells(count: number){
     this.grid.maxCells(count);
   }
-
-
-
 }

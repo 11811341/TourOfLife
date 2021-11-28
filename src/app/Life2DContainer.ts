@@ -23,6 +23,9 @@ export class Life2DContainer{
 
   private trackball;
 
+  protected repeating = [];
+  protected repeating_counter: number = 0;
+
   nr_to_die = 0;
   nr_to_birth = 0;
 
@@ -57,6 +60,10 @@ export class Life2DContainer{
     window.addEventListener('resize', function() {
       that.renderer.setSize(document.getElementById(parent).offsetWidth, document.getElementById(parent).offsetHeight);
     }, false);
+
+    // this.renderer.getRenderer().addEventListener('wheel', function(){
+    //   that.showGrid();
+    // }, false);
 
     this.renderer.getRenderer().addEventListener('mousemove', function(e) {
       const rect = that.renderer.getRenderer().getBoundingClientRect();
@@ -123,6 +130,10 @@ export class Life2DContainer{
 
     this.animate();
   }
+
+  // private showGrid() {
+  //   this.renderer.shouldHideGrid() ? this.helperGrid.visible = false : this.helperGrid.visible = true;
+  // }
 
   private check_deletion() {
     if (this.scene.children.length > 2) {  //if raycast detects more that 2 objects(grid and plane) that means a cell is in place and can be deleted
@@ -197,6 +208,11 @@ export class Life2DContainer{
       this.delta += this.clock.getDelta();
       if (this.delta > this.interval) {
         this.grid.advance();
+        if(this.repeating.length!=0 && this.repeating_counter++==30){
+          for(let r of this.repeating)
+            this.generate_cell(r[0],r[1]);
+          this.repeating_counter=0;
+        }
         this.nr_to_die = this.grid.getToDie().length;
         this.nr_to_birth = this.grid.getToBirth().length;
         this.scene_reload();
@@ -209,6 +225,11 @@ export class Life2DContainer{
   public advance() {
     if (!this.running) {
       this.grid.advance();
+      if(this.repeating.length!=0 && this.repeating_counter++==30){
+        for(let r of this.repeating)
+          this.generate_cell(r[0],r[1]);
+        this.repeating_counter=0;
+      }
       this.scene_reload();
     }
     this.nr_to_die = this.grid.getToDie().length;
