@@ -147,11 +147,6 @@ class Life2DLesson extends Life2DContainer{
       this.generate_cell(c[0], c[1], true);
   }
 
-  setRepeating(cells: any[]){
-    this.repeating = cells;
-    this.repeating_counter = 0;
-  }
-
   // method to close webgl context
   // closeContext(){
   //   this.renderer.closeContext();

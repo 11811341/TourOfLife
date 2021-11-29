@@ -26,6 +26,9 @@ export class Life2DComponent implements OnInit{
         let cells = lesson_lexicon[parseInt(chapter)].lessons[parseInt(lesson)].cell_layout;
         for (let c of cells)
           this.life2DContainer.generate_cell(c[0], c[1], true);
+        if(lesson_lexicon[parseInt(chapter)].lessons[parseInt(lesson)].repeated.length!=0){
+          this.life2DContainer.setRepeating(lesson_lexicon[parseInt(chapter)].lessons[parseInt(lesson)].repeated);
+        }
       }
     }
   }

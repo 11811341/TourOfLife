@@ -96,6 +96,28 @@
     </mat-tab>
 
 
+    <mat-tab label="Touring Machine">
+      <h1>Introduction: Touring Machine</h1>
+      <br>
+      <p>The term "Turing Machine" or something being "Turing complete" has been mentioned a couple times already throughout the past lessons. Before we move on to the final couple chapters of this tour, it should probably be cleared up.</p>
+      <p>Named after the British mathematician, and father of the modern computer, Alan Turing, it is an abstract model of a machine, that can simulate any given algorithm, despite it's apparent simplicity. In this way, it's description is not too dissimilar from the one you were given to the Game of Life.
+         A Turing machine is generally thought of as having an infinitely long input tape, that binary values can be either read from, or printed to. Using simple instructions and binary "calculations", it is thus possible, given enough time, to simulate an algorithm of arbitrary complexity. </p>
+      <br>
+      <p>When a system is deemed Turing complete, it simply means, that it's capable of simulating a Turing machine. It's therefore possible for a Turing complete system to simulate all tasks accomplishable by general modern computers.</p>
+      <p>You've already heard, and seen proof, that the Game of Life is Turing complete. Or at least, that components can be simulated within Life, that make it so. This might lead you to the question: "Can I actually build a real computer inside Life?"
+          Naturally, by nature of it's Turing completeness, this can, and has been done. A fully fledged, 8-Bit programmable computer, complete with the Arithmetic and Logic Unit (ALU, part of a CPU that carries out arithmetic and logic operations) Memory and even a display.
+          It was made by Nicolas Loizeau, and you can properly examine it <a href="https://www.nicolasloizeau.com/gol-computer">here</a>. If you have been properly following the last few exercises, you might recognize his website, as it heavily influenced the form of the logic gates you have been presented with.
+          Big thanks to Nicolas!</p>
+
+      <br>
+      <br>
+      <br>
+      <p>If we take it one step further, we could also say, that the Game of Life is not only a Turing machine, but a universal Turing machine. Where a standard Turing machine is capable of simulating any arbitrary algorithm, you would have to create a specific machine for each algorithm you are trying to simulate.
+          The universal Turing machine however takes the standard input tape you know from it's less advanced sibling, along with a description of a machine that would solve a certain problem. With this, the universal Turing machine can simulate the input machine and using the content of the tape, simulate it, and with it the algorithm itself.
+          A universal Turing machine can simulate any other machine, and so can the Game of Life.</p>
+    </mat-tab>
+
+
   </mat-tab-group>
   <!--  <div class="next_prev">-->
   <!--    <button mat-icon-button>-->

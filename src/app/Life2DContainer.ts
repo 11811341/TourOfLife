@@ -24,7 +24,7 @@ export class Life2DContainer{
   private trackball;
 
   protected repeating = [];
-  protected repeating_counter: number = 0;
+  protected repeating_counter: number = 1;
 
   nr_to_die = 0;
   nr_to_birth = 0;
@@ -211,7 +211,7 @@ export class Life2DContainer{
         if(this.repeating.length!=0 && this.repeating_counter++==30){
           for(let r of this.repeating)
             this.generate_cell(r[0],r[1]);
-          this.repeating_counter=0;
+          this.repeating_counter=1;
         }
         this.nr_to_die = this.grid.getToDie().length;
         this.nr_to_birth = this.grid.getToBirth().length;
@@ -228,7 +228,7 @@ export class Life2DContainer{
       if(this.repeating.length!=0 && this.repeating_counter++==30){
         for(let r of this.repeating)
           this.generate_cell(r[0],r[1]);
-        this.repeating_counter=0;
+        this.repeating_counter=1;
       }
       this.scene_reload();
     }
@@ -243,6 +243,8 @@ export class Life2DContainer{
   public clear() {
     this.grid.clear_grid();
     this.scene_reload();
+    this.repeating = [];
+    this.repeating_counter = 1;
   }
 
   public restore() {
@@ -261,6 +263,11 @@ export class Life2DContainer{
 
   getRevert() {
     return this.grid.getRevert();
+  }
+
+  setRepeating(cells: any[]){
+    this.repeating = cells;
+    this.repeating_counter = 1;
   }
 
   setMinSurvival(e){
