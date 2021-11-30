@@ -76,3 +76,26 @@ h1{
   align-items: center;
 }
 
+#survival{
+  width: 20em;
+  background-color: #FFC107;
+}
+
+#underpopulation{
+  background-color: #D81B60;
+  color: white;
+  width: 20em;
+}
+
+#overpopulation{
+  background-color: #1E88E5;
+  color: white;
+  width: 20em;
+}
+
+#birth{
+  background-color: #004D40;
+  color: white;
+  width: 20em;
+}
+
