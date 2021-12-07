@@ -14,38 +14,38 @@
 
 <!--</div>-->
 
-<!--<div class="controls_container">-->
-<!--  <div id="controls" (click)="$event.stopPropagation()">-->
-<!--    <button mat-icon-button color="primary" (click)="life2DContainer.clear()" matTooltip="Clear the Game board" matTooltipPosition="above">-->
-<!--      <mat-icon>-->
-<!--        close-->
-<!--      </mat-icon>-->
-<!--    </button>-->
-<!--    <button mat-icon-button color="primary" (click)="life2DContainer.revert()" [disabled]="life2DContainer.running" matTooltip="Go back by one epoch" matTooltipPosition="above">-->
-<!--      <mat-icon>-->
-<!--        skip_previous-->
-<!--      </mat-icon>-->
-<!--    </button>-->
-<!--    <button mat-icon-button color="primary" (click)="life2DContainer.play()" matTooltip="Play/Pause the Game" matTooltipPosition="above">-->
-<!--      <mat-icon *ngIf="!life2DContainer.running">-->
-<!--        play_arrow-->
-<!--      </mat-icon>-->
-<!--      <mat-icon *ngIf="life2DContainer.running">-->
-<!--        pause-->
-<!--      </mat-icon>-->
-<!--    </button>-->
-<!--    <button mat-icon-button color="primary" (click)="life2DContainer.advance()" [disabled]="life2DContainer.running" matTooltip="Advance the game by one epoch" matTooltipPosition="above">-->
-<!--      <mat-icon>-->
-<!--        skip_next-->
-<!--      </mat-icon>-->
-<!--    </button>-->
-<!--    <button mat-icon-button color="primary" (click)="life2DContainer.restore()" [disabled]="life2DContainer.running" matTooltip="Restore the cleared board" matTooltipPosition="above">-->
-<!--      <mat-icon>-->
-<!--        replay-->
-<!--      </mat-icon>-->
-<!--    </button>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="controls_container">
+  <div id="controls" (click)="$event.stopPropagation()">
+    <button mat-icon-button color="primary" (click)="clear()" matTooltip="Clear the Game board" matTooltipPosition="above">
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="revert()" [disabled]="running" matTooltip="Go back by one epoch" matTooltipPosition="above">
+      <mat-icon>
+        skip_previous
+      </mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="play()" matTooltip="Play/Pause the Game" matTooltipPosition="above">
+      <mat-icon *ngIf="!running">
+        play_arrow
+      </mat-icon>
+      <mat-icon *ngIf="running">
+        pause
+      </mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="advance()" [disabled]="running" matTooltip="Advance the game by one epoch" matTooltipPosition="above">
+      <mat-icon>
+        skip_next
+      </mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="restore()" [disabled]="running" matTooltip="Restore the cleared board" matTooltipPosition="above">
+      <mat-icon>
+        replay
+      </mat-icon>
+    </button>
+  </div>
+</div>
 
 
 
