@@ -6,7 +6,6 @@ import {Color, GridHelper, Vector3} from 'three';
 import {Cell3D} from '../../Cell3D';
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
 import {Grid3D} from '../../Grid3D';
-import {findCachePath} from '@angular-devkit/build-angular/src/utils/cache-path';
 
 
 @Component({
@@ -36,6 +35,19 @@ export class Life3DComponent implements OnInit {
   private raycaster = new THREE.Raycaster();
   private raycast_plane = new THREE.Mesh(new THREE.PlaneGeometry(100, 100), new THREE.MeshBasicMaterial({color: 0xffff00}));
   private pointer;
+  private indicator;
+
+  min_survival:number = this.grid.getMinSurvival();
+  max_survival:number = this.grid.getMaxSurvival();
+  birth:number = this.grid.getBirth();
+
+  nr_to_die = 0;
+  nr_to_birth = 0;
+
+  prediction_mode: boolean = false;
+
+  bg_color = new THREE.Color('rgb(0,0,0)');
+  cell_color = new THREE.Color('rgb(255,193,7)');
 
   // private paint_level: number = 1;
 
@@ -66,6 +78,13 @@ export class Life3DComponent implements OnInit {
     this.raycast_plane.material.colorWrite = false;
     this.raycast_plane.material.transparent = true;
     this.renderer.getRenderer().addEventListener('mousedown', function(e) {
+
+      let set_pred = false;
+      if(that.prediction_mode){
+        set_pred = true;
+        that.predictionMode();
+      }
+
       if (e.button == 0) {  //perform left click action -> add
         that.painting = true;
         that.deleting = false;
@@ -76,12 +95,27 @@ export class Life3DComponent implements OnInit {
         that.check_deletion();
       }
 
+      if(set_pred && !that.prediction_mode)
+        that.predictionMode();
+
     }, false);
 
-    const geometry = new THREE.IcosahedronGeometry(0.05, 1);
+    const geometry = new THREE.IcosahedronGeometry(0.025, 1);
     const material = new THREE.MeshBasicMaterial({color: 0xff0000});
     this.pointer = new THREE.Mesh(geometry, material);
     this.scene.add(this.pointer);
+
+    const indicator_g = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+    const indicator_m = new THREE.MeshBasicMaterial({color: 0xff0000});
+    indicator_m.transparent = true;
+    indicator_m.opacity = 0.5;
+    this.indicator = new THREE.Mesh(indicator_g, indicator_m);
+
+    const geo = new THREE.EdgesGeometry(this.indicator.geometry);
+    const mat = new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 1 } );
+    let wireframe = new THREE.LineSegments( geo, mat );
+    wireframe.renderOrder = 1;
+    this.indicator.add( wireframe );
 
 
     this.renderer.getRenderer().addEventListener('mousemove', function(e) {
@@ -91,26 +125,25 @@ export class Life3DComponent implements OnInit {
 
       that.raycast_plane.quaternion.copy(that.renderer.getCamera().quaternion);
 
-
       that.cursorUpdate();
+      let set_pred = false;
 
-      if (that.painting) {
-        that.check_addition();
-      } else if (that.deleting) {
-        that.check_deletion();
+      if(that.painting || that.deleting) {
+        if(that.prediction_mode){
+          set_pred = true;
+          that.predictionMode();
+        }
+        if (that.painting) {
+          that.check_addition();
+        } else if (that.deleting) {
+          that.check_deletion();
+        }
       }
 
-    }, false);
+      if(set_pred && !that.prediction_mode)
+        that.predictionMode();
 
-    // window.addEventListener('keydown', function(e) {
-    //   if (e.key == 'ArrowUp') {
-    //     console.log('up');
-    //     that.paint_level++;
-    //   } else if (e.key == 'ArrowDown') {
-    //     console.log('down');
-    //     that.paint_level--;
-    //   }
-    // }, false);
+    }, false);
 
     window.addEventListener('keydown', function(e) {
       if (e.key == 'e') {
@@ -120,7 +153,6 @@ export class Life3DComponent implements OnInit {
     }, false);
 
     window.addEventListener('wheel', function(e) {
-      // that.pointer.position.z += Math.sign(event.deltaY) * 0.5;
       if (that.edit_mode) {
         var lookAtVector = new THREE.Vector3();
         lookAtVector.x = that.pointer.position.x - that.renderer.getCamera().position.x;
@@ -164,69 +196,46 @@ export class Life3DComponent implements OnInit {
       this.pointer.position.y = intersects[0].point.y;
       this.pointer.position.z = intersects[0].point.z;
     }
+
+    let preview_pos = this.generateCellPosition();
+    this.indicator.position.x = preview_pos.x/10 - Math.sign(preview_pos.x)*(this.indicator.geometry.parameters.width/2);
+    this.indicator.position.y = preview_pos.y/10 - Math.sign(preview_pos.y)*(this.indicator.geometry.parameters.height/2);
+    this.indicator.position.z = preview_pos.z/10 - Math.sign(preview_pos.z)*(this.indicator.geometry.parameters.depth/2);
+
   }
 
   private check_addition() {
-    // if (this.scene.children.length > 2) {  //if scene contains more that 2 objects(grid and plane) that means a cell is in place and can be deleted
-    //   this.scene.children.splice(0, 2);
-    //   const cell_check = this.raycaster.intersectObjects(this.scene.children);
-    //   if (cell_check.length != 0) {
-    //     console.log(cell_check);
-    //     this.scene_reload();
-    //     return;
-    //   }
-    // }
-    // const intersects = this.raycaster.intersectObject(this.raycast_plane);
-    // if (intersects.length != 0) {
-    //   let x = intersects[0].point.x < 0 ? Math.trunc(intersects[0].point.x * 10) - 1 : Math.trunc(intersects[0].point.x * 10) + 1;
-    //   let y = intersects[0].point.y < 0 ? Math.trunc(intersects[0].point.y * 10) - 1 : Math.trunc(intersects[0].point.y * 10) + 1;
-    //
-    //   this.generate_cell(x, y, this.paint_level);
-    //   this.scene_reload();
-    // }
-
-    let x = this.pointer.position.x < 0 ? Math.trunc(this.pointer.position.x * 10) - 1 : Math.trunc(this.pointer.position.x * 10) + 1;
-    let y = this.pointer.position.y < 0 ? Math.trunc(this.pointer.position.y * 10) - 1 : Math.trunc(this.pointer.position.y * 10) + 1;
-    let z = this.pointer.position.z < 0 ? Math.trunc(this.pointer.position.z * 10) - 1 : Math.trunc(this.pointer.position.z * 10) + 1;
-    this.generate_cell(x, y, z);
+    const new_pos = this.generateCellPosition();
+    this.generate_cell(new_pos.x,new_pos.y,new_pos.z);
     this.scene_reload();
   }
 
   private check_deletion() {
-    let x = this.pointer.position.x < 0 ? Math.trunc(this.pointer.position.x * 10) - 1 : Math.trunc(this.pointer.position.x * 10) + 1;
-    let y = this.pointer.position.y < 0 ? Math.trunc(this.pointer.position.y * 10) - 1 : Math.trunc(this.pointer.position.y * 10) + 1;
-    let z = this.pointer.position.z < 0 ? Math.trunc(this.pointer.position.z * 10) - 1 : Math.trunc(this.pointer.position.z * 10) + 1;
-    this.grid.remove_from_grid(x, y, z);
+    const new_pos = this.generateCellPosition();
+    this.grid.remove_from_grid(new_pos.x,new_pos.y,new_pos.z);
     this.scene_reload();
   }
 
   generate_cell(x: number, y: number, z: number, auto: boolean = false) {
-    const cell = new Cell3D(x, y, z, new THREE.Color(0xffc107));
+    const cell = new Cell3D(x, y, z, this.cell_color);
     this.grid.add_to_grid(cell, auto);
     this.scene_reload();
   }
 
+  private generateCellPosition():THREE.Vector3{
+    let x = this.pointer.position.x < 0 ? Math.trunc(this.pointer.position.x * 10) - 1 : Math.trunc(this.pointer.position.x * 10) + 1;
+    let y = this.pointer.position.y < 0 ? Math.trunc(this.pointer.position.y * 10) - 1 : Math.trunc(this.pointer.position.y * 10) + 1;
+    let z = this.pointer.position.z < 0 ? Math.trunc(this.pointer.position.z * 10) - 1 : Math.trunc(this.pointer.position.z * 10) + 1;
+    return new Vector3(x,y,z);
+  }
+
   scene_reload() {
     this.scene = new THREE.Scene();
-    // if(!this.hide_grid)
-    // this.scene.add(this.helperGrid);
     this.scene.add(this.raycast_plane);
 
     this.scene.add(this.pointer);
-
-    // for(let i = 0; i<50; i++){
-    //   let test = new THREE.GridHelper(100, 1000, new THREE.Color(0x888888));
-    //   let test_b = new THREE.GridHelper(100, 1000, new THREE.Color(0x888888));
-    //   test.position.z = 0.001 + i*0.1;
-    //   test_b.position.z = 0.001 - i*0.1;
-    //   test.rotateOnAxis(new Vector3(1, 0, 0), 90 * Math.PI / 180);
-    //   test_b.rotateOnAxis(new Vector3(1, 0, 0), 90 * Math.PI / 180);
-    //   this.scene.add(test);
-    //   this.scene.add(test_b);
-    // }
-
-
-    // this.scene.background = this.bg_color;
+    this.scene.add(this.indicator);
+    this.scene.background = this.bg_color;
     const cells = this.grid.get_cells();
     for (let c of cells) {
       this.scene.add(c.getCell());
@@ -244,8 +253,8 @@ export class Life3DComponent implements OnInit {
       this.delta += this.clock.getDelta();
       if (this.delta > this.interval) {
         this.grid.advance();
-        // this.nr_to_die = this.grid.getToDie().length;
-        // this.nr_to_birth = this.grid.getToBirth().length;
+        this.nr_to_die = this.grid.getToDie().length;
+        this.nr_to_birth = this.grid.getToBirth().length;
         this.scene_reload();
         this.delta = this.delta % this.interval;
       }
@@ -273,8 +282,8 @@ export class Life3DComponent implements OnInit {
       this.grid.advance();
       this.scene_reload();
     }
-    // this.nr_to_die = this.grid.getToDie().length;
-    // this.nr_to_birth = this.grid.getToBirth().length;
+    this.nr_to_die = this.grid.getToDie().length;
+    this.nr_to_birth = this.grid.getToBirth().length;
   }
 
   restore(){
@@ -282,5 +291,73 @@ export class Life3DComponent implements OnInit {
     this.scene_reload();
   }
 
+  setMinSurvival(e){
+    if(this.prediction_mode) {
+      this.predictionMode();
+      (document.getElementById('prediction_mode') as HTMLInputElement).checked  = false;
+    }
+    this.min_survival = parseInt(e.target.value);
+    this.grid.setMinSurvival(this.min_survival);
+  }
+
+  setMaxSurvival(e){
+    if(this.prediction_mode) {
+      this.predictionMode();
+      (document.getElementById('prediction_mode') as HTMLInputElement).checked  = false;
+    }
+    this.max_survival = parseInt(e.target.value);
+    this.grid.setMaxSurvival(this.max_survival);
+  }
+
+  setBirth(e){
+    if(this.prediction_mode) {
+      this.predictionMode();
+      (document.getElementById('prediction_mode') as HTMLInputElement).checked  = false;
+    }
+    this.birth = parseInt(e.target.value);
+    this.grid.setBirth(this.birth);
+  }
+
+  setRevert(e){
+
+  }
+
+  getRevert(){
+
+  }
+
+  change_speed(e) {
+    this.interval = e.value / 10;
+  }
+
+  getLiveCount(){
+    return this.grid.get_cells().length;
+  }
+
+  sceneColor() {
+    let r = document.getElementById('bg_r').innerText;
+    let g = document.getElementById('bg_g').innerText;
+    let b = document.getElementById('bg_b').innerText;
+    this.bg_color = new THREE.Color('rgb(' + r + ',' + g + ',' + b + ')');
+    this.scene_reload();
+  }
+
+  cellColor() {
+    let r = document.getElementById('c_r').innerText;
+    let g = document.getElementById('c_g').innerText;
+    let b = document.getElementById('c_b').innerText;
+    this.cell_color = new THREE.Color('rgb(' + r + ',' + g + ',' + b + ')');
+    this.grid.cellColor(this.cell_color);
+    this.scene_reload();
+  }
+
+  predictionMode() {
+    this.bg_color = new THREE.Color(0x000000);
+    this.cell_color = new THREE.Color(0xffc107);
+    this.grid.cellColor(this.cell_color);
+    this.prediction_mode = !this.prediction_mode;
+    this.grid.predictionMode();
+    this.scene_reload();
+  }
 
 }

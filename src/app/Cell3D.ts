@@ -23,6 +23,13 @@ export class Cell3D{
     this.cell.position.x = x/10 - Math.sign(x)*this.size/2;
     this.cell.position.y = y/10 - Math.sign(y)*this.size/2;
     this.cell.position.z = z/10 - Math.sign(z)*this.size/2;
+
+    const geo = new THREE.EdgesGeometry(this.cell.geometry);
+    const mat = new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 1 } );
+    let wireframe = new THREE.LineSegments( geo, mat );
+    wireframe.renderOrder = 1;
+    this.cell.add( wireframe );
+
   }
 
   public getCell(){

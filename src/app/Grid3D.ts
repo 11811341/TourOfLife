@@ -104,7 +104,7 @@ export class Grid3D {
     }
 
     if (this.prediction_mode) {
-      // this.predict();
+      this.predict();
     }
   }
 
@@ -228,6 +228,74 @@ export class Grid3D {
 
   public get_cells() {
     return this.active;
+  }
+
+  public getMinSurvival(){
+    return this.min_survival;
+  }
+
+  public setMinSurvival(n: number){
+    this.min_survival = n;
+  }
+
+  public getMaxSurvival(){
+    return this.max_survival;
+  }
+
+  public setMaxSurvival(n:number){
+    this.max_survival = n;
+  }
+
+  public getBirth(){
+    return this.birth;
+  }
+
+  public setBirth(n:number){
+    this.birth = n;
+  }
+
+  public cellColor(color: THREE.Color) {
+    this.cell_color = color;
+    for (let c of this.active) {
+      c.setColor(color);
+    }
+  }
+
+  public predictionMode() {
+    this.prediction_mode = !this.prediction_mode;
+    if (this.prediction_mode) {
+      this.predict();
+    } else {
+      for (let d of this.to_die) {
+        this.active[this.active.indexOf(d)].setColor(this.cell_color);
+      }
+      if(this.predicted_count>0){
+        this.active.splice(this.active.length-this.predicted_count);
+      }
+      this.predicted_count = 0;
+    }
+  }
+
+  private predict() {
+    this.overcrowded = [];
+    this.lonely = [];
+    this.to_die = [];
+    this.to_birth = [];
+    for (let a of this.active) {
+      this.check_neighbors(a.getX(), a.getY(), a.getZ());
+    }
+
+    for (let l of this.lonely) {
+      this.active[this.active.indexOf(l)].setColor(new THREE.Color(0xd81b60)); //pink
+    }
+    for (let o of this.overcrowded) {
+      this.active[this.active.indexOf(o)].setColor(new THREE.Color(0x1e88e5)); //blue
+    }
+    this.predicted_count = this.to_birth.length;
+    for (let b of this.to_birth){
+      b.setColor(new THREE.Color(0x004d40)); //green
+      this.active.push(b);
+    }
   }
 
 }
