@@ -64,7 +64,8 @@ export class Grid2D {
     let config = "";
     for(let a of this.active)
       config+="["+a.getX()+","+a.getY()+"],";
-    console.log(config);
+
+    console.log([cell.getX(), cell.getY()]);
 
     if (this.coords[cell.getX()] == null) {
       this.coords[cell.getX()] = [];

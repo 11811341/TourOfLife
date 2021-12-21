@@ -168,10 +168,11 @@ export class Life2DContainer{
     }
   }
 
-  generate_cell(x: number, y: number, auto: boolean = false) {
+  generate_cell(x: number, y: number, auto: boolean = false, regenerate: boolean = true) {
     const cell = new Cell2D(x, y, this.cell_color);
     this.grid.add_to_grid(cell, auto);
-    this.scene_reload();
+    if(regenerate)
+      this.scene_reload();
   }
 
   scene_reload() {

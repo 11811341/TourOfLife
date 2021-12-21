@@ -1,14 +1,29 @@
 <div id="render_window"></div>
-<div  id="legend">
-  <button (click)="life2DContainer.toggleLegend(); $event.stopPropagation()" style="z-index: 1000" mat-raised-button cdkOverlayOrigin #trigger="cdkOverlayOrigin">
-    Legend
+<div id="legend">
+  <button (click)="life2DContainer.toggleLegend(); $event.stopPropagation()" style="z-index: 1000" mat-raised-button
+          cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+    Guide
   </button>
-  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="life2DContainer.getLegend()">
+  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+               [cdkConnectedOverlayOpen]="life2DContainer.getLegend()">
     <div id="legend_content">
       <p id="overpopulation">This cell will die due to overpopulation</p>
       <p id="underpopulation">This cell will die due to underpopulation</p>
       <p id="birth">This cell will be born due to reproduction</p>
       <p id="survival">This cell survives, unaffected</p>
+      <hr>
+      <p>This is the Game of Life 2D sandbox. Here, you can experiment,<br> either with what you have learned from the
+        Tour of Life, or just play around with your own patterns and configurations.<br>
+        You will find a more detailed explanation regarding the functionality of the simulation in the Tour section of
+        this website.<br>
+        One important thing worth explaining here, however, is the option to actively change the algorithm
+        mid-simulation. In the options menu,<br>
+        you can tweak how many cells are necessary, for a cell to die, or for another to be born.
+      </p>
+      <hr>
+      <p><b>Left mouse button</b> -> Place a new cell</p>
+      <p><b>Right mouse button</b> -> Delete an existing cell</p>
+      <p><b>Middle mouse button</b> -> Scroll to zoom, hold to pan</p>
     </div>
   </ng-template>
 
@@ -16,17 +31,20 @@
 
 <div class="controls_container">
   <div id="controls" (click)="$event.stopPropagation()">
-    <button mat-icon-button color="primary" (click)="life2DContainer.clear()" matTooltip="Clear the Game board" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="life2DContainer.clear()" matTooltip="Clear the Game board"
+            matTooltipPosition="above">
       <mat-icon>
         close
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="life2DContainer.revert()" [disabled]="life2DContainer.running" matTooltip="Go back by one epoch" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="life2DContainer.revert()" [disabled]="life2DContainer.running"
+            matTooltip="Go back by one epoch" matTooltipPosition="above">
       <mat-icon>
         skip_previous
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="life2DContainer.play()" matTooltip="Play/Pause the Game" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="life2DContainer.play()" matTooltip="Play/Pause the Game"
+            matTooltipPosition="above">
       <mat-icon *ngIf="!life2DContainer.running">
         play_arrow
       </mat-icon>
@@ -34,19 +52,20 @@
         pause
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="life2DContainer.advance()" [disabled]="life2DContainer.running" matTooltip="Advance the game by one epoch" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="life2DContainer.advance()" [disabled]="life2DContainer.running"
+            matTooltip="Advance the game by one epoch" matTooltipPosition="above">
       <mat-icon>
         skip_next
       </mat-icon>
     </button>
-    <button mat-icon-button color="primary" (click)="life2DContainer.restore()" [disabled]="life2DContainer.running" matTooltip="Restore the cleared board" matTooltipPosition="above">
+    <button mat-icon-button color="primary" (click)="life2DContainer.restore()" [disabled]="life2DContainer.running"
+            matTooltip="Restore the cleared board" matTooltipPosition="above">
       <mat-icon>
         replay
       </mat-icon>
     </button>
   </div>
 </div>
-
 
 
 <mat-drawer-container id="options_container">
@@ -57,7 +76,8 @@
       </button>
     </div>
   </div>
-  <mat-drawer #options class="sidenav_drawer" id="options_drawer" (click)="$event.stopPropagation()" mode="side" position="end">
+  <mat-drawer #options class="sidenav_drawer" id="options_drawer" (click)="$event.stopPropagation()" mode="side"
+              position="end">
     <div class="sidebar" id="sidebar_options">
 
       <div class="option_box">
@@ -79,7 +99,8 @@
         <p class="option_name">Min # of cells for survival</p>
         <mat-form-field class="options_input">
           <label>
-            <input type="number" min="0" max="{{life2DContainer.max_survival}}" matInput value="{{life2DContainer.min_survival}}" (change)="life2DContainer.setMinSurvival($event)">
+            <input type="number" min="0" max="{{life2DContainer.max_survival}}" matInput
+                   value="{{life2DContainer.min_survival}}" (change)="life2DContainer.setMinSurvival($event)">
           </label>
         </mat-form-field>
       </div>
@@ -88,7 +109,8 @@
         <p class="option_name">Max # of cells for survival</p>
         <mat-form-field class="options_input">
           <label>
-            <input type="number" min="{{life2DContainer.min_survival}}" max="8" matInput value="{{life2DContainer.max_survival}}" (change)="life2DContainer.setMaxSurvival($event)">
+            <input type="number" min="{{life2DContainer.min_survival}}" max="8" matInput
+                   value="{{life2DContainer.max_survival}}" (change)="life2DContainer.setMaxSurvival($event)">
           </label>
         </mat-form-field>
       </div>
@@ -97,14 +119,17 @@
         <p class="option_name"># of cells for birth</p>
         <mat-form-field class="options_input">
           <label>
-            <input type="number" min="1" max="8" matInput value="{{life2DContainer.birth}}" (change)="life2DContainer.setBirth($event)">
+            <input type="number" min="1" max="8" matInput value="{{life2DContainer.birth}}"
+                   (change)="life2DContainer.setBirth($event)">
           </label>
         </mat-form-field>
       </div>
 
       <div class="option_box">
         <p class="option_name">Prediction mode</p>
-        <mat-checkbox id="prediction_mode" [checked]="life2DContainer.prediction_mode" (change)="life2DContainer.predictionMode()" class="example-margin" color="primary"></mat-checkbox>
+        <mat-checkbox id="prediction_mode" [checked]="life2DContainer.prediction_mode"
+                      (change)="life2DContainer.predictionMode()" class="example-margin"
+                      color="primary"></mat-checkbox>
       </div>
 
       <div class="option_box">
@@ -114,14 +139,16 @@
 
       <div class="option_box">
         <p class="option_name">Simulation interval</p>
-        <mat-slider color="primary" min="0.1" max="10" step="0.1" thumbLabel value="{{life2DContainer.interval * 10}}" (change)="life2DContainer.change_speed($event)"></mat-slider>
+        <mat-slider color="primary" min="0.1" max="10" step="0.1" thumbLabel value="{{life2DContainer.interval * 10}}"
+                    (change)="life2DContainer.change_speed($event)"></mat-slider>
       </div>
 
       <div class="option_box">
         <p class="option_name">Limit of returns</p>
         <mat-form-field class="options_input">
           <label>
-            <input type="number" min="1" matInput id="revert_count" value="{{life2DContainer.getRevert()}}" (change)="life2DContainer.setRevert($event)">
+            <input type="number" min="1" matInput id="revert_count" value="{{life2DContainer.getRevert()}}"
+                   (change)="life2DContainer.setRevert($event)">
           </label>
         </mat-form-field>
       </div>
@@ -131,15 +158,21 @@
         <div class="color_sliders">
           <div class="option_box">
             R
-            <mat-slider id="bg_r" (change)="life2DContainer.sceneColor()" value="{{life2DContainer.bg_color.r * 255}}" disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="bg_r" (change)="life2DContainer.sceneColor()" value="{{life2DContainer.bg_color.r * 255}}"
+                        disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1"
+                        thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             G
-            <mat-slider id="bg_g" (change)="life2DContainer.sceneColor()" value="{{life2DContainer.bg_color.g * 255}}" disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="bg_g" (change)="life2DContainer.sceneColor()" value="{{life2DContainer.bg_color.g * 255}}"
+                        disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1"
+                        thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             B
-            <mat-slider id="bg_b" (change)="life2DContainer.sceneColor()" value="{{life2DContainer.bg_color.b * 255}}" disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="bg_b" (change)="life2DContainer.sceneColor()" value="{{life2DContainer.bg_color.b * 255}}"
+                        disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1"
+                        thumbLabel vertical></mat-slider>
           </div>
         </div>
       </div>
@@ -149,15 +182,21 @@
         <div class="color_sliders">
           <div class="option_box">
             R
-            <mat-slider id="c_r" (change)="life2DContainer.cellColor()" value="{{life2DContainer.cell_color.r * 255}}" disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="c_r" (change)="life2DContainer.cellColor()" value="{{life2DContainer.cell_color.r * 255}}"
+                        disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1"
+                        thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             G
-            <mat-slider id="c_g" (change)="life2DContainer.cellColor()" value="{{life2DContainer.cell_color.g * 255}}" disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="c_g" (change)="life2DContainer.cellColor()" value="{{life2DContainer.cell_color.g * 255}}"
+                        disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1"
+                        thumbLabel vertical></mat-slider>
           </div>
           <div class="option_box">
             B
-            <mat-slider id="c_b" (change)="life2DContainer.cellColor()" value="{{life2DContainer.cell_color.b * 255}}" disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1" thumbLabel vertical></mat-slider>
+            <mat-slider id="c_b" (change)="life2DContainer.cellColor()" value="{{life2DContainer.cell_color.b * 255}}"
+                        disabled="{{life2DContainer.prediction_mode}}" color="primary" min="0" max="255" step="1"
+                        thumbLabel vertical></mat-slider>
           </div>
         </div>
       </div>
@@ -166,14 +205,11 @@
         <p class="option_name">Hide grid</p>
         <mat-checkbox (change)="life2DContainer.hideGrid()" class="example-margin" color="primary"></mat-checkbox>
       </div>
-
       <div class="option_box">
-        <p class="option_name">File input WIP</p>
-        <button type="button" disabled mat-raised-button>Choose File</button>
+        <p class="option_name">File input</p>
+        <input type="file" style="display: none" id="file_picker" (change)="loadImage($event)">
+        <button type="button" (click)="inputImage()" mat-raised-button>Choose File</button>
       </div>
-
     </div>
   </mat-drawer>
 </mat-drawer-container>
-
-

@@ -1,18 +1,27 @@
 <div id="render_window" style="cursor: none"></div>
-<!--<div  id="legend">-->
-<!--  <button (click)="life2DContainer.toggleLegend(); $event.stopPropagation()" style="z-index: 1000" mat-raised-button cdkOverlayOrigin #trigger="cdkOverlayOrigin">-->
-<!--    Legend-->
-<!--  </button>-->
-<!--  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="life2DContainer.getLegend()">-->
-<!--    <div id="legend_content">-->
-<!--      <p id="overpopulation">This cell will die due to overpopulation</p>-->
-<!--      <p id="underpopulation">This cell will die due to underpopulation</p>-->
-<!--      <p id="birth">This cell will be born due to reproduction</p>-->
-<!--      <p id="survival">This cell survives, unaffected</p>-->
-<!--    </div>-->
-<!--  </ng-template>-->
-
-<!--</div>-->
+<div  id="legend">
+  <button (click)="toggleLegend(); $event.stopPropagation()" style="z-index: 1000" mat-raised-button cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+    Guide
+  </button>
+  <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="getLegend()">
+    <div id="legend_content">
+      <p id="overpopulation">This cell will die due to overpopulation</p>
+      <p id="underpopulation">This cell will die due to underpopulation</p>
+      <p id="birth">This cell will be born due to reproduction</p>
+      <p id="survival">This cell survives, unaffected</p>
+      <hr>
+      <p>In this experimental section, Conway's Game of Life has been extended by one dimension.<br> Here, you can examine how the automaton would behave inside a 3D environment.
+      In the options panel,<br> you will find almost all the options familiar to you from the 2D sandbox, with one interesting addition.<br> You can upload 3D mesh data, that will be automatically
+      converted into a starting position for the 3D Game of Life.<br> The 3D cursor indicates where you will place/remove a cell.</p>
+      <hr>
+      <p><b>Left mouse button</b> -> Place a new cell</p>
+      <p><b>Right mouse button</b> -> Delete an existing cell</p>
+      <p><b>E</b> -> Edit mode toggle, allows you to change the distance of the cursor from the camera</p>
+      <p><b>Middle mouse button</b> -> Scroll to zoom, hold to rotate</p>
+      <p><b>Shift + Middle mouse button</b> -> Pan the camera</p>
+    </div>
+  </ng-template>
+</div>
 
 <div class="controls_container">
   <div id="controls" (click)="$event.stopPropagation()">
@@ -156,12 +165,11 @@
           </div>
         </div>
       </div>
-
       <div class="option_box">
-        <p class="option_name">File input WIP</p>
-        <button type="button" disabled mat-raised-button>Choose File</button>
+        <p class="option_name">File input</p>
+        <input type="file" style="display: none" id="file_picker" (change)="loadMesh($event)">
+        <button type="button" (click)="inputMesh()" mat-raised-button>Choose File</button>
       </div>
-
     </div>
   </mat-drawer>
 </mat-drawer-container>

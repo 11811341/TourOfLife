@@ -2,10 +2,11 @@ import {Component, OnInit} from '@angular/core';
 
 import * as THREE from 'three';
 import {Renderer3D} from '../../Renderer3D';
-import {Color, GridHelper, Vector3} from 'three';
+import {GridHelper, Ray, Raycaster, Vector3} from 'three';
 import {Cell3D} from '../../Cell3D';
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
 import {Grid3D} from '../../Grid3D';
+import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader';
 
 
 @Component({
@@ -37,9 +38,9 @@ export class Life3DComponent implements OnInit {
   private pointer;
   private indicator;
 
-  min_survival:number = this.grid.getMinSurvival();
-  max_survival:number = this.grid.getMaxSurvival();
-  birth:number = this.grid.getBirth();
+  min_survival: number = this.grid.getMinSurvival();
+  max_survival: number = this.grid.getMaxSurvival();
+  birth: number = this.grid.getBirth();
 
   nr_to_die = 0;
   nr_to_birth = 0;
@@ -49,7 +50,7 @@ export class Life3DComponent implements OnInit {
   bg_color = new THREE.Color('rgb(0,0,0)');
   cell_color = new THREE.Color('rgb(255,193,7)');
 
-  // private paint_level: number = 1;
+  legend: boolean = false;
 
   private edit_mode: boolean = false;
 
@@ -67,6 +68,12 @@ export class Life3DComponent implements OnInit {
       that.renderer.setSize(document.getElementById(parent).offsetWidth, document.getElementById(parent).offsetHeight);
     }, false);
 
+    window.addEventListener('click', function() {
+      if (that.getLegend()) {
+        that.toggleLegend();
+      }
+    }, false);
+
     this.renderer.getRenderer().addEventListener('mouseup', function(e) {
       if (e.button == 0) {
         that.painting = false;
@@ -80,7 +87,7 @@ export class Life3DComponent implements OnInit {
     this.renderer.getRenderer().addEventListener('mousedown', function(e) {
 
       let set_pred = false;
-      if(that.prediction_mode){
+      if (that.prediction_mode) {
         set_pred = true;
         that.predictionMode();
       }
@@ -95,8 +102,9 @@ export class Life3DComponent implements OnInit {
         that.check_deletion();
       }
 
-      if(set_pred && !that.prediction_mode)
+      if (set_pred && !that.prediction_mode) {
         that.predictionMode();
+      }
 
     }, false);
 
@@ -112,10 +120,10 @@ export class Life3DComponent implements OnInit {
     this.indicator = new THREE.Mesh(indicator_g, indicator_m);
 
     const geo = new THREE.EdgesGeometry(this.indicator.geometry);
-    const mat = new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 1 } );
-    let wireframe = new THREE.LineSegments( geo, mat );
+    const mat = new THREE.LineBasicMaterial({color: 0x000000, linewidth: 1});
+    let wireframe = new THREE.LineSegments(geo, mat);
     wireframe.renderOrder = 1;
-    this.indicator.add( wireframe );
+    this.indicator.add(wireframe);
 
 
     this.renderer.getRenderer().addEventListener('mousemove', function(e) {
@@ -128,8 +136,8 @@ export class Life3DComponent implements OnInit {
       that.cursorUpdate();
       let set_pred = false;
 
-      if(that.painting || that.deleting) {
-        if(that.prediction_mode){
+      if (that.painting || that.deleting) {
+        if (that.prediction_mode) {
           set_pred = true;
           that.predictionMode();
         }
@@ -140,8 +148,9 @@ export class Life3DComponent implements OnInit {
         }
       }
 
-      if(set_pred && !that.prediction_mode)
+      if (set_pred && !that.prediction_mode) {
         that.predictionMode();
+      }
 
     }, false);
 
@@ -179,6 +188,7 @@ export class Life3DComponent implements OnInit {
     // this.helperGrid.rotateOnAxis(new Vector3(1, 0, 0), 90 * Math.PI / 180);
     this.trackball = new TrackballControls(this.renderer.getCamera(), this.renderer.getRenderer());
     this.trackball.mouseButtons = {LEFT: THREE.MOUSE.MIDDLE, RIGHT: null, MIDDLE: null};
+    this.trackball.keys = [null, null, 'ShiftLeft'];
     this.trackball.rotateSpeed = 2;
 
     this.scene_reload();
@@ -198,35 +208,37 @@ export class Life3DComponent implements OnInit {
     }
 
     let preview_pos = this.generateCellPosition();
-    this.indicator.position.x = preview_pos.x/10 - Math.sign(preview_pos.x)*(this.indicator.geometry.parameters.width/2);
-    this.indicator.position.y = preview_pos.y/10 - Math.sign(preview_pos.y)*(this.indicator.geometry.parameters.height/2);
-    this.indicator.position.z = preview_pos.z/10 - Math.sign(preview_pos.z)*(this.indicator.geometry.parameters.depth/2);
+    this.indicator.position.x = preview_pos.x / 10 - Math.sign(preview_pos.x) * (this.indicator.geometry.parameters.width / 2);
+    this.indicator.position.y = preview_pos.y / 10 - Math.sign(preview_pos.y) * (this.indicator.geometry.parameters.height / 2);
+    this.indicator.position.z = preview_pos.z / 10 - Math.sign(preview_pos.z) * (this.indicator.geometry.parameters.depth / 2);
 
   }
 
   private check_addition() {
     const new_pos = this.generateCellPosition();
-    this.generate_cell(new_pos.x,new_pos.y,new_pos.z);
+    this.generate_cell(new_pos.x, new_pos.y, new_pos.z);
     this.scene_reload();
   }
 
   private check_deletion() {
     const new_pos = this.generateCellPosition();
-    this.grid.remove_from_grid(new_pos.x,new_pos.y,new_pos.z);
+    this.grid.remove_from_grid(new_pos.x, new_pos.y, new_pos.z);
     this.scene_reload();
   }
 
-  generate_cell(x: number, y: number, z: number, auto: boolean = false) {
+  generate_cell(x: number, y: number, z: number, auto: boolean = false, regenerate = true) {
     const cell = new Cell3D(x, y, z, this.cell_color);
     this.grid.add_to_grid(cell, auto);
-    this.scene_reload();
+    if (regenerate) {
+      this.scene_reload();
+    }
   }
 
-  private generateCellPosition():THREE.Vector3{
+  private generateCellPosition(): THREE.Vector3 {
     let x = this.pointer.position.x < 0 ? Math.trunc(this.pointer.position.x * 10) - 1 : Math.trunc(this.pointer.position.x * 10) + 1;
     let y = this.pointer.position.y < 0 ? Math.trunc(this.pointer.position.y * 10) - 1 : Math.trunc(this.pointer.position.y * 10) + 1;
     let z = this.pointer.position.z < 0 ? Math.trunc(this.pointer.position.z * 10) - 1 : Math.trunc(this.pointer.position.z * 10) + 1;
-    return new Vector3(x,y,z);
+    return new Vector3(x, y, z);
   }
 
   scene_reload() {
@@ -263,21 +275,21 @@ export class Life3DComponent implements OnInit {
   };
 
 
-  clear(){
+  clear() {
     this.grid.clear_grid();
     this.scene_reload();
   }
 
-  revert(){
+  revert() {
     this.grid.revert_grid();
     this.scene_reload();
   }
 
-  play(){
+  play() {
     this.running = !this.running;
   }
 
-  advance(){
+  advance() {
     if (!this.running) {
       this.grid.advance();
       this.scene_reload();
@@ -286,51 +298,51 @@ export class Life3DComponent implements OnInit {
     this.nr_to_birth = this.grid.getToBirth().length;
   }
 
-  restore(){
+  restore() {
     this.grid.restore_grid();
     this.scene_reload();
   }
 
-  setMinSurvival(e){
-    if(this.prediction_mode) {
+  setMinSurvival(e) {
+    if (this.prediction_mode) {
       this.predictionMode();
-      (document.getElementById('prediction_mode') as HTMLInputElement).checked  = false;
+      (document.getElementById('prediction_mode') as HTMLInputElement).checked = false;
     }
     this.min_survival = parseInt(e.target.value);
     this.grid.setMinSurvival(this.min_survival);
   }
 
-  setMaxSurvival(e){
-    if(this.prediction_mode) {
+  setMaxSurvival(e) {
+    if (this.prediction_mode) {
       this.predictionMode();
-      (document.getElementById('prediction_mode') as HTMLInputElement).checked  = false;
+      (document.getElementById('prediction_mode') as HTMLInputElement).checked = false;
     }
     this.max_survival = parseInt(e.target.value);
     this.grid.setMaxSurvival(this.max_survival);
   }
 
-  setBirth(e){
-    if(this.prediction_mode) {
+  setBirth(e) {
+    if (this.prediction_mode) {
       this.predictionMode();
-      (document.getElementById('prediction_mode') as HTMLInputElement).checked  = false;
+      (document.getElementById('prediction_mode') as HTMLInputElement).checked = false;
     }
     this.birth = parseInt(e.target.value);
     this.grid.setBirth(this.birth);
   }
 
-  setRevert(e){
-
+  setRevert(e) {
+    this.grid.setRevert(e.target.value);
   }
 
-  getRevert(){
-
+  getRevert() {
+    return this.grid.getRevert();
   }
 
   change_speed(e) {
     this.interval = e.value / 10;
   }
 
-  getLiveCount(){
+  getLiveCount() {
     return this.grid.get_cells().length;
   }
 
@@ -358,6 +370,89 @@ export class Life3DComponent implements OnInit {
     this.prediction_mode = !this.prediction_mode;
     this.grid.predictionMode();
     this.scene_reload();
+  }
+
+  toggleLegend() {
+    this.legend = !this.legend;
+  }
+
+  getLegend() {
+    return this.legend;
+  }
+
+  inputMesh() {
+    document.getElementById('file_picker').click();
+  }
+
+  async loadMesh(e) {
+
+    let file = URL.createObjectURL((e.currentTarget as HTMLInputElement).files[0]);
+
+    const loader = new OBJLoader();
+    const that = this;
+
+    loader.load(
+      file,
+      function(object) {
+        that.clear();
+        const box = new THREE.Box3();
+        const mesh = (object.children[0] as THREE.Mesh);
+        mesh.geometry.computeBoundingBox();
+        box.copy(mesh.geometry.boundingBox).applyMatrix4(mesh.matrixWorld);
+        let size = new Vector3();
+        box.getSize(size);
+
+        const step = 0.1;
+        let intersects = [];
+
+        for (let x = -size.x / 2; x <= size.x / 2; x += step) {
+          for (let z = -size.z / 2; z <= size.z / 2; z += step) {
+            let caster = new Raycaster(new Vector3(x, size.y / 2, z), new Vector3(0, -1, 0));
+            intersects = [...intersects, ...caster.intersectObject(object)];
+            caster = new Raycaster(new Vector3(x, -size.y / 2, z), new Vector3(0, 1, 0));
+            intersects = [...intersects, ...caster.intersectObject(object)];
+          }
+        }
+        for (let x = -size.x / 2; x <= size.x / 2; x += step) {
+          for (let y = 0; y <= size.y; y += step) {
+            let caster = new Raycaster(new Vector3(x, y, size.z / 2), new Vector3(0, 0, -1));
+            intersects = [...intersects, ...caster.intersectObject(object)];
+            caster = new Raycaster(new Vector3(x, y, -size.z/2), new Vector3(0, 0, 1));
+            intersects = [...intersects, ...caster.intersectObject(object)];
+          }
+        }
+        for (let z = -size.z / 2; z <= size.z / 2; z += step) {
+          for (let y = 0; y <= size.y; y += step) {
+            let caster = new Raycaster(new Vector3(size.x/2, y, z), new Vector3(-1, 0, 0));
+            intersects = [...intersects, ...caster.intersectObject(object)];
+            caster = new Raycaster(new Vector3(-size.x/2, y, z), new Vector3(1, 0, 0));
+            intersects = [...intersects, ...caster.intersectObject(object)];
+          }
+        }
+
+        if (intersects.length > 0) {
+          for (let i of intersects) {
+            let p = i.point;
+            let pos_x = p.x < 0 ? Math.trunc(p.x * 10) - 1 : Math.trunc(p.x * 10) + 1;
+            let pos_y = p.y < 0 ? Math.trunc(p.y * 10) - 1 : Math.trunc(p.y * 10) + 1;
+            let pos_z = p.z < 0 ? Math.trunc(p.z * 10) - 1 : Math.trunc(p.z * 10) + 1;
+            that.generate_cell(pos_x, pos_y, pos_z, false, false);
+          }
+        }
+
+        that.scene_reload();
+        // that.scene.add(object);
+        // that.scene.add(new THREE.BoxHelper(object, 0xff0000));
+      }
+      ,
+      function(xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+      }
+      ,
+      function(error) {
+        console.log('An error happened');
+      }
+    );
   }
 
 }

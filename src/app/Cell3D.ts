@@ -48,8 +48,11 @@ export class Cell3D{
     return this.z;
   }
 
-  public setColor(color: THREE.Color){
-    this.cell.material = new THREE.MeshBasicMaterial({color: color});
+  public setColor(color: THREE.Color, transparent: boolean = false){
+    let m = new THREE.MeshBasicMaterial({color: color});
+    m.opacity = 0.5;
+    m.transparent = transparent;
+    this.cell.material = m;
   }
 
 }

@@ -293,7 +293,7 @@ export class Grid3D {
     }
     this.predicted_count = this.to_birth.length;
     for (let b of this.to_birth){
-      b.setColor(new THREE.Color(0x004d40)); //green
+      b.setColor(new THREE.Color(0x004d40), true); //green
       this.active.push(b);
     }
   }
