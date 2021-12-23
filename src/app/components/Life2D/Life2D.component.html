@@ -18,7 +18,8 @@
         this website.<br>
         One important thing worth explaining here, however, is the option to actively change the algorithm
         mid-simulation. In the options menu,<br>
-        you can tweak how many cells are necessary, for a cell to die, or for another to be born.
+        you can tweak how many cells are necessary, for a cell to die, or for another to be born.<br>
+        The very last option in the menu allows you to upload an image (jpg/png), the lightest values of which get translated into a starting pattern of cells.
       </p>
       <hr>
       <p><b>Left mouse button</b> -> Place a new cell</p>
@@ -207,9 +208,10 @@
       </div>
       <div class="option_box">
         <p class="option_name">File input</p>
-        <input type="file" style="display: none" id="file_picker" (change)="loadImage($event)">
-        <button type="button" (click)="inputImage()" mat-raised-button>Choose File</button>
+        <input type="file" style="display: none" id="file_picker" (change)="loadImage($event)" accept="image/png, image/jpeg">
+        <button type="button" (click)="inputImage()" mat-raised-button style="margin-bottom: 2.5em">Choose File</button>
       </div>
     </div>
   </mat-drawer>
 </mat-drawer-container>
+<div id="test"></div>

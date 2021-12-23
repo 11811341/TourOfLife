@@ -396,53 +396,65 @@ export class Life3DComponent implements OnInit {
       function(object) {
         that.clear();
         const box = new THREE.Box3();
-        const mesh = (object.children[0] as THREE.Mesh);
-        mesh.geometry.computeBoundingBox();
-        box.copy(mesh.geometry.boundingBox).applyMatrix4(mesh.matrixWorld);
-        let size = new Vector3();
-        box.getSize(size);
+        for(let i = 0; i < object.children.length; i++){
+          const mesh = (object.children[i] as THREE.Mesh);
+          mesh.geometry.computeBoundingBox();
+          box.copy(mesh.geometry.boundingBox).applyMatrix4(mesh.matrixWorld);
+          let size = new Vector3();
+          box.getSize(size);
 
-        const step = 0.1;
-        let intersects = [];
+          let move_by = new Vector3(-size.x/2, -size.y/2, -size.z/2);
+          move_by = move_by.subVectors(move_by, box.min);
 
-        for (let x = -size.x / 2; x <= size.x / 2; x += step) {
+          mesh.position.x+=move_by.x;
+          mesh.position.y+=move_by.y;
+          mesh.position.z+=move_by.z;
+          mesh.updateMatrixWorld();
+
+          const step = 0.1;
+          let intersects = [];
+
+          for (let x = -size.x / 2; x <= size.x / 2; x += step) {
+            for (let z = - size.z / 2; z <= size.z / 2; z += step) {
+              let caster = new Raycaster(new Vector3(x, size.y, z), new Vector3(0, -1, 0));
+              intersects = [...intersects, ...caster.intersectObject(mesh)];
+              caster = new Raycaster(new Vector3(x, - size.y, z), new Vector3(0, 1, 0));
+              intersects = [...intersects, ...caster.intersectObject(mesh)];
+            }
+          }
+          console.log(intersects[0]);
+          for (let x = -size.x / 2; x <= size.x / 2; x += step) {
+            for (let y = - size.y / 2; y <= size.y / 2; y += step) {
+              let caster = new Raycaster(new Vector3(x, y, size.z), new Vector3(0, 0, -1));
+              intersects = [...intersects, ...caster.intersectObject(mesh)];
+              caster = new Raycaster(new Vector3(x, y, -size.z), new Vector3(0, 0, 1));
+              intersects = [...intersects, ...caster.intersectObject(mesh)];
+            }
+          }
           for (let z = -size.z / 2; z <= size.z / 2; z += step) {
-            let caster = new Raycaster(new Vector3(x, size.y / 2, z), new Vector3(0, -1, 0));
-            intersects = [...intersects, ...caster.intersectObject(object)];
-            caster = new Raycaster(new Vector3(x, -size.y / 2, z), new Vector3(0, 1, 0));
-            intersects = [...intersects, ...caster.intersectObject(object)];
+            for (let y = - size.y / 2; y <= size.y / 2; y += step) {
+              let caster = new Raycaster(new Vector3(size.x, y, z), new Vector3(-1, 0, 0));
+              intersects = [...intersects, ...caster.intersectObject(mesh)];
+              caster = new Raycaster(new Vector3(-size.x, y, z), new Vector3(1, 0, 0));
+              intersects = [...intersects, ...caster.intersectObject(mesh)];
+            }
           }
-        }
-        for (let x = -size.x / 2; x <= size.x / 2; x += step) {
-          for (let y = 0; y <= size.y; y += step) {
-            let caster = new Raycaster(new Vector3(x, y, size.z / 2), new Vector3(0, 0, -1));
-            intersects = [...intersects, ...caster.intersectObject(object)];
-            caster = new Raycaster(new Vector3(x, y, -size.z/2), new Vector3(0, 0, 1));
-            intersects = [...intersects, ...caster.intersectObject(object)];
+
+          if (intersects.length > 0) {
+            for (let i of intersects) {
+              let p = i.point;
+              let pos_x = p.x < 0 ? Math.trunc(p.x * 10) - 1 : Math.trunc(p.x * 10) + 1;
+              let pos_y = p.y < 0 ? Math.trunc(p.y * 10) - 1 : Math.trunc(p.y * 10) + 1;
+              let pos_z = p.z < 0 ? Math.trunc(p.z * 10) - 1 : Math.trunc(p.z * 10) + 1;
+              that.generate_cell(pos_x, pos_y, pos_z, false, false);
+            }
           }
-        }
-        for (let z = -size.z / 2; z <= size.z / 2; z += step) {
-          for (let y = 0; y <= size.y; y += step) {
-            let caster = new Raycaster(new Vector3(size.x/2, y, z), new Vector3(-1, 0, 0));
-            intersects = [...intersects, ...caster.intersectObject(object)];
-            caster = new Raycaster(new Vector3(-size.x/2, y, z), new Vector3(1, 0, 0));
-            intersects = [...intersects, ...caster.intersectObject(object)];
-          }
+
+          that.scene_reload();
+          // that.scene.add(mesh);
         }
 
-        if (intersects.length > 0) {
-          for (let i of intersects) {
-            let p = i.point;
-            let pos_x = p.x < 0 ? Math.trunc(p.x * 10) - 1 : Math.trunc(p.x * 10) + 1;
-            let pos_y = p.y < 0 ? Math.trunc(p.y * 10) - 1 : Math.trunc(p.y * 10) + 1;
-            let pos_z = p.z < 0 ? Math.trunc(p.z * 10) - 1 : Math.trunc(p.z * 10) + 1;
-            that.generate_cell(pos_x, pos_y, pos_z, false, false);
-          }
-        }
 
-        that.scene_reload();
-        // that.scene.add(object);
-        // that.scene.add(new THREE.BoxHelper(object, 0xff0000));
       }
       ,
       function(xhr) {

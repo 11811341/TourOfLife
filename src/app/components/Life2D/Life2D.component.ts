@@ -3,6 +3,7 @@ import {Life2DContainer} from '../../Life2DContainer';
 
 import lesson_lexicon from '../../../assets/lesson_lexicon.json';
 import {ActivatedRoute} from '@angular/router';
+import {camelize} from 'tslint/lib/utils';
 
 
 @Component({
@@ -44,30 +45,50 @@ export class Life2DComponent implements OnInit{
   }
 
   loadImage(e){
-    var img = new Image();
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext("2d");
+
+    this.life2DContainer.clear();
+
+    let img = new Image();
+    let canvas = document.createElement('canvas');
+    let context = canvas.getContext("2d");
+    document.getElementById("test").appendChild(canvas);
+    console.log((e.currentTarget as HTMLInputElement).files);
     let file = (e.currentTarget as HTMLInputElement).files[0];
-    var reader = new FileReader();
-    // Read in the image file as a data URL.
+    let reader = new FileReader();
+
     reader.readAsDataURL(file);
 
     let that = this;
     reader.onload = function(evt){
       if( evt.target.readyState == FileReader.DONE) {
         img.src = evt.target.result as string;
+        if(img.width<320||img.height<240){
+          img.width = 320;
+          img.height = 240;
+        }
         img.onload = () => {
-          context.drawImage(img, 0, 0);
+          canvas.width = img.width;
+          canvas.height = img.height;
+          context.drawImage(img, 0, 0, img.width, img.height);
           let imgData = context.getImageData(0, 0, img.width, img.height);
           for (let i = 0; i < imgData.data.length; i += 4) {
-            if(imgData.data[i+3]>200){
+            let avg = (imgData.data[i] + imgData.data[i + 1] + imgData.data[i + 2]) / 3;
+            // console.log(avg);
+            if(avg >= 200){
               let x = (i / 4) % img.width;
               let y = Math.floor((i / 4) / img.width);
+              // console.log([x,y]);
               // x/=10;
               // y/=10;
-              let pos_x = x < 0 ? Math.trunc(x * 10) - 1 : Math.trunc(x * 10) + 1;
-              let pos_y = y < 0 ? Math.trunc(y * 10) - 1 : Math.trunc(y * 10) + 1;
-              that.life2DContainer.generate_cell(pos_x, pos_y, false, false);
+              x -= img.width/2;
+              y -= img.height/2;
+              let pos_x = x < 0 ? Math.trunc(x) - 1 : Math.trunc(x) + 1;
+              let pos_y = y < 0 ? Math.trunc(y) - 1 : Math.trunc(y) + 1;
+              if(pos_x < 0)
+                pos_x += 1;
+              if(pos_y < 0)
+                pos_y += 1;
+              that.life2DContainer.generate_cell(pos_x, -pos_y, false, false);
             }
           }
           that.life2DContainer.scene_reload();

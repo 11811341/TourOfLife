@@ -11,8 +11,8 @@
       <p id="survival">This cell survives, unaffected</p>
       <hr>
       <p>In this experimental section, Conway's Game of Life has been extended by one dimension.<br> Here, you can examine how the automaton would behave inside a 3D environment.
-      In the options panel,<br> you will find almost all the options familiar to you from the 2D sandbox, with one interesting addition.<br> You can upload 3D mesh data, that will be automatically
-      converted into a starting position for the 3D Game of Life.<br> The 3D cursor indicates where you will place/remove a cell.</p>
+      In the options panel,<br> you will find almost all the options familiar to you from the 2D sandbox.<br> Additionally, you can upload 3D mesh data, that will be automatically
+      converted into a starting configuration for the 3D Game of Life. <br> Try not to use meshes that are too big, as in such cases, the upload takes a while. <br>The 3D cursor indicates where you will place/remove a cell.</p>
       <hr>
       <p><b>Left mouse button</b> -> Place a new cell</p>
       <p><b>Right mouse button</b> -> Delete an existing cell</p>
@@ -168,7 +168,7 @@
       <div class="option_box">
         <p class="option_name">File input</p>
         <input type="file" style="display: none" id="file_picker" (change)="loadMesh($event)">
-        <button type="button" (click)="inputMesh()" mat-raised-button>Choose File</button>
+        <button type="button" (click)="inputMesh()" mat-raised-button style="margin-bottom: 2.5em">Choose File</button>
       </div>
     </div>
   </mat-drawer>
