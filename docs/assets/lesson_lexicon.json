@@ -1,0 +1,708 @@
+[
+  {
+    "header": "GoL:Basics 01",
+    "chapter": "Game of Life: Basics 00, Rules of Life",
+    "hint": "Experienced users may add/remove cells as they please, but if this is your first time, it is advised to stick to the instructions",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Cell birth",
+        "reference": "https://www.conwaylife.com/wiki/Conway%27s_Game_of_Life#Rules",
+        "description": "Just like the actual life starts at birth, so let us first examine the 3rd rule of Life, that being the birth of a cell. As you have found out in the last segment, for a new cell to be born, it needs to have at least 3 living neighbors in its 3x3 grid vicinity. This example shows you, how the next epoch of the algorithm will give birth to the bottom left corner cell. No other cells are born, because they only have a maximum of 2 living neighbors. Don't forget to use the prediction mode feature, to always stay one step ahead of the algorithm.",
+        "cell_layout": [
+          [-1,1],[1,1],[1,-1]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 0.5,
+        "speed": 0.3,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Cell survival",
+        "reference": "https://www.conwaylife.com/wiki/Conway%27s_Game_of_Life#Rules",
+        "description": "As you probably already know, for a living cell to survive, there need to be no less than 2 and no more than 3 other living cells in it's neighborhood. Let's take a look at the small square from the previous lesson. Every living cell has exactly 3 other living neighbors, which means, all the cells will survive, and no new ones will be born. Without interception, this shape will stay constant forever. We have found a so-called still life pattern. This one is appropriately called the block.",
+        "cell_layout": [
+          [-1,1],[1,1],[-1,-1],[1,-1]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 0.5,
+        "speed": 0.3,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Basics 02",
+    "chapter": "Game of Life: Basics 02, Rules of Life con.",
+    "hint": "Zooming is disabled for the early lessons, but you can move the viewport around freely using the middle mouse button",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Cell death: underpopulation",
+        "reference": "https://www.conwaylife.com/wiki/Conway%27s_Game_of_Life#Rules",
+        "description": "As this one single cell has no other cells around it, it is bound to die in the next epoch. This is the simplest example of a cell dying from underpopulation. As we have established, a cell needs at least 2 living neighbors to survive. This means, that even by adding another cell, anywhere in the grid, the next epoch would look the same. Go ahead. Try adding one single cell anywhere in the grid, and check out the prediction for the next step.",
+        "cell_layout": [
+          [-1,1]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 0.5,
+        "speed": 0.3,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Cell death: overpopulation",
+        "reference": "https://www.conwaylife.com/wiki/Conway%27s_Game_of_Life#Rules",
+        "description": "It is a little more tricky to easily display a death from overpopulation. The game screen shows a pair of the familiar block patterns, fused into each other. As the prediction shows, a plus sign will get cut out of it by the next epoch, due to the number of neighbors of the cells forming the plus sign exceeding the maximum of 3. We can also observe 2 cells being born, as the dead corners both have 3 living neighbors. The result consists of 4 individual cells, which will die off in the next step, due to the rules explained in the previous lesson.",
+        "cell_layout": [
+          [-1,1],[1,1],[-1,-1],[1,-1],[2,-1],[2,-2],[1,-2]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 0.5,
+        "speed": 0.3,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Basics 03",
+    "chapter": "Game of Life: Basics 03, Explored patterns",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Still lifes",
+        "reference": "https://www.conwaylife.com/wiki/Still_life",
+        "description": "If you were to toggle the prediction mode, this shape would not produce any changes in the viewport. That's because it is a static shape, that will stay like this forever. We have already seen one shape like this in the previous lessons, the block. Both the block, and this so-called beehive are still lifes. This is their final stage in life and they do not change if not disturbed. See if you can find another still life pattern yourself, right here in the lesson grid.",
+        "cell_layout": [
+          [-1,1],[1,1],[-2,-1],[2,-1],[-1,-2],[1,-2]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 0.5,
+        "speed": 0.3,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Oscillators",
+        "reference": "https://www.conwaylife.com/wiki/Oscillator",
+        "description": "An oscillator is, to put it simply, a repeating pattern. You start with an initial configuration, the pattern changes accordingly, yet it always returns to it's initial state, and the cycle repeats. Oscillators are further categorized by their periods. A period specifies the number of epochs the pattern needs, to start repeating itself. The shape you see above is a so-called Blinker, and it is a period-2 oscillator. (It repeats every 2 epochs)",
+        "cell_layout": [
+          [1,-1],[-1,-1],[-2,-1]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 0.5,
+        "speed": 0.3,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Basics 04",
+    "chapter": "Game of Life: Basics 04, Explored patterns con.",
+    "hint": "Zoom functionality is unlocked for this chapter, so you can better follow the developments of the patterns. Resetting the board also resets the View",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Oscillators con.",
+        "reference": "https://www.conwaylife.com/wiki/Pulsar",
+        "description": "This well-known period-3 oscillator is called the pulsar. It gives birth to some interesting patterns, which on first glance don't look very stable. Stability in a cellular automaton like Life means, that the existing patterns will no longer change or grow, and the configuration remains constant unless influenced. An oscillator is paradoxically also considered a stable shape, as it only repeats and does not evolve by itself.",
+        "cell_layout": [
+          [2,2],[2,3],[2,4],[3,1],[4,1],[5,1],[3,-2],[4,-2],[5,-2],[2,-3],[2,-4],[2,-5],[-1,-3],[-1,-4],[-1,-5],[-2,-2],[-3,-2],[-4,-2],[-2,1],[-3,1],[-4,1],[-1,2],[-1,3],[-1,4],[-6,2],[-6,3],[-6,4],[7,2],[7,3],[7,4],[7,-3],[7,-4],[7,-5],[-6,-3],[-6,-4],[-6,-5],[3,-7],[4,-7],[5,-7],[-2,-7],[-3,-7],[-4,-7],[-2,6],[-3,6],[-4,6],[3,6],[4,6],[5,6]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 1,
+        "max_zoom": 3,
+        "speed": 0.3,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Spaceships",
+        "reference": "https://www.conwaylife.com/wiki/Spaceship",
+        "description": "Spaceships are interesting patterns that actually get displaced in space with each epoch. They are basically oscillators, that do not stay in one place, but instead also move around. The smallest known spaceship is this one, called the glider. During it's life, the glider travels 1 block diagonally, every 4 epochs. Other spaceships exist, which can travel orthogonally, and the so-called oblique spaceships travel neither orthogonally, nor diagonally. The glider will become very important in future lessons.",
+        "cell_layout": [
+          [-1,-1],[1,-1],[1,1],[1,2],[-2,1]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 1.5,
+        "speed": 0.3,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Exercise 01",
+    "chapter": "Game of Life: Exercise 01, Explored patterns",
+    "hint": "The zoom being locked during an exercise could be a hint regarding the size of the solution.",
+    "lessons": [
+      {
+        "lesson": false,
+        "title": "Complete the oscillator",
+        "reference": "https://www.conwaylife.com/wiki/Beacon",
+        "description": "In this first proper exercise, you can place 2 cells anywhere in the grid. With those 2 cells, you should be able to create an oscillator from the initial configuration. Coincidentally, by adding 2 cells, there is a way to create two different oscillators, one of which you should already be familiar with. The pattern I would actually like you to create is called the beacon, and it is a phase-2 oscillator. By now, you should know what that means, and it should be enough of a hint for you to complete this task.",
+        "cell_layout": [
+          [2,-2],[1,-2],[-1,2],[-2,2]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 0.5,
+        "speed": 0.2,
+        "placeable": 2
+      },
+      {
+        "lesson": false,
+        "title": "Draw a glider",
+        "reference": "https://www.conwaylife.com/wiki/Glider",
+        "description": "Since the glider spaceship will be so important throughout this course, I would like to ask you to draw one from memory now. It can either be the same one as in the chapter just before this one, or, if you're feeling confident, you could try to draw one facing in another direction. The default one travels diagonally to the bottom right. Can you draw the other 3? Remember, a glider consists of an L shape and an additional stray cell. ",
+        "cell_layout": [
+
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 1.5,
+        "speed": 0.2,
+        "placeable": 5
+      }
+    ]
+  },
+  {
+    "header": "GoL:Basics 05",
+    "chapter": "Game of Life: Basics 05, Oscillators aplenty",
+    "hint": "There is a lot to be found out about all the different patterns. Be sure to use the info button if you are curious about any of them.",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Worker bee",
+        "reference": "https://www.conwaylife.com/wiki/Worker_bee",
+        "description": "Over 560 different oscillators have been documented as of the writing of this lesson, yet once you have grasped the concept behind one, it isn't really necessary, nor very productive to go over more than a few. The pattern you see above is called the worker bee. It's a period 9 oscillator, as you can check for yourself by running the simulation. It was picked for this list, because around it's edges, it contains 4 instances of a pattern we will discuss in depth later, and also because it is visually interesting.",
+        "cell_layout": [
+          [1,1],[-1,1],[2,1],[-2,1],[-2,-1],[-1,-1],[1,-1],[2,-1],[2,-2],[1,-2],[-1,-2],[-2,-2],[5,-3],[5,-4],[6,-3],[7,-4],[7,-5],[7,-6],[8,-6],[5,2],[5,3],[6,2],[7,3],[7,4],[7,5],[8,5],[-5,2],[-6,2],[-5,3],[-7,3],[-7,4],[-7,5],[-8,5],[-5,-3],[-5,-4],[-6,-3],[-7,-4],[-7,-5],[-7,-6],[-8,-6]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 1,
+        "max_zoom": 3,
+        "speed": 0.2,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Figure eight",
+        "reference": "https://www.conwaylife.com/wiki/Figure_eight",
+        "description": "The figure eight is a period 8 oscillator, and with only 12 cells in it's initial configuration is the smallest known oscillator of it's kind. It got it's name from the number it initially resembles, but it's also called the big beacon. You will probably know it's smaller sibling from the first exercise, where you were asked to complete it. So far, you have only experienced fairly short-period oscillators. That is to make the concept more understandable and easier to follow. In reality, there's oscillators documented for over 1000 periods, and for all periods of 43 and above, an oscillator can be constructed.",
+        "cell_layout": [
+          [1,-1],[1,-2],[1,-3],[2,-3],[2,-2],[2,-1],[3,-1],[3,-2],[3,-3],[-1,1],[-2,1],[-3,1],[-3,2],[-2,2],[-1,2],[-1,3],[-2,3],[-3,3]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 1,
+        "max_zoom": 3,
+        "speed": 0.2,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 01",
+    "chapter": "Game of Life: Advanced 01, Complex patterns",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Stable pattern",
+        "reference": "https://www.conwaylife.com/wiki/Still_life",
+        "description": "Technically, a stable pattern is another word for a still life. A cluster of cells, that does not change from one epoch to another. Yet more generally, stable pattern is also the name for a configuration of cells, that will not further evolve on their own. These can be the aforementioned still lifes, but also oscillators. As long as a state is reached, that can be completely predicted, and that does not evolve, but at most oscillates, it's called a stable pattern. Run the simulation, and watch the plus sign evolve into a set of oscillators, which are for all intents and purposes considered stable.",
+        "cell_layout": [
+          [1,1],[1,-1],[1,-2],[-1,-1],[2,-1]
+        ],
+        "repeated":[],
+        "min_zoom": 0.75,
+        "def_zoom": 0.75,
+        "max_zoom": 2,
+        "speed": 0.2,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Spark",
+        "reference": "https://www.conwaylife.com/wiki/Spark",
+        "description": "To put it quite simply, a spark is a pattern that dies. They can be as small as 1 cell and die in the very next epoch, but they can also live for hundreds of periods. As long as the pattern eventually ceases to exist, it can be considered a spark. The spark you see above is called the table, for obvious reasons, and it burns out after 15 periods. Typically, spark is a name for any pattern that gets automatically produced by a spaceship or an oscillator. You will experience patterns that produce other patterns later in this section of the tour.",
+        "cell_layout": [
+          [1,1],[-1,1],[-2,1],[2,1],[2,-1],[-2,-1]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 0.5,
+        "max_zoom": 2,
+        "speed": 0.1,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 02",
+    "chapter": "Game of Life: Advanced 02, Eaters",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Eater 1",
+        "reference": "https://www.conwaylife.com/wiki/Eater_1",
+        "description": "Before we cover pattern-producing patterns, there is one more kind of shape that will become very important in the later lessons. It is called the eater, and it's sole purpose is to consistently destroy other patterns. This one in particular is called eater 1, and it can destroy a glider coming at it diagonally from the top left (Depending on the direction you built it). It does this, without getting destroyed itself, which means, you can periodically send gliders it's way, and they will get eaten, instead of propagating into infinity. ",
+        "cell_layout": [
+          [-2,2],[-9,7],[-8,6],[-7,6],[-7,7],[-7,8],[-2,1],[-1,2],[1,1],[1,-1],[1,-2],[2,-2]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 1,
+        "max_zoom": 3,
+        "speed": 0.2,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Eater 2",
+        "reference": "https://www.conwaylife.com/wiki/Eater_2",
+        "description": "The eater 1 is good for getting rid of gliders coming from one specific direction. The eater 2 however, manages to consume gliders coming from 4 different parallel diagonals, ones that would destroy its simpler cousin. This is demonstrated above. Every one of the four gliders moves on a different diagonal, and they all get consumed by the same top right corner of the eater 2. The only downside compared to the first eater, is that it takes longer to recover from each glider it destroys.",
+        "cell_layout": [
+          [2,2],[2,3],[3,3],[3,2],[3,-1],[2,-1],[2,-2],[2,-3],[1,-4],[-1,-3],[-1,-2],[-1,-1],[-2,-1],[-3,-1],[-4,1],[-3,2],[-2,2],[-1,2],[-1,3],[7,6],[8,6],[9,6],[7,7],[8,8],[12,12],[13,12],[14,12],[12,13],[13,14],[17,18],[18,18],[19,18],[17,19],[18,20],[22,24],[23,24],[24,24],[22,25],[23,26]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 1.5,
+        "max_zoom": 3.5,
+        "speed": 0.2,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 03",
+    "chapter": "Game of Life: Advanced 03, Wick and Fuse",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Wick",
+        "reference": "https://www.conwaylife.com/wiki/Wick",
+        "description": "Having a slightly confusing name, the wick is a name for any pattern that repeats linearly. Wicks are a parent category to the fuse, which will be discussed next, in that they CAN be made to burn at one end. They also can be comprised of multiple stable patterns, or even oscillators. Wicks can be infinitely long, by being closed in a loop. The wick shown here is simply called ants. It's a period 5 wick, and it's an umbrella term for any set of patterns, moving orthogonally by one cell every epoch.",
+        "cell_layout": [
+          [1,1],[2,1],[2,-1],[1,-1],[-1,2],[-2,2],[-1,-2],[-2,-2],[-4,1],[-4,-1],[-5,-1],[-5,1],[-6,2],[-7,2],[-6,-2],[-7,-2],[-9,1],[-9,-1],[-10,-1],[-10,1],[-11,2],[-12,2],[-11,-2],[-12,-2],[-14,1],[-14,-1],[-15,-1],[-15,1],[-16,2],[-17,2],[-16,-2],[-17,-2],[-19,1],[-19,-1],[-20,-1],[-20,1],[-21,2],[-21,-2],[-22,-2],[-22,2],[4,2],[5,2],[4,-2],[5,-2],[6,1],[6,-1],[7,-1],[7,1],[9,-2],[10,-2],[9,2],[10,2],[11,1],[11,-1],[12,-1],[12,1],[14,-2],[15,-2],[14,2],[15,2],[16,1],[16,-1],[17,-1],[17,1],[19,-2],[20,-2],[19,2],[20,2],[21,1],[21,-1],[22,-1],[22,1]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 2.5,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Fuse",
+        "reference": "https://www.conwaylife.com/wiki/Fuse",
+        "description": "A fuse, like the one you see above, is just a wick, that 'burns' at one end. It generally consists of multiple separate patterns, that interact in documented ways. Using these predictable interactions, you can create a chain reaction that starts at one trigger point, and propagates to the last link in the chain, before it burns out completely, turning into a spark. This one is called the beehive fuse, because the triggering pattern burns through a set of beehives. Wicks or Fuses won't really be too important in future lessons, but they are nonetheless interesting patterns worth examining.",
+        "cell_layout": [
+          [1,1],[2,1],[-1,-1],[1,-2],[2,-2],[3,-1],[4,-9],[4,-10],[5,-8],[6,-9],[6,-10],[5,-11],[13,-12],[14,-12],[12,-13],[13,-14],[14,-14],[15,-13],[-8,2],[-7,3],[-9,3],[-9,4],[-7,4],[-8,5],[-10,12],[-11,13],[-12,13],[-13,12],[-12,11],[-11,11],[-12,16],[-13,16],[-14,16],[-15,17],[-15,18],[-14,18],[-11,17],[-11,18],[-12,18]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 2.5,
+        "max_zoom": 4,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 04",
+    "chapter": "Game of Life: Advanced 04, Puffers and debris",
+    "hint": "For big cell configurations like this, it can be beneficial to use the edit function, so you can examine the pattern in the 2D Life simulator",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Frothing puffer",
+        "reference": "https://www.conwaylife.com/wiki/Frothing_puffer",
+        "description": "By now, you have seen patterns, that can destroy other patterns, without getting deleted themselves. But what about the opposite? Puffers are patterns, that move, just like spaceships, but they also leave behind other patterns as they traverse the simulation plane. These generated patterns are generally referred to as debris. This so-called frothing puffer for example generates 10 blinkers and 2 blocks each period, and it's a period 78 pattern.",
+        "cell_layout": [
+          [-1,3],[-1,4],[-3,3],[-3,4],[2,3],[2,4],[3,5],[-4,5],[-2,6],[-2,7],[1,7],[1,6],[-3,8],[-4,9],[2,8],[3,9],[-5,9],[-6,9],[4,9],[5,9],[5,8],[5,7],[-6,8],[-6,7],[-7,8],[-8,8],[-8,7],[-7,6],[6,8],[7,8],[7,7],[6,6],[-9,6],[-9,5],[-8,4],[8,6],[8,5],[7,4],[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[9,10],[8,10],[9,11],[11,9],[12,8],[12,7],[12,6],[13,8],[11,4],[13,4],[14,4],[15,4],[14,5],[15,5],[15,6],[14,6],[15,3],[16,3],[-11,5],[-11,6],[-11,7],[-11,8],[-11,9],[-11,10],[-9,10],[-10,10],[-10,11],[-12,9],[-14,8],[-13,8],[-13,7],[-13,6],[-12,4],[-14,4],[-15,4],[-16,4],[-16,5],[-16,6],[-15,6],[-15,5],[-16,3],[-17,3],[4,3],[5,3],[4,2],[4,1],[6,1],[7,1],[6,-1],[6,-2],[-6,3],[-5,3],[-5,2],[-5,1],[-8,1],[-7,1],[-7,-1],[-7,-2],[-10,-2],[-9,-2],[-9,-3],[-10,-3],[-10,-4],[-10,-5],[-11,-5],[-11,-6],[-12,-8],[-11,-8],[-8,-4],[-8,-6],[-8,-7],[-7,-7],[-8,-9],[-7,-10],[-6,-8],[-6,-9],[-5,-9],[-5,-10],[-5,-11],[-6,-12],[-4,-12],[-6,-5],[-6,-4],[-4,-4],[-3,-4],[-2,-4],[-2,-5],[-2,-6],[-2,-7],[-2,-8],[1,-8],[1,-7],[1,-6],[1,-5],[1,-4],[2,-4],[3,-4],[-4,-6],[3,-6],[-3,-9],[-3,-10],[-2,-11],[-1,-10],[1,-11],[2,-9],[2,-10],[5,-4],[5,-5],[7,-4],[8,-3],[8,-2],[9,-2],[9,-3],[9,-4],[9,-5],[10,-5],[10,-6],[10,-8],[11,-8],[7,-6],[7,-7],[6,-7],[5,-8],[5,-9],[4,-9],[4,-10],[4,-11],[5,-12],[3,-12],[6,-10],[7,-9]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Glider train",
+        "reference": "https://www.conwaylife.com/wiki/Glider_train",
+        "description": "The so-called glider train is also an orthogonal puffer, this time with a period of 64. The reason you're looking at another puffer, is because this one, as it travels, spawns not only 2 rows of blocks, but also 2 waves, traveling away from it along the 2 possible diagonals. You see, as was probably expected at this point, it is possible to create patterns, that actually produce gliders. This is a very important feature, especially for future lessons. ",
+        "cell_layout": [
+          [1,2],[-1,3],[-1,4],[1,5],[2,5],[2,3],[3,4],[1,-3],[-1,-4],[-1,-5],[1,-6],[2,-6],[3,-5],[2,-4],[10,3],[11,3],[11,2],[10,2],[10,-3],[11,-3],[11,-4],[10,-4],[-6,3],[-7,3],[-7,2],[-6,2],[-6,-4],[-7,-4],[-7,-3],[-6,-3],[-6,8],[-8,7],[-10,8],[-10,10],[-9,11],[-8,11],[-7,11],[-6,11],[-5,11],[-5,10],[-5,9],[-6,-9],[-8,-8],[-10,-9],[-10,-11],[-9,-12],[-8,-12],[-7,-12],[-6,-12],[-5,-12],[-5,-11],[-5,-10],[-4,15],[-3,15],[-3,16],[-2,16],[-2,14],[-4,-16],[-3,-16],[-3,-17],[-2,-17],[-2,-15],[-12,-6],[-13,-6],[-13,-5],[-14,-5],[-14,-7],[-16,-8],[-17,-8],[-17,-9],[-16,-9],[-19,-7],[-20,-7],[-21,-7],[-19,-6],[-20,-6],[-20,-5],[-18,-5],[-17,-4],[-18,-4],[-19,-4],[-20,-4],[-21,-4],[-22,-4],[-22,-5],[-22,-6],[-23,-5],[-21,-3],[-20,-3],[-19,-3],[-18,-3],[-21,2],[-20,2],[-19,2],[-18,2],[-17,3],[-18,3],[-19,3],[-20,3],[-21,3],[-22,3],[-18,4],[-20,4],[-22,4],[-23,4],[-22,5],[-20,5],[-19,5],[-19,6],[-20,6],[-21,6],[-17,7],[-16,7],[-16,8],[-17,8],[-14,6],[-13,5],[-12,5],[-13,4],[-14,4],[-32,3],[-33,4],[-34,4],[-35,3],[-34,2],[-33,2],[-34,-3],[-33,-3],[-35,-4],[-34,-5],[-33,-5],[-32,-4],[16,1],[16,-2],[18,1],[18,-2],[19,2],[19,-3],[17,-4],[18,-4],[18,-5],[17,-5],[18,-6],[18,3],[17,3],[17,4],[18,4],[18,5],[17,6],[18,7],[19,8],[20,7],[17,-7],[18,-8],[19,-9],[20,-8],[19,-11],[18,-11],[16,-12],[16,-14],[17,-15],[18,-15],[19,-15],[20,-15],[21,-15],[22,-15],[22,-14],[22,-13],[21,-12],[20,-6],[21,-5],[22,-4],[23,-4],[22,-6],[23,-7],[24,-6],[25,-5],[25,-4],[25,-3],[25,2],[25,3],[25,4],[24,5],[23,6],[22,5],[21,4],[20,5],[22,3],[23,3],[19,10],[18,10],[16,11],[16,13],[17,14],[18,14],[19,14],[20,14],[21,14],[21,11],[22,12],[22,13],[22,14],[30,2],[31,1],[30,1],[30,3],[31,4],[31,5],[32,4],[32,3],[32,2],[33,3],[31,-2],[30,-2],[30,-3],[30,-4],[31,-5],[31,-6],[32,-5],[32,-4],[32,-3],[33,-4],[31,10],[32,10],[33,10],[30,10],[29,10],[28,10],[27,11],[27,13],[29,14],[30,14],[32,13],[33,12],[33,11],[31,-11],[32,-11],[33,-11],[30,-11],[29,-11],[28,-11],[27,-12],[27,-14],[29,-15],[30,-15],[32,-14],[33,-13],[33,-12]
+        ],
+        "repeated":[],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL: Exercise 02",
+    "chapter": "Game of Life: Exercise 02, Light the fuse",
+    "lessons": [
+      {
+        "lesson": false,
+        "title": "Complete the fuse",
+        "reference": "https://conwaylife.com/ref/lexicon/lex_f.htm",
+        "description": "Your task here is to use the 4 cells you have been given, to complete a glider somewhere on the grid. Think about how many cells a glider consists of. That should give you an idea of where to start drawing, using the already existing 'environment'. As to the direction of the glider, that is for you to find out. Though thinking logically, you don't have many options to choose from. You will know that you have found the correct configuration, when at the end of the simulation, all the blocks will be gone.",
+        "cell_layout": [
+          [1,-14],[-1,-14],[-1,-15],[1,-15],[5,-13],[6,-13],[6,-12],[5,-12],[5,-7],[4,-7],[4,-6],[5,-6],[-2,-7],[-2,-6],[-3,-6],[-3,-7],[11,-13],[12,-13],[12,-14],[11,-14],[15,-14],[15,-15],[16,-15],[16,-14],[19,-18],[19,-19],[20,-19],[20,-18],[24,-14],[24,-15],[25,-15],[25,-14],[29,-13],[30,-13],[30,-12],[29,-12],[29,-7],[28,-7],[28,-6],[29,-6],[23,-7],[22,-7],[22,-6],[23,-6],[-5,-19],[-5,-18],[-6,-18],[-6,-19],[-9,-15],[-10,-15],[-10,-14],[-9,-14],[-13,-14],[-13,-13],[-14,-13],[-14,-14],[-19,-13],[-20,-13],[-20,-12],[-19,-12],[-20,-7],[-21,-7],[-21,-6],[-20,-6],[-26,-6],[-27,-6],[-27,-7],[-26,-7],[-8,5],[-9,5],[-9,6],[-8,6],[-14,5],[-15,6],[-14,6],[-15,5],[-8,11],[-7,11],[-7,12],[-8,12],[-2,12],[-1,12],[-1,13],[-2,13],[3,13],[4,13],[4,14],[3,14],[7,17],[8,17],[8,18],[7,18],[12,13],[12,14],[13,14],[13,13],[17,12],[17,11],[18,11],[18,12],[23,12],[24,12],[24,13],[23,13],[27,13],[28,14],[28,13],[27,14],[17,6],[16,6],[16,5],[17,5],[11,6],[10,6],[10,5],[11,5],[-12,13],[-13,13],[-13,14],[-12,14],[-17,18],[-17,17],[-18,17],[-18,18],[-21,14],[-21,13],[-22,13],[-22,14],[-25,13],[-25,12],[-26,12],[-26,13],[-27,-13]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 2.5,
+        "max_zoom": 4.5,
+        "speed": 0.05,
+        "placeable": 4
+      },
+      {
+        "lesson": false,
+        "title": "Stop the gliders",
+        "reference": "https://www.conwaylife.com/wiki/Eater_1",
+        "description": "A series of gliders is hurling towards the middle of the screen, and it is your job to stop them. Use the cell already provided to you in the center of the grid to complete an eater. Think about the kind of eater you can produce with the amount of cells given to you. You will need to mind the orientation of the eater also, since if it should point the wrong way, it will just get destroyed along with the first glider, and the others would move on unaffected. And we don't want that!",
+        "cell_layout": [
+          [-13,12],[-14,12],[-15,13],[-13,13],[-13,14],[-2,2],[-18,17],[-19,17],[-18,18],[-18,19],[-20,18],[-23,22],[-24,22],[-23,23],[-25,23],[-23,24],[-28,27],[-29,27],[-28,28],[-28,29],[-30,28]
+        ],
+        "repeated":[],
+        "min_zoom": 0.5,
+        "def_zoom": 2,
+        "max_zoom": 3,
+        "speed": 0.1,
+        "placeable": 6
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 05",
+    "chapter": "Game of Life: Advanced 05, Complex patterns con.",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Agars",
+        "reference": "https://www.conwaylife.com/wiki/Agar",
+        "description": "Another interesting pattern, that is however not important for our future endeavors, is the agar. It's main characteristic is that it periodically tiles the whole grid of Life. It does this in both space, and time, meaning it's a stable pattern and does not get destroyed over time. The concept is probably easier to imagine with a visual example, like the one you see above. This agar is called onion rings, since it consists of nested squares which together resemble the layers of an onion. (note: the example grid is NOT tiled infinitely, so it will actually get destroyed once the simulation is run)",
+        "cell_layout": [
+          [1,1],[-1,-1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],[2,1],[3,1],[4,1],[5,1],[6,1],[6,2],[6,3],[6,4],[6,5],[3,4],[3,3],[4,3],[4,4],[-1,-2],[-1,-3],[-1,-4],[-1,-5],[-1,-6],[-2,-6],[-3,-6],[-4,-6],[-5,-6],[-6,-6],[-6,-5],[-6,-4],[-6,-3],[-6,-2],[-6,-1],[-5,-1],[-4,-1],[-3,-1],[-2,-1],[-4,-3],[-4,-4],[-3,-4],[-3,-3],[2,-2],[2,-3],[2,-4],[2,-5],[3,-5],[4,-5],[5,-5],[5,-4],[5,-3],[5,-2],[4,-2],[3,-2],[-5,5],[-5,4],[-5,3],[-5,2],[-4,2],[-3,2],[-2,2],[-2,3],[-2,4],[-2,5],[-3,5],[-4,5],[1,-7],[1,-8],[1,-9],[1,-10],[1,-11],[1,-12],[2,-12],[3,-12],[4,-12],[5,-12],[6,-12],[6,-11],[6,-10],[6,-9],[6,-8],[6,-7],[5,-7],[4,-7],[3,-7],[2,-7],[-1,7],[-2,7],[-3,7],[-4,7],[-5,7],[-6,7],[-6,8],[-6,9],[-6,10],[-6,11],[-1,8],[-1,9],[-1,10],[-1,11],[-1,12],[-2,12],[-3,12],[-4,12],[-5,12],[-6,12],[-4,10],[-4,9],[-3,9],[-3,10],[3,-9],[3,-10],[4,-10],[4,-9],[-1,-13],[-2,-13],[-3,-13],[-4,-13],[-5,-13],[-6,-13],[-1,-14],[-1,-15],[-1,-16],[-1,-17],[-1,-18],[-2,-18],[-3,-18],[-4,-18],[-5,-18],[-6,-18],[-6,-17],[-6,-16],[-6,-15],[-6,-14],[-4,-15],[-4,-16],[-3,-16],[-3,-15],[-5,-8],[-5,-9],[-5,-10],[-5,-11],[-4,-11],[-3,-11],[-2,-11],[-2,-10],[-2,-9],[-2,-8],[-3,-8],[-4,-8],[7,-1],[7,-2],[7,-3],[7,-4],[7,-5],[7,-6],[8,-6],[9,-6],[10,-6],[11,-6],[12,-6],[8,-1],[9,-1],[10,-1],[11,-1],[12,-1],[12,-2],[12,-3],[12,-4],[12,-5],[9,-3],[9,-4],[10,-4],[10,-3],[-7,6],[-7,5],[-7,4],[-7,3],[-7,2],[-7,1],[-8,1],[-9,1],[-10,1],[-11,1],[-12,1],[-12,2],[-12,3],[-12,4],[-12,5],[-12,6],[-11,6],[-10,6],[-9,6],[-8,6],[-10,4],[-10,3],[-9,3],[-9,4],[-7,-7],[-8,-7],[-9,-7],[-10,-7],[-11,-7],[-12,-7],[-12,-8],[-12,-9],[-12,-10],[-12,-11],[-12,-12],[-11,-12],[-10,-12],[-9,-12],[-8,-12],[-7,-12],[-7,-11],[-7,-10],[-7,-9],[-7,-8],[-10,-9],[-10,-10],[-9,-10],[-9,-9],[2,11],[2,10],[2,9],[2,8],[3,8],[4,8],[5,8],[5,9],[5,10],[5,11],[4,11],[3,11],[8,5],[8,4],[8,3],[8,2],[9,2],[10,2],[11,2],[11,3],[11,4],[11,5],[10,5],[9,5],[-11,-2],[-11,-3],[-11,-4],[-11,-5],[-10,-5],[-9,-5],[-8,-5],[-8,-4],[-8,-3],[-8,-2],[-9,-2],[-10,-2],[8,-8],[8,-9],[8,-10],[8,-11],[9,-11],[10,-11],[11,-11],[11,-10],[11,-9],[11,-8],[10,-8],[9,-8],[2,-14],[2,-15],[2,-16],[2,-17],[3,-17],[4,-17],[5,-17],[5,-16],[5,-15],[5,-14],[4,-14],[3,-14],[7,-13],[7,-14],[7,-15],[7,-16],[7,-17],[7,-18],[8,-18],[9,-18],[10,-18],[11,-18],[12,-18],[12,-17],[12,-16],[11,-13],[12,-13],[12,-14],[12,-15],[10,-13],[9,-13],[8,-13],[9,-15],[9,-16],[10,-16],[10,-15],[-11,-14],[-11,-15],[-11,-16],[-11,-17],[-10,-17],[-9,-17],[-8,-17],[-8,-16],[-8,-15],[-8,-14],[-9,-14],[-10,-14],[7,7],[7,8],[7,9],[7,10],[7,11],[7,12],[8,12],[9,12],[10,12],[11,12],[12,12],[12,11],[12,10],[12,9],[12,8],[12,7],[11,7],[10,7],[9,7],[8,7],[-11,11],[-11,10],[-11,9],[-11,8],[-10,8],[-9,8],[-8,8],[-8,9],[-8,10],[-8,11],[-9,11],[-10,11],[9,10],[9,9],[10,9],[10,10],[-13,-1],[-13,-2],[-13,-3],[-13,-4],[-13,-5],[-13,-6],[-14,-6],[-15,-6],[-16,-6],[-17,-6],[-18,-6],[-18,-5],[-18,-4],[-18,-3],[-18,-2],[-18,-1],[-17,-1],[-16,-1],[-15,-1],[-14,-1],[-13,7],[-14,7],[-15,7],[-16,7],[-17,7],[-18,7],[-18,8],[-18,9],[-18,10],[-18,11],[-18,12],[-17,12],[-16,12],[-15,12],[-14,12],[-13,12],[-13,11],[-13,10],[-13,9],[-13,8],[-13,-13],[-14,-13],[-15,-13],[-16,-13],[-17,-13],[-18,-13],[-18,-14],[-18,-15],[-18,-16],[-18,-17],[-18,-18],[-13,-18],[-13,-17],[-13,-16],[-13,-15],[-13,-14],[-14,-18],[-15,-18],[-16,-18],[-17,-18],[-16,-16],[-15,-16],[-15,-15],[-16,-15],[-16,-3],[-16,-4],[-15,-4],[-15,-3],[-16,10],[-16,9],[-15,9],[-15,10],[-17,5],[-17,4],[-17,3],[-17,2],[-16,2],[-15,2],[-14,2],[-14,3],[-14,4],[-14,5],[-15,5],[-16,5],[-17,-8],[-17,-9],[-17,-10],[-17,-11],[-16,-11],[-15,-11],[-14,-11],[-14,-10],[-14,-9],[-14,-8],[-15,-8],[-16,-8],[13,-12],[13,-11],[13,-10],[13,-9],[13,-8],[13,-7],[14,-7],[15,-7],[16,-7],[17,-7],[18,-7],[18,-12],[17,-12],[16,-12],[15,-12],[14,-12],[18,-8],[18,-9],[18,-10],[18,-11],[15,-9],[15,-10],[16,-10],[16,-9],[13,1],[14,1],[15,1],[16,1],[17,1],[18,1],[18,2],[18,3],[18,6],[18,5],[18,4],[17,6],[16,6],[15,6],[14,6],[13,6],[13,5],[13,4],[13,3],[13,2],[15,4],[15,3],[16,3],[16,4],[14,-2],[14,-3],[14,-4],[14,-5],[15,-5],[16,-5],[17,-5],[17,-4],[17,-3],[17,-2],[16,-2],[15,-2],[14,11],[14,10],[14,9],[14,8],[15,8],[16,8],[17,8],[17,9],[17,10],[17,11],[16,11],[15,11],[14,-14],[14,-15],[14,-16],[14,-17],[15,-17],[16,-17],[17,-17],[17,-16],[17,-15],[17,-14],[16,-14],[15,-14],[-12,13],[-11,13],[-10,13],[-9,13],[-8,13],[-7,13],[-7,14],[-7,15],[-7,16],[-7,17],[-7,18],[-8,18],[-9,18],[-10,18],[-11,18],[-12,18],[-12,17],[-12,16],[-12,15],[-12,14],[-10,16],[-10,15],[-9,15],[-9,16],[-17,17],[-17,16],[-17,15],[-17,14],[-16,14],[-15,14],[-14,14],[-14,15],[-14,16],[-14,17],[-15,17],[-16,17],[-5,17],[-5,16],[-5,15],[-5,14],[-4,14],[-3,14],[-2,14],[-2,15],[-2,16],[-2,17],[-3,17],[-4,17],[1,13],[1,14],[1,15],[1,16],[1,17],[1,18],[2,18],[3,18],[4,18],[5,18],[6,18],[6,17],[6,16],[6,15],[6,14],[6,13],[5,13],[4,13],[3,13],[2,13],[3,16],[3,15],[4,15],[4,16],[8,17],[8,16],[8,15],[8,14],[9,14],[10,14],[11,14],[11,15],[11,16],[11,17],[10,17],[9,17],[13,13],[14,13],[15,13],[16,13],[17,13],[18,13],[18,14],[18,15],[18,17],[18,16],[18,18],[17,18],[16,18],[15,18],[14,18],[13,18],[13,17],[13,16],[13,15],[13,14],[15,16],[15,15],[16,16],[16,15]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 1,
+        "max_zoom": 3,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Conduits",
+        "reference": "https://www.conwaylife.com/wiki/Conduit",
+        "description": "Slightly more complex, a conduit is a pattern consisting of still lifes and/or oscillators, that can influence or move a different moving/active pattern like a glider, and just like the eater, retain it's form. An interesting example of this is the depicted beehive stopper. It's able to turn a glider, coming from one direction, into a beehive, which in turn can intercept another glider coming from the second upper diagonal. If you were to imagine a stream of gliders as a signal, this would be a way to intercept parts of it. This idea will soon be explored further.",
+        "cell_layout": [
+          [-2,-1],[-1,-2],[-1,-3],[-2,-4],[-3,-3],[-3,-2],[-8,-2],[-9,-2],[-9,-1],[-8,-1],[-3,-9],[-4,-9],[-3,-10],[-5,-10],[-5,-11],[-4,-11],[-2,-13],[-1,-13],[-2,-14],[-1,-15],[1,-15],[2,-15],[2,-16],[4,-9],[5,-9],[5,-8],[4,-8],[15,-8],[16,-8],[15,-7],[15,-6],[14,-5],[13,-5],[13,-6],[6,6],[7,6],[6,7],[6,8],[8,7],[-19,18],[-20,18],[-19,19],[-19,20],[-21,19],[11,11],[11,12],[11,13],[12,11],[13,12],[48,48],[48,49],[48,50],[49,48],[50,49],[53,53],[53,54],[53,55],[54,53],[55,54]
+        ],
+        "repeated":[],
+        "min_zoom": 1.5,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 06",
+    "chapter": "Game of Life: Advanced 06, The gun",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Methuselahs",
+        "reference": "https://www.conwaylife.com/wiki/Methuselah",
+        "description": "The methuselah is a fairly easy to understand pattern. When a cluster of cells is categorized as a methuselah, it simply means, that it takes a large number of epochs to finally stabilize, ergo turn into a stable pattern. This is known as it's lifespan. Methuselahs are a prime example of what makes the Game of Life so interesting, since they demonstrate how a very small pattern can grow unimaginably. This methuselah is called herschel, because it looks like the letter h. It starts out with only 7 cells, and takes 128 epochs to finally stabilize, producing a number of other patterns in the process.",
+        "cell_layout": [
+          [1,1],[1,-1],[1,-2],[-1,1],[-2,1],[-2,2],[-2,-1]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 1,
+        "max_zoom": 4,
+        "speed": 0.05,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Guns",
+        "reference": "https://www.conwaylife.com/wiki/Gun",
+        "description": "The gun might just be the most important pattern of this whole section. You have already seen how certain patterns like the puffer can create other patterns as they propagate, even gliders. A gun is a pattern that does not itself move, and periodically creates spaceships. Specifically the so-called Gosper glider gun is a period 30 oscillator which emits gliders. It was the first gun ever discovered, and it proved that patterns in Life can grow infinitely. If you haven't realized already, the glider gun can be used to simulate a continuous signal. This feature opens the 'gate' to the world of computer logic inside Life.",
+        "cell_layout": [
+          [-1,-1],[-1,-2],[-1,-3],[1,-2],[-2,-4],[-2,1],[-3,-2],[-4,2],[-5,2],[-6,1],[-7,-1],[-7,-2],[-7,-3],[-6,-4],[-5,-5],[-4,-5],[4,-1],[4,1],[4,2],[5,2],[5,1],[5,-1],[6,-2],[6,3],[8,3],[8,4],[8,-2],[8,-3],[-16,-1],[-16,-2],[-17,-2],[-17,-1],[18,2],[18,1],[19,1],[19,2]
+        ],
+        "repeated":[],
+        "min_zoom": 2,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 07",
+    "chapter": "Game of Life: Advanced 07, Key glider interactions",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Reflector",
+        "reference": "https://www.conwaylife.com/wiki/Buckaroo",
+        "description": "We are slowly approaching the end of this section of the 'tutorial', and the final thing you should definitely know before diving into computer logic, is how different patterns of Life interact with each other. More specifically, how patterns interact with the glider. In the following lessons, the simulations may turn out bigger and more cluttered than before, and you might need a way to deflect or redirect gliders to complete certain assignments. That's what reflectors are for, and this one is called Buckaroo. It's a period 30 oscillator, that can deflect incoming gliders by 90 degrees. By adjusting the timing and the horizontal position of the incoming glider, Buckaroo can even reflect it by 180 degrees, back to where it came from. This is a less useful feature of the pattern.",
+        "cell_layout": [
+          [-3,1],[-3,2],[-3,-1],[-2,3],[-2,4],[-2,-2],[-2,-3],[-4,3],[-5,2],[-6,1],[-5,-1],[-4,-2],[-10,1],[-11,1],[-11,-1],[-10,-1],[9,-2],[9,-3],[10,-2],[11,-3],[11,-4],[11,-5],[12,-5],[14,10],[15,10],[15,9],[16,9],[16,11]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 1.5,
+        "max_zoom": 3,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Duplicator",
+        "reference": "https://www.conwaylife.com/wiki/Fanout",
+        "description": "Notice how the two travelling gliders in the bottom right corner pass through the pattern(with a slight horizontal shift), and for every glider, a duplicate gets ejected at a 90 degrees angle from the original. This is because the pattern the gliders just passed through is a duplicator, called Fanout. It accepts as input a glider from a specific direction and it pushes out an identical shifted glider, but also creates a copy that gets sent out a different way. In order to be usable, especially in bigger, more complex pattern configurations, duplicators should have a low period. The Fanout is a period-30 oscillator. You could have already guessed the period of this pattern, since upon closer inspection, you can see that it consists of 2 Glider Guns, which as you already know have a period of 30.",
+        "cell_layout": [
+          [1,1],[1,2],[2,2],[2,1],[11,-7],[10,-8],[11,-9],[12,-9],[13,-9],[13,-10],[7,26],[6,26],[-16,10],[-17,9],[-17,11],[-18,11],[-19,11],[-19,12],[-12,-24],[-13,-24],[10,-7],[5,21],[-13,-23],[-11,3],[-17,3],[7,25],[-16,9],[-8,-2],[-1,7],[-16,3],[-12,3],[7,6],[9,6],[5,14],[6,12],[7,14],[-12,-23],[-9,-1],[1,6],[6,5],[10,5],[8,7],[-11,2],[-17,2],[6,3],[10,3],[6,25],[-15,-14],[-14,-14],[-10,-14],[-9,-14],[-8,-1],[1,7],[-13,-10],[-11,-10],[8,6],[4,14],[5,13],[7,13],[8,14],[-14,-2],[5,4],[11,4],[4,21],[3,16],[4,16],[8,16],[9,16],[-9,-3],[-7,-2],[-2,6],[-1,8],[-12,-9],[7,7],[9,7],[4,13],[4,15],[5,15],[6,15],[5,12],[7,12],[7,15],[8,13],[8,15],[-15,-2],[-13,-2],[-16,-1],[-12,-1],[-15,-12],[-14,-10],[-10,-10],[-9,-12],[7,2],[9,2],[-12,-14],[8,2],[8,-12],[8,-13],[7,-13],[7,-14],[9,-14],[15,-20],[16,-20],[15,-21],[14,-21],[16,-22]
+        ],
+        "repeated":[],
+        "min_zoom": 1.5,
+        "def_zoom": 3.5,
+        "max_zoom": 4,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "GoL:Exercise 03",
+    "chapter": "Game of Life: Exercise 03, Glider shenanigans",
+    "hint": "There is one intended solution for most exercises, but with some creative thinking, you can reach the desired outcome with a different approach",
+    "lessons": [
+      {
+        "lesson": false,
+        "title": "Jam the signal",
+        "reference": "https://www.conwaylife.com/wiki/Category:Conduits",
+        "description": "You might recognize this, seemingly incomplete conduit from a couple chapters back. Knowing what you know about the beehive stopper, your task is to block the first of the two incoming gliders. But this time, it will not be as easy as just scrolling back to the conduit lesson and copying the solution. That's because you only have 5 Cells to place. If you have found the correct solution, only the second Glider will pass through the stopper, and no beehive will be left standing at the end.",
+        "cell_layout": [
+          [-8,-2],[-9,-2],[-9,-1],[-3,-9],[-4,-9],[-3,-10],[-5,-10],[-5,-11],[-4,-11],[-2,-13],[-1,-13],[-2,-14],[-1,-15],[1,-15],[2,-15],[2,-16],[4,-9],[5,-9],[5,-8],[4,-8],[15,-8],[16,-8],[15,-7],[15,-6],[14,-5],[13,-5],[13,-6],[37,36],[42,41],[36,36],[41,41],[35,37],[40,42],[35,36],[36,38],[40,41],[41,43],[-8,-1]
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 5,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 5
+      },
+      {
+        "lesson": false,
+        "title": "Reflect the signal",
+        "reference": "https://www.conwaylife.com/wiki/Reflector",
+        "description": "Use the provided reflector to create a Glider, which gets reflected into the eater positioned above. Carefully study the Buckaroo from the previous chapter, to determine the right starting position. Notice how the Glider gets reflected, and try to predict the path it's gonna take, if you place it at various points on the grid. If you are feeling stuck, consider the period of the Buckaroo oscillator, and the movement speed of the Glider, to more easily predict their next positions. Also don't be worried to try the trial-and-error approach.",
+        "cell_layout": [
+          [-3,1],[-3,2],[-3,-1],[-2,3],[-2,4],[-2,-2],[-2,-3],[-4,3],[-5,2],[-6,1],[-5,-1],[-4,-2],[-10,1],[-11,1],[-11,-1],[-10,-1],[9,-2],[9,-3],[11,-3],[11,-4],[11,-5],[12,-5],[10,-2],[-3,13],[-4,12],[-5,13],[-5,14],[-5,15],[-6,15],[-3,12]
+        ],
+        "repeated":[],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 5
+      }
+    ]
+  },
+  {
+    "header": "GoL:Advanced 08",
+    "chapter": "Game of Life: Advanced 08, Summary",
+    "lessons": [
+      {
+        "lesson": false,
+        "title": "Final exam",
+        "reference": "https://www.conwaylife.com/wiki/Queen_bee_shuttle",
+        "description": "For this final test of your skill and knowledge, you are tasked to construct a the Gosper Glider Gun. It might seem like an easy task, especially considering this is the last chapter of the Game of Life segment of this tutorial. However, this will prove that you are confident in crafting patterns from scratch on your own, and also that you possess some form of a grasp of the concept of periods. Your hint for this exercise is the fact that a Gosper Glider Gun consists of 2 so-called Queen Bee Shuttles, which are just spaceships moving back and forth between stable patterns, in this case, blocks. You can find out more about the Queen Bee by clicking the info icon. Good luck!",
+        "cell_layout": [
+
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 36
+      },
+      {
+        "lesson": true,
+        "title": "What you should remember",
+        "reference": "",
+        "description": "The lessons and exercises you have experienced so far were meant to introduce the very basics rules and concepts of the Game of Life to you, and later also properly solidify them, by slowly introducing more complex patterns and ideas into the mix. A lot of these were interesting, and to varying degrees important to understanding Life itself, but will not be very relevant in the following chapters. Ideally, you could stop at this point, and leave an expert in the Game of Life, but there are so many patterns and ideas around it, still yet to be explored. These have been left out here, mainly because their significance regarding the understanding of Life itself was deemed insufficient. There's thousands of explored and documented patterns and tens of categories and sub-categories under which they fall, so it would be unrealistic, or even counterproductive, to examine them all. What you should remember is the 4 basic rules of Life. You should know that there are still lifes, and oscillators, and that oscillators have certain periods in which they repeat. Oscillators that move are called spaceships, and probably the most important one is called the Glider. Patterns can be produced by other patterns, and a Glider producing pattern you will see the most is called the Gosper Glider Gun. You can use patterns to influence the flow of gliders (and other patterns for that matter). Knowing this, you should be more than ready to dive into the next chapters that will teach you the basics of computer logic.",
+        "cell_layout": [
+
+        ],
+        "repeated":[],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.05,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "Logic: Basics 01",
+    "chapter": "Computer Logic: Basics 01, Intro to computer logic",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "Computer logic",
+        "reference": "",
+        "description": "In this second, rather quick section of the Tour of Life, you will find out the basics of how computers do their computing. Over the next couple chapters, you will be presented with a concept from the field of logic, transformed into the Game of Life. Logical concepts will get a real meaning and representation. The goal of this section is to introduce to you the building blocks of the most basic of computers... a Turing machine. As to what a turing machine actually is, you will find that out in the next section. This will be a mainly hands-off experience, and will not involve many exercises where you have to complete a certain pattern or circuit. Due to the combinations of multiple different patterns, and the size of the overall circuit, it would be difficult to interact with the setup directly, as a very precise placement of cells is required. This would lead to a trial-and-error-centric way of solving these exercises, thus losing it's informative value. You can however always transfer the configuration into the Life2D sandbox and experiment with it there. Have fun learning!",
+        "cell_layout": [
+
+        ],
+        "repeated":[],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 4,
+        "speed": 0.1,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "Signal",
+        "reference": "",
+        "description": "Once you press play on the simulation, you will soon notice a continuous stream of gliders flow into frame. You should already be familiar with the glider, so from now on, you are not to think of it as a singular pattern, but as a part of something bigger. Peeking behind all the layers of abstraction, computers essentially communicate using a stream of 1s and 0s. This is the so-called bit stream, and it carries all the information. If you imagine the top left part of the grid as input, and the bottom right part as output, you can see that at the start, there's no gliders reaching the output. The gliders get spawned at a period of 30, so every 30 epochs that you do NOT detect a glider at the output, this means a 0. Once the gliders do come in, they represent a 1.",
+        "cell_layout": [
+          [1000,1000]
+        ],
+        "repeated": [
+          [-40,41],[-40,42],[-40,43],[-41,41],[-42,42]
+        ],
+        "min_zoom": 1,
+        "def_zoom": 2,
+        "max_zoom": 3,
+        "speed": 0.025,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "Logic: Basics 02",
+    "chapter": "Computer Logic: Basics 02, Gates",
+    "hint": "The 2 Gates shown here can technically be combined to create all other existing gates, and thus calculate any binary problem",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "NOT Gate",
+        "reference": "https://www.nicolasloizeau.com/gol-computer#h.p_dZFApvvPZ7Pc",
+        "description": "Parts of a logical circuit that take a signal stream as input, and output it's inverse are called NOT Gates. What this means is, that for every 1 they receive, they will output a 0, and vice versa. In the Game of Life, we can achieve this by generating a stream of Gliders using a Gosper Glider Gun. Imagine the bottom left corner of the screen as the output. Initially, the gliders reach it without any hiccups, but once a second stream starts colliding with the first at a certain point, the gliders get destroyed, and the inverse of the previous output gets generated. Where before we had a 1, is now a 0.",
+        "cell_layout": [
+          [23,34],[23,33],[24,33],[24,34],[24,24],[23,24],[22,24],[25,23],[26,22],[26,21],[21,23],[20,22],[20,21],[21,19],[22,18],[23,18],[24,18],[25,19],[23,20],[23,17],[24,14],[25,14],[26,14],[24,13],[25,13],[26,13],[27,12],[23,12],[23,10],[22,10],[27,10],[28,10],[26,-1],[25,-1],[25,-2],[26,-2]
+        ],
+        "repeated":[
+          [-76,71],[-76,72],[-77,71],[-77,70],[-78,72]
+        ],
+        "min_zoom": 1,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.025,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "AND Gate",
+        "reference": "https://www.nicolasloizeau.com/gol-computer#h.p_dZFApvvPZ7Pc",
+        "description": "If you know anything about computer logic, you have probably already heard of the AND Gate. It takes two inputs, and only outputs a 1, if BOTH the inputs are also set to 1. In other words, only if two glider streams reach the gate at once, an output gets produced. In this case, imagine the bottom right corner as the output. Initially, there is no input, therefore also no output. Then, one input stream appears, but gets blocked by the Glider Gun. Only when the second input comes in can it block the stream from the Gun, and allow the first input to pass through, thus producing an output.",
+        "cell_layout": [
+          [23,34],[23,33],[24,33],[24,34],[24,24],[23,24],[22,24],[25,23],[26,22],[26,21],[21,23],[20,22],[20,21],[21,19],[22,18],[23,18],[24,18],[25,19],[23,20],[23,17],[24,14],[25,14],[26,14],[24,13],[25,13],[26,13],[27,12],[23,12],[23,10],[22,10],[27,10],[28,10],[26,-1],[25,-1],[25,-2],[26,-2],[-13,-20],[-13,-21],[-14,-20],[-15,-21],[-15,-22],[-16,-23],[-15,-23]
+        ],
+        "repeated":[
+          [-99,93],[-100,93],[-98,94],[-99,94],[-100,95],
+          [-75,56],[-75,57],[-76,56],[-76,55],[-77,57]
+        ],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.025,
+        "placeable": 0
+      }
+    ]
+  },
+  {
+    "header": "Logic: Basics 03",
+    "chapter": "Computer Logic: Basics 03, Gates con. + Memory",
+    "lessons": [
+      {
+        "lesson": true,
+        "title": "OR Gate",
+        "reference": "https://www.nicolasloizeau.com/gol-computer#h.p_dZFApvvPZ7Pc",
+        "description": "Similarly to the AND Gate, and OR Gate is one of the quintessential components in computer logic. It also takes two inputs, but it actually produces a 1 as it's output, when both or EITHER one of the inputs are set to 1. You can observe that at the start, when no input is detected, no output gets produced. However as soon as the first input comes in, it blocks the disrupting Glider Gun on the right and allows the second Gun on the left to produce an output. Even when both inputs are detected, an output is still produced in the bottom middle section of the grid. ",
+        "cell_layout": [
+          [23,34],[23,33],[24,33],[24,34],[24,24],[23,24],[22,24],[25,23],[26,22],[26,21],[21,23],[20,22],[20,21],[21,19],[22,18],[23,18],[24,18],[25,19],[23,20],[23,17],[24,14],[25,14],[26,14],[24,13],[25,13],[26,13],[27,12],[23,12],[23,10],[22,10],[27,10],[28,10],[26,-1],[25,-1],[25,-2],[26,-2],[4,-23],[4,-24],[5,-23],[6,-24],[6,-25],[6,-26],[7,-26],
+          [-35,3],[-35,2],[-34,3],[-34,-8],[-35,-8],[-33,-8],[-32,-9],[-36,-9],[-37,-10],[-37,-11],[-31,-10],[-31,-11],[-34,-12],[-36,-13],[-32,-13],[-35,-14],[-34,-14],[-33,-14],[-34,-15],[-35,-18],[-36,-18],[-37,-18],[-37,-19],[-36,-19],[-35,-19],[-38,-20],[-34,-20],[-38,-22],[-39,-22],[-34,-22],[-33,-22],[-37,-32],[-36,-32],[-36,-33],[-37,-33],[-34,2],
+          [18,10],[10,3],[3,-6],[-6,-13],[17,11],[11,2],[2,-5],[-5,-14],[17,10],[10,2],[2,-6],[-6,-14],[18,9],[9,3],[11,4],[3,-7],[4,-5],[-7,-13],[-5,-12],[19,11]
+        ],
+        "repeated":[
+          [-99,93],[-100,93],[-98,94],[-99,94],[-100,95],
+          [-75,56],[-75,57],[-76,56],[-76,55],[-77,57]
+        ],
+        "min_zoom": 1,
+        "def_zoom": 6,
+        "max_zoom": 8,
+        "speed": 0.025,
+        "placeable": 0
+      },
+      {
+        "lesson": true,
+        "title": "SR Latch",
+        "reference": "https://www.nicolasloizeau.com/gol-computer#h.p_dZFApvvPZ7Pc",
+        "description": "Technically speaking, with the building blocks you have seen so far, it would be possible to create a circuit that is Turing complete. This term may mean nothing to you now, but we shall get to it very soon. For now, all you need to know is that you could use what you have learned so far, to create a 'program', which can do any specific calculation you'd want. To get a little closer to the idea of an actual computer, you would need some kind of memory. That is, at least in this case, a building block that will remember it's last state, even after the input is no longer present. This one is called an SR (Set/Reset) Latch. It passes on the last known state from the top left input (Set), and only stops if it detects a signal from the top right (Reset).",
+        "cell_layout": [
+          [-32,2],[-32,1],[32,-2],[-31,2],[31,-2],[-31,1],[31,-3],[19,-6],[19,1],[-19,-3],[-19,4],[16,-4],[16,-2],[-16,-1],[-16,2],[-11,2],[-11,4],[11,-2],[11,1],[17,-5],[18,-3],[17,-1],[-18,1],[-17,-2],[-17,3],[-12,3],[12,-1],[-8,-17],[-6,-18],[-6,-16],[-13,-18],[-13,-16],[-11,-17],[11,-18],[11,-16],[13,-17],[16,-17],[18,-18],[18,-16],[15,-3],[-15,1],[-2,-17],[-17,-17],[7,-17],[22,-17],[22,-3],[-22,1],[-8,-18],[-8,-16],[-11,-18],[-11,-16],[13,-18],[13,-16],[16,-18],[16,-16],[20,-6],[21,-5],[-21,3],[-20,4],[-21,-2],[-20,-3],[20,1],[21,-1],[-8,5],[-8,6],[-8,-1],[-8,1],[8,-4],[8,-3],[8,2],[8,3],[-5,-17],[-14,-17],[10,-17],[19,-17],[-3,-17],[-16,-17],[8,-17],[21,-17],[16,-3],[-16,1],[-12,2],[-11,3],[-10,1],[-12,4],[-10,5],[10,-3],[11,-1],[12,-2],[10,2],[12,1],[22,-4],[-22,2],[-22,-1],[32,-3],[22,-2],[7,-9],[8,-10],[8,-11],[7,-12],[6,-11],[6,-10],
+          [-45,38],[-45,39],[-46,38],[-47,39],[-46,37],
+          [150,140],[150,141],[151,140],[151,139],[152,141]
+        ],
+        "repeated":[],
+        "min_zoom": 1.5,
+        "def_zoom": 4,
+        "max_zoom": 6,
+        "speed": 0.025,
+        "placeable": 0
+      }
+    ]
+  }
+]
