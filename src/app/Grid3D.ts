@@ -24,9 +24,9 @@ export class Grid3D {
   private prediction_mode: boolean = false;
   private predicted_count: number = 0;
 
-  private min_survival: number = 5;
-  private max_survival: number = 7;
-  private birth: number = 6;
+  private min_survival: number = 4;
+  private max_survival: number = 5;
+  private birth: number = 5;
 
 
   public add_to_grid(cell: Cell3D, auto: boolean = false) {

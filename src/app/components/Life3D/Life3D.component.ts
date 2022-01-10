@@ -55,7 +55,6 @@ export class Life3DComponent implements OnInit {
   private edit_mode: boolean = false;
 
   ngOnInit(): void {
-    console.log('test');
     let parent: string = 'render_window';
     const width = document.getElementById(parent).offsetWidth;
     const height = document.getElementById(parent).offsetHeight;
@@ -422,7 +421,6 @@ export class Life3DComponent implements OnInit {
               intersects = [...intersects, ...caster.intersectObject(mesh)];
             }
           }
-          console.log(intersects[0]);
           for (let x = -size.x / 2; x <= size.x / 2; x += step) {
             for (let y = - size.y / 2; y <= size.y / 2; y += step) {
               let caster = new Raycaster(new Vector3(x, y, size.z), new Vector3(0, 0, -1));

@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Life2DContainer} from '../../Life2DContainer';
 
 import lesson_lexicon from '../../../assets/lesson_lexicon.json';
-import {Cell2D} from '../../Cell2D';
-
 
 
 @Component({

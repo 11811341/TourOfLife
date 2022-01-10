@@ -79,9 +79,9 @@ export class Life2DContainer{
 
       if (that.mouse_down) {
         if (e.which == 1) {
-          that.check_addition();
+          that.checkAddition();
         } else if (e.which == 3) {
-          that.check_deletion();
+          that.checkDeletion();
         }
       }
 
@@ -106,9 +106,9 @@ export class Life2DContainer{
       }
 
       if (e.button == 0) {  //perform left click action -> add
-        that.check_addition();
+        that.checkAddition();
       } else if (e.button == 2) {  //perform right click action -> delete
-        that.check_deletion();
+        that.checkDeletion();
       }
 
       if(set_pred && !that.prediction_mode)
@@ -135,7 +135,7 @@ export class Life2DContainer{
   //   this.renderer.shouldHideGrid() ? this.helperGrid.visible = false : this.helperGrid.visible = true;
   // }
 
-  private check_deletion() {
+  private checkDeletion() {
     if (this.scene.children.length > 2) {  //if raycast detects more that 2 objects(grid and plane) that means a cell is in place and can be deleted
       this.scene.children.splice(0, 2);
       const cell_check = this.raycaster.intersectObjects(this.scene.children);
@@ -149,7 +149,7 @@ export class Life2DContainer{
     }
   }
 
-  private check_addition() {
+  private checkAddition() {
     if (this.scene.children.length > 2) {  //if scene contains more that 2 objects(grid and plane) that means a cell is in place and can be deleted
       this.scene.children.splice(0, 2);
       const cell_check = this.raycaster.intersectObjects(this.scene.children);

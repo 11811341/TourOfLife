@@ -104,7 +104,7 @@ export class Grid2D {
     this.revert.push(this.active.slice());
 
     for (let a of this.active) {
-      this.check_neighbors(a.getX(), a.getY());
+      this.checkNeighbors(a.getX(), a.getY());
     }
 
     for (let death of this.to_die) {
@@ -181,22 +181,21 @@ export class Grid2D {
     }
   }
 
-  private check_neighbors(x: number, y: number) {
+  private checkNeighbors(x: number, y: number) {
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
         const coord_x = (x < 0 && x + i == 0) ? 1 : ((x > 0 && x + i == 0) ? -1 : x + i);
         const coord_y = (y < 0 && y + j == 0) ? 1 : ((y > 0 && y + j == 0) ? -1 : y + j);
-        if (this.coords[coord_x] && this.coords[coord_x][coord_y] != null) {
-          this.cell_death(this.coords[coord_x][coord_y]);
-        } else {
-          this.cell_birth(coord_x, coord_y);
+        if (!this.coords[coord_x] || this.coords[coord_x][coord_y] == null) {
+          this.cellBirth(coord_x, coord_y);
         }
       }
     }
+    this.cellDeath(this.coords[x][y]);
   }
 
 
-  private cell_death(cell: Cell2D) {
+  private cellDeath(cell: Cell2D) {
     let counter = 0;
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
@@ -218,7 +217,7 @@ export class Grid2D {
     }
   }
 
-  private cell_birth(x: number, y: number) {
+  private cellBirth(x: number, y: number) {
     var counter = 0;
     for (var i = -1; i <= 1; i++) {
       for (var j = -1; j <= 1; j++) {
@@ -271,7 +270,7 @@ export class Grid2D {
     this.to_die = [];
     this.to_birth = [];
     for (let a of this.active) {
-      this.check_neighbors(a.getX(), a.getY());
+      this.checkNeighbors(a.getX(), a.getY());
     }
 
     for (let l of this.lonely) {
