@@ -18,6 +18,7 @@ export class Life2DComponent implements OnInit{
   constructor(private params:ActivatedRoute) {}
 
   ngOnInit(): void{
+    console.log("test");
     this.life2DContainer = new Life2DContainer("render_window");
     const url = this.params.snapshot.paramMap.get('config');
     if(url && url.match("\d*;\d*")){

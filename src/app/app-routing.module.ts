@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'life2d', component: Life2DComponent},
   {path: 'life2d/:config', component: Life2DComponent},
   {path: 'life3d', component: Life3DComponent},
-  {path: 'touroflife', component: TourOfLifeComponent}
+  {path: 'tour-of-life', component: TourOfLifeComponent}
 ];
 
 @NgModule({

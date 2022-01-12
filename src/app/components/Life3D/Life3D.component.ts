@@ -7,6 +7,7 @@ import {Cell3D} from '../../Cell3D';
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
 import {Grid3D} from '../../Grid3D';
 import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -53,6 +54,15 @@ export class Life3DComponent implements OnInit {
   legend: boolean = false;
 
   private edit_mode: boolean = false;
+
+
+  constructor(private route: ActivatedRoute) {
+    route.params.subscribe(
+      params => {
+        console.log(document.getElementById("render_window"));
+      }
+    );
+  }
 
   ngOnInit(): void {
     let parent: string = 'render_window';
@@ -196,6 +206,7 @@ export class Life3DComponent implements OnInit {
     // this.renderer.getRenderer().addEventListener('wheel', function(){
     //   that.showGrid();
     // }, false);
+
   }
 
   private cursorUpdate() {
@@ -395,34 +406,34 @@ export class Life3DComponent implements OnInit {
       function(object) {
         that.clear();
         const box = new THREE.Box3();
-        for(let i = 0; i < object.children.length; i++){
+        for (let i = 0; i < object.children.length; i++) {
           const mesh = (object.children[i] as THREE.Mesh);
           mesh.geometry.computeBoundingBox();
           box.copy(mesh.geometry.boundingBox).applyMatrix4(mesh.matrixWorld);
           let size = new Vector3();
           box.getSize(size);
 
-          let move_by = new Vector3(-size.x/2, -size.y/2, -size.z/2);
+          let move_by = new Vector3(-size.x / 2, -size.y / 2, -size.z / 2);
           move_by = move_by.subVectors(move_by, box.min);
 
-          mesh.position.x+=move_by.x;
-          mesh.position.y+=move_by.y;
-          mesh.position.z+=move_by.z;
+          mesh.position.x += move_by.x;
+          mesh.position.y += move_by.y;
+          mesh.position.z += move_by.z;
           mesh.updateMatrixWorld();
 
           const step = 0.1;
           let intersects = [];
 
           for (let x = -size.x / 2; x <= size.x / 2; x += step) {
-            for (let z = - size.z / 2; z <= size.z / 2; z += step) {
+            for (let z = -size.z / 2; z <= size.z / 2; z += step) {
               let caster = new Raycaster(new Vector3(x, size.y, z), new Vector3(0, -1, 0));
               intersects = [...intersects, ...caster.intersectObject(mesh)];
-              caster = new Raycaster(new Vector3(x, - size.y, z), new Vector3(0, 1, 0));
+              caster = new Raycaster(new Vector3(x, -size.y, z), new Vector3(0, 1, 0));
               intersects = [...intersects, ...caster.intersectObject(mesh)];
             }
           }
           for (let x = -size.x / 2; x <= size.x / 2; x += step) {
-            for (let y = - size.y / 2; y <= size.y / 2; y += step) {
+            for (let y = -size.y / 2; y <= size.y / 2; y += step) {
               let caster = new Raycaster(new Vector3(x, y, size.z), new Vector3(0, 0, -1));
               intersects = [...intersects, ...caster.intersectObject(mesh)];
               caster = new Raycaster(new Vector3(x, y, -size.z), new Vector3(0, 0, 1));
@@ -430,7 +441,7 @@ export class Life3DComponent implements OnInit {
             }
           }
           for (let z = -size.z / 2; z <= size.z / 2; z += step) {
-            for (let y = - size.y / 2; y <= size.y / 2; y += step) {
+            for (let y = -size.y / 2; y <= size.y / 2; y += step) {
               let caster = new Raycaster(new Vector3(size.x, y, z), new Vector3(-1, 0, 0));
               intersects = [...intersects, ...caster.intersectObject(mesh)];
               caster = new Raycaster(new Vector3(-size.x, y, z), new Vector3(1, 0, 0));
