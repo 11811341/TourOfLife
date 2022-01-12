@@ -55,15 +55,6 @@ export class Life3DComponent implements OnInit {
 
   private edit_mode: boolean = false;
 
-
-  constructor(private route: ActivatedRoute) {
-    route.params.subscribe(
-      params => {
-        console.log(document.getElementById("render_window"));
-      }
-    );
-  }
-
   ngOnInit(): void {
     let parent: string = 'render_window';
     const width = document.getElementById(parent).offsetWidth;
