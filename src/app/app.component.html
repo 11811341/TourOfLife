@@ -2,9 +2,30 @@
   <mat-drawer-container id="navigation_container">
     <mat-drawer #drawer class="sidenav_drawer" id="navigation_drawer" mode="over">
       <div class="sidebar" id="sidebar_navigation">
-        <button type="button" mat-button (click)="reroute('life2d')">2D Game of Life simulator</button>
-        <button type="button" mat-button (click)="reroute('tour-of-life')">Tour of Life</button>
-        <button type="button" mat-button (click)="reroute('life3d')">3D Game of Life simulator</button>
+        <button type="button" mat-button (click)="reroute('life2d')" style="display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  align-content: flex-start;">
+          <img src="assets\2d-icon.png" style="width: 5em;height:5em;">
+          <p>2D Game of Life simulator</p>
+        </button>
+        <button type="button" mat-button (click)="reroute('tour-of-life')" style="display: flex;
+          flex-flow: column;
+          justify-content: space-around;
+          align-items: flex-start;
+          align-content: flex-start;">
+          <img src="assets\tour-icon.png" style="width: 5em;height:5em;">
+          <p>Tour of Life</p>
+        </button>
+        <button type="button" mat-button (click)="reroute('life3d')" style="display: flex;
+          flex-flow: column;
+          justify-content: space-around;
+          align-items: flex-start;
+          align-content: flex-start;">
+          <img src="assets\3d-icon.png" style="width: 5em;height:5em;">
+          <p>3D Game of Life simulator</p>
+        </button>
       </div>
     </mat-drawer>
     <div id="sidenav_button" style="position: absolute; z-index: 1000">

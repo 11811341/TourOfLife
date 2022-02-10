@@ -16,7 +16,11 @@ export class AppComponent {
 
   reroute(path: string){
     let p = window.location.href;
+    // console.log("lel");
+    // console.log(p);
     let parts = p.split("/");
+    if(parts[parts.length-2]=="life2d")
+      parts = parts.slice(0, parts.length-1);
     parts[parts.length-1] = path;
     // console.log(parts.join("/"));
     window.location.href = parts.join("/");

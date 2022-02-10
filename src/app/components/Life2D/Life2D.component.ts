@@ -74,7 +74,7 @@ export class Life2DComponent implements OnInit{
           for (let i = 0; i < imgData.data.length; i += 4) {
             let avg = (imgData.data[i] + imgData.data[i + 1] + imgData.data[i + 2]) / 3;
             // console.log(avg);
-            if(avg >= 200){
+            if(avg < 200){
               let x = (i / 4) % img.width;
               let y = Math.floor((i / 4) / img.width);
               // console.log([x,y]);
